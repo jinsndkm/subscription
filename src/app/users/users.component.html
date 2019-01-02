@@ -1,0 +1,15 @@
+<h1>Users</h1>
+<div>
+  <a routerLink="/createUser">Create a new user</a>
+</div>
+<ul>
+  <li *ngFor="let user of users$">
+    <a routerLink="/details/{{user.id}}">{{ user.task }}</a>
+
+    <ul>
+      <li> {{ user.status }}</li>
+      <li>{{ user.created_at }}</li>
+    </ul>
+  </li>
+</ul>
+
