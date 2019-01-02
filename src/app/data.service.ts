@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpRequest, HttpHeaders } from '@angular/common/http';
 
+var rootPath="http://localhost:3000";
+
 const httpOptions = {
   headers: new HttpHeaders({
     'Access-Control-Allow-Origin': '*'
@@ -18,7 +20,7 @@ export class DataService {
   constructor(private http: HttpClient) {
   }
   getUsers() {
-    return this.http.get('http://localhost:3000/tasks');
+    return this.http.get(rootPath+'/tasks');
   }
 
   getUser(userId) {
@@ -33,7 +35,7 @@ export class DataService {
       })
     });*/
 
-    return this.http.get('http://localhost:3000/fusebill');
+    return this.http.get(rootPath+'/fusebill');
 
   }
 
