@@ -58,6 +58,58 @@
             line-height: 1;
             margin-top: 4px;
         }
+        .services-container
+        {
+            &:before
+            {
+              
+                    display: block;
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    content: '';
+                    height: 100%;
+                    width: 2px;
+                    background-color: #1b99e9;
+           
+            }
+            .service-title
+            {
+                text-transform: uppercase;
+                display: inline-block;
+                font-family: "OpenSans", sans-serif;
+                font-size: 0.813em;
+                font-weight: 600;
+                color: #FFFFFF;
+                line-height: 1;
+                display:block;
+            }
+            ul
+            {
+                li
+                {
+                    position: relative;
+                    font-family: "OpenSans", sans-serif;
+                    font-size: 0.813em;
+                    font-weight: 100;
+                    color: #FFFFFF;
+                    line-height: 1;
+                    background: none !important;
+                    margin-top: 10px;
+                    padding: 0px !important;
+
+                     .icon {
+                        background-image: url('data:image/svg+xml,%3Csvg xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%2…2 mask%3D%22url(%23d)%22%2F%3E %3C%2Fg%3E %3C%2Fg%3E%3C%2Fsvg%3E');
+                        display: inline-block;
+                        background-repeat: no-repeat;
+                        background-size: contain;
+                        height: 24px;
+                        width: 24px;
+                    }
+                    
+                }
+            }
+        }
 
     }
 }
