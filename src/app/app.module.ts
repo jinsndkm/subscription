@@ -15,6 +15,7 @@ import { CreateUserComponent } from './create-user/create-user.component';
 
 import { from } from 'rxjs';
 import { FusebillComponent } from './fusebill/fusebill.component';
+import { LoginComponent } from './login/login.component';
 
 
 
@@ -27,7 +28,8 @@ import { FusebillComponent } from './fusebill/fusebill.component';
     UserDetailsComponent,
     HomeComponent,
     CreateUserComponent,
-    FusebillComponent
+    FusebillComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

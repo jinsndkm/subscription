@@ -1,18 +1,37 @@
 nav {
-    background: #2D2E2E;
+    background-image:linear-gradient(to top, #336699, #005B82);
     height: 100%;
-
+  .logo
+  {
+      margin: auto;
+      display: block;
+      padding-top: 20px;
+  }
     ul {
         list-style-type: none;
         padding: 0;
         margin: 0;
 
         li {
-
+            margin-top: 60px;
             a {
                 color: #fff;
-                padding: 20px;
+                padding: 20px 10px;
                 display: block;
+                text-align: center;
+                text-decoration: none;
+               i{
+                    color: #6a9eff;
+                    font-size: 2.3em;
+                }
+
+               span.label{
+                font-size: 0.613em;
+                font-weight: 100;
+                text-transform: uppercase;
+                margin: auto;
+                display: block;
+                }
             }
 
             .activated {

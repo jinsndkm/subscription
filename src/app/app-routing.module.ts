@@ -8,6 +8,7 @@ import{CreateUserComponent} from './create-user/create-user.component';
 import {FusebillComponent} from './fusebill/fusebill.component';
 
 import { from } from 'rxjs';
+import { LoginComponent } from './login/login.component';
 
 
 const routes: Routes = [
@@ -31,6 +32,9 @@ const routes: Routes = [
   {
     path : 'fusebill',
     component : FusebillComponent
+  },{
+    path:'users',
+    component:CreateUserComponent
   }
  
 ];

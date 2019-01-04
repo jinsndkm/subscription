@@ -1,0 +1,63 @@
+
+.section
+{
+    .greetings
+
+    {
+        margin-top: 40px;
+    }
+    .dash-contain-profile
+    {
+        border-radius: 10px;
+        padding: 40px 30px;
+        background-image: linear-gradient(to right, #336699, #005B82);
+        margin-top: 40px;
+        color: #fff;
+        .client-photo
+        {
+
+            margin: auto;
+            display: block;
+            text-align: center;
+            img
+            {
+                width: 105px;
+                height: 105px;
+                margin-right: 40px;
+            
+                -webkit-box-shadow: 0 6px 15px 0 rgba(75, 202, 255, 0.42);
+                box-shadow: 0 6px 15px 0 rgba(75, 202, 255, 0.42);
+                border: solid 5px #FFFFFF;
+                border-radius: 50%;
+                margin-right: 20px;
+            }
+        }
+        .client-name
+        {
+            font-family: "OpenSans", sans-serif;
+            font-size: 1.75em;
+            font-weight: 100;
+            color: #FFFFFF;
+            line-height: 1;
+        }
+        .client-diagnosis
+        {
+            font-family: "OpenSans", sans-serif;
+            font-size: 0.813em;
+            font-weight: 100;
+            color: #FFFFFF;
+            line-height: 1;
+            margin-top: 4px;
+        }
+        .clint-bio
+        {
+            font-family: "OpenSans", sans-serif;
+            font-size: 0.813em;
+            font-weight: 100;
+            color: #FFFFFF;
+            line-height: 1;
+            margin-top: 4px;
+        }
+
+    }
+}
