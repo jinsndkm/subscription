@@ -18,6 +18,7 @@ import { FusebillComponent } from './fusebill/fusebill.component';
 import { LoginComponent } from './login/login.component';
 import { MyserviceComponent } from './myservice/myservice.component';
 import { SubscriptionComponent } from './subscription/subscription.component';
+import { UpgradeSubscriptionComponent } from './upgrade-subscription/upgrade-subscription.component';
 
 
 
@@ -33,7 +34,8 @@ import { SubscriptionComponent } from './subscription/subscription.component';
     FusebillComponent,
     LoginComponent,
     MyserviceComponent,
-    SubscriptionComponent
+    SubscriptionComponent,
+    UpgradeSubscriptionComponent
   ],
   imports: [
     BrowserModule,

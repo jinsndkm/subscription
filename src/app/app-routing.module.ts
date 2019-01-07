@@ -11,6 +11,7 @@ import { from } from 'rxjs';
 import { LoginComponent } from './login/login.component';
 import { SubscriptionComponent } from './subscription/subscription.component';
 import { MyserviceComponent } from './myservice/myservice.component';
+import { UpgradeSubscriptionComponent } from './upgrade-subscription/upgrade-subscription.component';
 
 
 const routes: Routes = [
@@ -41,6 +42,9 @@ const routes: Routes = [
   {
     path:'mysubscription',
     component:SubscriptionComponent
+  }, {
+    path:'mysubscription/upgradeSubscription',
+    component:UpgradeSubscriptionComponent
   },{
     path:'addservice',
     component:MyserviceComponent
