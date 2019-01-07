@@ -24,6 +24,154 @@ body {
    #content {
        padding: 30px 50px;
 
+.mrg-btm-0
+{
+    margin-bottom: 1px !important;
+}
+/*common-buttons*/
+.btn-cancel
+{
+    background-color: #E57373 !important;
+    position: relative;
+    cursor: pointer;
+    display: inline-block;
+    overflow: hidden;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    vertical-align: middle;
+    z-index: 1;
+    -webkit-transition: .3s ease-out;
+    transition: .3s ease-out;
+    
+}
+
+.btm-mt
+{
+    border: none;
+    border-radius: 2px;
+    display: inline-block;
+    height: 29px;
+    line-height: 31px;
+    padding: 0px 11px;
+    text-transform: uppercase;
+    vertical-align: middle;
+    -webkit-tap-highlight-color: transparent;
+    margin: 0px 3px;
+    font-size: 12px;
+}
+.link
+{
+    font-size: 0.78em;
+    color: #0a0909;
+}
+.bold
+{
+    font-weight: 700;
+}
+
+
+/*common-pannel*/
+.common-card
+{
+border: none !important;
+
+.common-panel-head
+{
+
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    flex-direction: row;
+    height: 120px;
+    -webkit-box-shadow: 0 4px 4px 0 rgba(26, 44, 63, 0.09);
+    box-shadow: 0 4px 4px 0 rgba(26, 44, 63, 0.09);
+    padding: 0px;
+    border-bottom: transparent;
+    .head-score
+    {
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 140px;
+        flex: 0 0 140px;
+        height: 100%;
+        background-position: 75%;
+        background: url(./assets/tile-bg.png);
+        font-family: "OpenSans", sans-serif;
+        font-size: 0.813em;
+        font-weight: 100;
+        color: #FFFFFF;
+        line-height: normal;
+        padding: 15px;
+        height: 120px;
+        background-repeat: no-repeat;
+        background-position: 100%;
+        background-size: auto 100%;
+        border-radius: 5px;
+
+        .l-icon
+        {
+            font-size: 41px;
+            text-align: center;
+            margin: auto;
+            display: block;
+            position: relative;
+            top: 22px;
+        }
+    }
+    .head-overview
+    {
+       -webkit-box-flex: 1;
+       -ms-flex-positive: 1;
+       flex-grow: 1;
+       text-align: left;
+       position: relative;
+       padding: 20px;
+       height: 100%;
+       text-align:left;
+       background: #fff !important;
+
+       p.short-head
+       {
+       
+        font-size: 0.75em;
+        font-weight: 600;
+        color: #596B81;
+        line-height: normal;
+        text-transform: uppercase;
+        margin: 0;
+        font-family: 'Montserrat', sans-serif;
+       }
+       p.head
+       {    
+        display: block;
+        margin-top: 10px;
+      
+        font-size: 1.125em;
+        font-weight: 100;
+        color: #1A2C3F;
+        line-height: normal;
+        font-size: 1.5em;
+        font-family: 'Montserrat', sans-serif;
+           
+       }
+    }
+
+}
+
+.common-panel-body
+{
+    .panel-features
+    {
+        margin-bottom: 10px;
+    }
+}
+}
        ul {
            list-style-type: none;
            margin:0;padding:0;

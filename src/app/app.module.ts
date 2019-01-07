@@ -16,6 +16,8 @@ import { CreateUserComponent } from './create-user/create-user.component';
 import { from } from 'rxjs';
 import { FusebillComponent } from './fusebill/fusebill.component';
 import { LoginComponent } from './login/login.component';
+import { MyserviceComponent } from './myservice/myservice.component';
+import { SubscriptionComponent } from './subscription/subscription.component';
 
 
 
@@ -29,7 +31,9 @@ import { LoginComponent } from './login/login.component';
     HomeComponent,
     CreateUserComponent,
     FusebillComponent,
-    LoginComponent
+    LoginComponent,
+    MyserviceComponent,
+    SubscriptionComponent
   ],
   imports: [
     BrowserModule,
