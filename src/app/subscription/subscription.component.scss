@@ -10,8 +10,9 @@
     {
       .subscription
       {
-        box-shadow: 1px 2px 3px #eaeaea;
+        box-shadow: 1px 2px 3px #f3f2f2;
         margin-bottom: 10px;
+        padding-bottom: 5px;
         .warning
         {
             color: #ffc107;
@@ -26,6 +27,14 @@
         {
             color: #6f6f6f;
             font-size: 0.82em;
+        }
+        label
+        {
+            font-family: "OpenSans", sans-serif;
+            font-size: .925em;
+            font-weight: 400;
+            color: #1A2C3F;
+            line-height: 1;
         }
 
       }
