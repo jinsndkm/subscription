@@ -19,6 +19,7 @@ import { LoginComponent } from './login/login.component';
 import { MyserviceComponent } from './myservice/myservice.component';
 import { SubscriptionComponent } from './subscription/subscription.component';
 import { UpgradeSubscriptionComponent } from './upgrade-subscription/upgrade-subscription.component';
+import { ViewSubscriptionDetailsComponent } from './view-subscription-details/view-subscription-details.component';
 
 
 
@@ -35,7 +36,8 @@ import { UpgradeSubscriptionComponent } from './upgrade-subscription/upgrade-sub
     LoginComponent,
     MyserviceComponent,
     SubscriptionComponent,
-    UpgradeSubscriptionComponent
+    UpgradeSubscriptionComponent,
+    ViewSubscriptionDetailsComponent
   ],
   imports: [
     BrowserModule,
