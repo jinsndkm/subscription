@@ -12,6 +12,7 @@ import { LoginComponent } from './login/login.component';
 import { SubscriptionComponent } from './subscription/subscription.component';
 import { MyserviceComponent } from './myservice/myservice.component';
 import { UpgradeSubscriptionComponent } from './upgrade-subscription/upgrade-subscription.component';
+import { ViewSubscriptionDetailsComponent } from './view-subscription-details/view-subscription-details.component';
 
 
 const routes: Routes = [
@@ -45,6 +46,9 @@ const routes: Routes = [
   }, {
     path:'mysubscription/upgradeSubscription',
     component:UpgradeSubscriptionComponent
+  }, {
+    path:'mysubscription/viewSubscription',
+    component:ViewSubscriptionDetailsComponent
   },{
     path:'addservice',
     component:MyserviceComponent
