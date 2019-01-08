@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { DataService } from '../data.service';
 @Component({
   selector: 'app-subscription',
   templateUrl: './subscription.component.html',
@@ -7,9 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SubscriptionComponent implements OnInit {
 
-  constructor() { }
+  constructor(private data: DataService) { }
 
   ngOnInit() {
+  }
+  cancelSubscription(subId) {
+    
+    this.data.cancelSubscription(subId);
   }
 
 }

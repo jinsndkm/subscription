@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpRequest, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpRequest, HttpHeaders,HttpParams } from '@angular/common/http';
 
-var rootPath="http://localhost:3000";
+var rootPath = "http://localhost:3000";
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -19,8 +19,9 @@ export class DataService {
 
   constructor(private http: HttpClient) {
   }
+
   getUsers() {
-    return this.http.get(rootPath+'/tasks');
+    return this.http.get(rootPath + '/tasks');
   }
 
   getUser(userId) {
@@ -35,8 +36,27 @@ export class DataService {
       })
     });*/
 
-    return this.http.get(rootPath+'/fusebill');
+    return this.http.get(rootPath + '/fusebill');
 
   }
+
+  cancelSubscription(subscriptionId) {
+
+   const subscriptionBody={"subscriptionId":subscriptionId,"cancellationOption":"None"};
+    const headers = new HttpHeaders()
+      .set('Authorization', 'Basic MDpEZk9jcExWQVFFczk1U1hPSWhER0J0RzFXOFJCaGs3UVFsU2xOQ0JJRUJ4Y1NSSG9JQXAzbTJVdGFWNVRZUlVN')
+      .set('Content-Type', 'application/json')
+      .set('Access-Control-Allow-Origin', '*');
+
+    this.http.post(rootPath + '/subscription/cancel',subscriptionBody, {
+      headers: headers
+    })
+      .subscribe(data => {
+        alert("ss"+JSON.stringify(data))
+      });
+  }
+
+
+
 
 }

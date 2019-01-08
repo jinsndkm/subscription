@@ -20,6 +20,7 @@ import { MyserviceComponent } from './myservice/myservice.component';
 import { SubscriptionComponent } from './subscription/subscription.component';
 import { UpgradeSubscriptionComponent } from './upgrade-subscription/upgrade-subscription.component';
 import { ViewSubscriptionDetailsComponent } from './view-subscription-details/view-subscription-details.component';
+import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
 
 
 
@@ -37,7 +38,8 @@ import { ViewSubscriptionDetailsComponent } from './view-subscription-details/vi
     MyserviceComponent,
     SubscriptionComponent,
     UpgradeSubscriptionComponent,
-    ViewSubscriptionDetailsComponent
+    ViewSubscriptionDetailsComponent,
+    ConfirmationDialogComponent
   ],
   imports: [
     BrowserModule,
