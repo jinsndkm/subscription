@@ -12,8 +12,10 @@ export class SubscriptionComponent implements OnInit {
   ngOnInit() {
   }
   cancelSubscription(subId) {
-    
-    this.data.cancelSubscription(subId);
+    if(confirm("Are you sure to cancel?")) {
+      this.data.cancelSubscription(subId);
+    }
+  
   }
 
 }
