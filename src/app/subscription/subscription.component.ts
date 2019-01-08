@@ -6,14 +6,16 @@ import { DataService } from '../data.service';
   styleUrls: ['./subscription.component.scss']
 })
 export class SubscriptionComponent implements OnInit {
-
+  services$: Object;
   constructor(private data: DataService) { }
 
   ngOnInit() {
   }
   cancelSubscription(subId) {
     if(confirm("Are you sure to cancel?")) {
-      this.data.cancelSubscription(subId);
+      var resu=this.data.cancelSubscription(subId);
+ 
+      alert("FINAL::>"+resu);
     }
   
   }

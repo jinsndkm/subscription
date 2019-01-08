@@ -41,7 +41,7 @@ export class DataService {
   }
 
   cancelSubscription(subscriptionId) {
-    var statusCode;
+    let statusCode;
     const subscriptionBody = { "subscriptionId": subscriptionId, "cancellationOption": "None" };
     const headers = new HttpHeaders()
       .set('Authorization', 'Basic MDpEZk9jcExWQVFFczk1U1hPSWhER0J0RzFXOFJCaGs3UVFsU2xOQ0JJRUJ4Y1NSSG9JQXAzbTJVdGFWNVRZUlVN')
@@ -52,10 +52,12 @@ export class DataService {
       headers: headers
     })
       .subscribe(data => {
-        statusCode = data.HttpStatusCode;
-        alert("ss" + data.HttpStatusCode);
+        alert("DDD"+data)
+        statusCode = data;
+        alert("DDD22"+statusCode)
+        return statusCode;
       });
-    return statusCode;
+   
   }
 
 
