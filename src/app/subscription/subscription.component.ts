@@ -19,9 +19,9 @@ export class SubscriptionComponent implements OnInit {
   }
   cancelSubscription(subId) {
     if(confirm("Are you sure to cancel?")) {
-      var resu=this.data.cancelSubscription(subId);
- 
-      alert("FINAL::>"+resu);
+      let resu=this.data.cancelSubscription(subId);
+      
+      alert("FINAL::>"+JSON.stringify(resu.toString()));
       this.data.getMySubscription().subscribe(
         data => this.mysubscriptions$=data
       );
