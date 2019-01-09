@@ -7,9 +7,18 @@ import { DataService } from '../data.service';
   styleUrls: ['./upgrade-subscription.component.scss']
 })
 export class UpgradeSubscriptionComponent implements OnInit {
-  upgradeSubscriptions$: Object;
-
+  upgradeSubscriptions: Object;
+  items: any[];
   constructor(private data: DataService,private route: ActivatedRoute) { }
+
+  createRange(number){
+    this.items = [];
+    for(var i = 1; i <= number; i++){
+       this.items.push(i);
+    }
+    return this.items;
+  }
+
 
   ngOnInit() {
     let subId;
@@ -17,11 +26,10 @@ export class UpgradeSubscriptionComponent implements OnInit {
       subId = params.subId;
     })
     this.data.listUpgradeSubscriptions(subId).subscribe(
-      data => this.upgradeSubscriptions$ = data
-    
+      data => this.upgradeSubscriptions = data
     );
 
-    alert(this.upgradeSubscriptions$);
+   
   }
 
 }

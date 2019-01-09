@@ -67,7 +67,8 @@
                 <div class="col-md-12">
                   <form>
                   
-                    <div class="subscription" *ngFor="let upgradeSubscription of upgradeSubscriptions$;let i = index">
+                    <div class="subscription" *ngFor="let upgradeSubscription of upgradeSubscriptions;let i = index">
+                        <div *ngFor="let item of createRange(upgradeSubscription.planFamilyRelationship.length)$">
                       <div class="form-group row mrg-btm-0">
                         <div class="col-sm-1">
                           <div class="form-check-inline eql-padding">
@@ -78,33 +79,29 @@
 
                         </div>
 
-
-
-
                         <div class="col-md-2">
                           <h3>{{ upgradeSubscription.name }}</h3>
                           <p> {{ upgradeSubscription.code }} </p>
                         </div>
 
-
                         <div class="col-md-2">
-                          <h3>{{upgradeSubscription.planFamilyRelationship[0].relationshipMigrationType}} </h3>
+                          <h3>{{upgradeSubscription.planFamilyRelationship[item-1].relationshipMigrationType}} </h3>
                           <p>Type </p>
                         </div>
 
                         <div class="col-md-2">
 
-                          <h3>{{ upgradeSubscription.plans[0].planName }}</h3>
+                          <h3>{{ upgradeSubscription.plans[i].planName }}</h3>
                           <p> Plan</p>
                         </div>
                         <div class="col-md-2">
 
-                          <h3>{{upgradeSubscription.planFamilyRelationship[0].destinationPlan.planFrequencies[i].interval}}</h3>
+                          <h3>{{upgradeSubscription.planFamilyRelationship[item-1].destinationPlanFrequency.interval}}</h3>
                           <p> Frequency</p>
                         </div>
                       </div>
                     </div>
-
+                  </div>
 
 
                   </form>
