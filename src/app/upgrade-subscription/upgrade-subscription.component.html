@@ -65,19 +65,19 @@
               </div>
               <div class="row">
                 <div class="col-md-12">
-                  <form>
+                  <!-- <form> -->
                   
                     <div class="subscription" *ngFor="let upgradeSubscription of upgradeSubscriptions;let i = index">
                         <div *ngFor="let item of createRange(upgradeSubscription.planFamilyRelationship.length)$">
                       <div class="form-group row mrg-btm-0">
-                        <div class="col-sm-1">
+                        <!-- <div class="col-sm-1">
                           <div class="form-check-inline eql-padding">
                             <label class="form-check-label">
                               <input type="checkbox" class="form-check-input" value="">
                             </label>
                           </div>
 
-                        </div>
+                        </div> -->
 
                         <div class="col-md-2">
                           <h3>{{ upgradeSubscription.name }}</h3>
@@ -99,12 +99,13 @@
                           <h3>{{upgradeSubscription.planFamilyRelationship[item-1].destinationPlanFrequency.interval}}</h3>
                           <p> Frequency</p>
                         </div>
+                        <a href="payment.html" class="btn-upgrade btn btn-info btm-mt" style="float: right;"> Upgrade </a>
                       </div>
                     </div>
                   </div>
 
 
-                  </form>
+                  <!-- </form> -->
                 </div>
               </div>
 
@@ -115,8 +116,8 @@
 
               <div class="row" style="margin-top: 10px;">
                 <div class="col-md-12">
-
-                  <a href="payment.html" class="btn-upgrade btn btn-info btm-mt" style="float: right;"> Upgrade </a>
+<!-- 
+                  <a href="payment.html" class="btn-upgrade btn btn-info btm-mt" style="float: right;"> Upgrade </a> -->
 
                 </div>
               </div>
