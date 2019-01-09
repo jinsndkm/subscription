@@ -66,7 +66,8 @@
               <div class="row">
                 <div class="col-md-12">
                   <form>
-                    <div class="subscription">
+                  
+                    <div class="subscription" *ngFor="let upgradeSubscription of upgradeSubscriptions$;let i = index">
                       <div class="form-group row mrg-btm-0">
                         <div class="col-sm-1">
                           <div class="form-check-inline eql-padding">
@@ -81,100 +82,24 @@
 
 
                         <div class="col-md-2">
-                          <h3>Sevice Family</h3>
-                          <p> Plan Family </p>
+                          <h3>{{ upgradeSubscription.name }}</h3>
+                          <p> {{ upgradeSubscription.code }} </p>
                         </div>
 
 
                         <div class="col-md-2">
-                          <h3>Upgrade </h3>
+                          <h3>{{upgradeSubscription.planFamilyRelationship[0].relationshipMigrationType}} </h3>
                           <p>Type </p>
                         </div>
 
                         <div class="col-md-2">
 
-                          <h3>RMS(rms)</h3>
+                          <h3>{{ upgradeSubscription.plans[0].planName }}</h3>
                           <p> Plan</p>
                         </div>
                         <div class="col-md-2">
 
-                          <h3>Every 5 Year</h3>
-                          <p> Frequency</p>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="subscription">
-                      <div class="form-group row mrg-btm-0">
-                        <div class="col-sm-1">
-                          <div class="form-check-inline eql-padding">
-                            <label class="form-check-label">
-                              <input type="checkbox" class="form-check-input" value="">
-                            </label>
-                          </div>
-
-                        </div>
-
-
-
-
-                        <div class="col-md-2">
-                          <h3>Sevice Family</h3>
-                          <p> Plan Family </p>
-                        </div>
-
-
-                        <div class="col-md-2">
-                          <h3>Upgrade </h3>
-                          <p>Type </p>
-                        </div>
-
-                        <div class="col-md-2">
-
-                          <h3>RMS(rms)</h3>
-                          <p> Plan</p>
-                        </div>
-                        <div class="col-md-2">
-
-                          <h3>Every 2 Year</h3>
-                          <p> Frequency</p>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="subscription">
-                      <div class="form-group row mrg-btm-0">
-                        <div class="col-sm-1">
-                          <div class="form-check-inline eql-padding">
-                            <label class="form-check-label">
-                              <input type="checkbox" class="form-check-input" value="">
-                            </label>
-                          </div>
-
-                        </div>
-
-
-
-
-                        <div class="col-md-2">
-                          <h3>Sevice Family</h3>
-                          <p> Plan Family </p>
-                        </div>
-
-
-                        <div class="col-md-2">
-                          <h3>Upgrade </h3>
-                          <p>Type </p>
-                        </div>
-
-                        <div class="col-md-2">
-
-                          <h3>RMS(rms)</h3>
-                          <p> Plan</p>
-                        </div>
-                        <div class="col-md-2">
-
-                          <h3>Every 1 Year</h3>
+                          <h3>{{upgradeSubscription.planFamilyRelationship[0].destinationPlan.planFrequencies[i].interval}}</h3>
                           <p> Frequency</p>
                         </div>
                       </div>

@@ -61,5 +61,8 @@ export class DataService {
     return this.http.get(rootPath+'/mysubscriprions');
   }
 
+  listUpgradeSubscriptions(subscriptionId){
+    return this.http.get(rootPath+'/subscription/listupgradesubscriptions/'+subscriptionId);
+  }
 
 }

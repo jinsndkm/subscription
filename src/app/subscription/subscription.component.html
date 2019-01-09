@@ -107,7 +107,7 @@
                       <div class="col-md-3">
                         
                         <button type="button" class="btn btn-danger btn-cancel btm-mt" (click)="cancelSubscription('1160897')">Cancel</button>
-                        <a routerLink="upgradeSubscription" class="btn-upgrade btn btn-info btm-mt"> Upgrade </a>
+                        <a [routerLink]="['upgradeSubscription']" [queryParams]="{subId: 1220072}" class="btn-upgrade btn btn-info btm-mt" > Upgrade </a>
                       </div>
                     </div>
                   </div>
