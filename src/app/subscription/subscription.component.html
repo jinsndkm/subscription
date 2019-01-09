@@ -42,7 +42,7 @@
                    </div> -->
             <div class="head-score">
 
-                <i class="fas fa-align-justify l-icon"></i>
+              <i class="fas fa-align-justify l-icon"></i>
             </div>
             <div class="head-overview">
               <p class="short-head">SUBSCRIPTION </p>
@@ -54,151 +54,71 @@
           </div>
           <div class="card-body common-panel-body">
             <div class="panel-features">
-            <div class="row">
-              <!--search-section-->
-              <div class="col-md-12">
-                <form class="form-inline pull-left" style="float: left;">
+              <div class="row">
+                <!--search-section-->
+                <div class="col-md-12">
+                  <form class="form-inline pull-left" style="float: left;">
 
-                  <select id="inputState" class="form-control ">
-                    <option selected="">Ascending</option>
-                    <option>descending</option>
+                    <select id="inputState" class="form-control ">
+                      <option selected="">Ascending</option>
+                      <option>descending</option>
 
-                  </select>
+                    </select>
 
-                </form>
-                <form class="form-inline pull-right" style="float: right;">
-                  <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                  <button class="btn btn-outline-success my-2 my-sm-0 btm-mt" type="submit">Search</button>
-                </form>
+                  </form>
+                  <form class="form-inline pull-right" style="float: right;">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0 btm-mt" type="submit">Search</button>
+                  </form>
+                </div>
               </div>
             </div>
-          </div>
 
             <form>
-              <div class="subscription">
-                <div class="form-group row mrg-btm-0">
-                  <label for="inputPassword" class="col-sm-3 col-form-label mrg-btm-0 fs-9 black">Remort Monitoring
-                    Service</label>
-                  <div class="col-sm-2">
-                    <div class="form-check-inline eql-padding">
-                      <label class="form-check-label fs-9 black">
-                        <input type="checkbox" class="form-check-input" value="" checked="">Auto Renewal
-                      </label>
-                    </div>
 
-                  </div>
-                  <div class="col-md-2">
-                    <div class="eql-padding">
-                      <span class="warning bold">Processing</span>
-                    </div>
-                  </div>
+              <ul>
+                <li *ngFor="let mysubscriptions of mysubscriptions$">
 
 
-                  <div class="col-md-2">
-                    <div class="eql-padding">
-                      <a  routerLink="viewSubscription" class="details link">View Details </a>
-                    </div>
-                  </div>
+                  <div class="subscription">
+                    <div class="form-group row mrg-btm-0">
+                      <label for="inputPassword" class="col-sm-3 col-form-label mrg-btm-0 fs-9 black">{{mysubscriptions.planName}}</label>
+                      <div class="col-sm-2">
+                        <div class="form-check-inline eql-padding">
+                          <label class="form-check-label fs-9 black">
+                            <input type="checkbox" class="form-check-input" value="" checked="">Auto Renewal
+                          </label>
+                        </div>
 
-                  <div class="col-md-3">
+                      </div>
+                      <div class="col-md-2">
+                        <div class="eql-padding">
+                          <span class="warning bold">{{ mysubscriptions.status }}</span>
+                        </div>
+                      </div>
 
-                    <button type="button" class="btn btn-danger btn-cancel btm-mt" (click)="cancelSubscription('1160897')" >Cancel</button>
-                    <a routerLink="upgradeSubscription" class="btn-upgrade btn btn-info btm-mt"> Upgrade </a>
-                  </div>
-                </div>
-              </div>
-              <div class="subscription">
-                <div class="form-group row mrg-btm-0">
-                  <label for="inputPassword" class="col-sm-3 col-form-label mrg-btm-0 fs-9 black">Government Healthcare
-                    Services</label>
-                  <div class="col-sm-2">
-                    <div class="form-check-inline eql-padding">
-                      <label class="form-check-label fs-9 black">
-                        <input type="checkbox" class="form-check-input" value="" checked="">Auto Renewal
-                      </label>
-                    </div>
 
-                  </div>
-                  <div class="col-sm-2">
-                    <div class="eql-padding">
-                      <span class="active bold">Active</span>
-                    </div>
-                  </div>
-                  <div class="col-md-2">
-                    <div class="eql-padding">
-                      <a routerLink="viewSubscription" class="details link">View Details </a>
+                      <div class="col-md-2">
+                        <div class="eql-padding">
+                          <a routerLink="viewSubscription" class="details link">View Details </a>
+                        </div>
+                      </div>
+
+                      <div class="col-md-3">
+                        
+                        <button type="button" class="btn btn-danger btn-cancel btm-mt" (click)="cancelSubscription('1160897')">Cancel</button>
+                        <a routerLink="upgradeSubscription" class="btn-upgrade btn btn-info btm-mt"> Upgrade </a>
+                      </div>
                     </div>
                   </div>
 
 
-                  <div class="col-md-3">
 
-                    <button type="button" class="btn btn-danger btn-cancel btm-mt">Cancel</button>
-                    <a routerLink="upgradeSubscription" class="btn-upgrade btn btn-info btm-mt"> Upgrade </a>
-                  </div>
-                </div>
-              </div>
-              <div class="subscription">
-                <div class="form-group row mrg-btm-0">
-                  <label for="inputPassword" class="col-sm-3 col-form-label mrg-btm-0 fs-9 black">Insurer &amp;
-                    Employer Services</label>
-                  <div class="col-sm-2">
-                    <div class="form-check-inline eql-padding">
-                      <label class="form-check-label fs-9 black">
-                        <input type="checkbox" class="form-check-input" value="" checked="">Auto Renewal
-                      </label>
-                    </div>
 
-                  </div>
 
-                  <div class="col-md-2">
-                    <div class="eql-padding">
-                        <span class="warning bold">Processing</span>
-                    </div>
-                  </div>
-                  <div class="col-md-2">
-                    <div class="eql-padding">
-                      <a routerLink="viewSubscription" class="details link">View Details </a>
-                    </div>
-                  </div>
-                  <div class="col-md-3">
 
-                    <button type="button" class="btn btn-danger btn-cancel btm-mt">Cancel</button>
-                    <a routerLink="upgradeSubscription" class="btn-upgrade btn btn-info btm-mt"> Upgrade </a>
-                  </div>
-                </div>
-              </div>
-              <div class="subscription">
-                <div class="form-group row mrg-btm-0">
-                  <label for="inputPassword" class="col-sm-3 col-form-label mrg-btm-0 fs-9 black">Caring for Seniors at
-                    Home</label>
-                  <div class="col-sm-2">
-                    <div class="form-check-inline eql-padding">
-                      <label class="form-check-label fs-9 black">
-                        <input type="checkbox" class="form-check-input" value="" checked="">Auto Renewal
-                      </label>
-                    </div>
-
-                  </div>
-
-                  <div class="col-md-2">
-                    <div class="eql-padding">
-                      <span class="draft bold">Draft</span>
-                    </div>
-                  </div>
-                  <div class="col-md-2">
-                    <div class="eql-padding">
-                      <a routerLink="viewSubscription" class="details link">View Details </a>
-                    </div>
-                  </div>
-
-                  <div class="col-md-3">
-
-                    <button type="button" class="btn btn-danger btn-cancel btm-mt">Cancel</button>
-                    <a routerLink="upgradeSubscription" class="btn-upgrade btn btn-info btm-mt"> Upgrade </a>
-                  </div>
-                </div>
-              </div>
+                </li>
+              </ul>
 
 
 

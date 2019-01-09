@@ -48,19 +48,18 @@ export class DataService {
       .set('Content-Type', 'application/json')
       .set('Access-Control-Allow-Origin', '*');
 
-    this.http.post(rootPath + '/subscription/cancel', subscriptionBody, {
+      return this.http.post(rootPath + '/subscription/cancel', subscriptionBody, {
       headers: headers
     })
       .subscribe(data => {
-        alert("DDD"+data)
-        statusCode = data;
-        alert("DDD22"+statusCode)
-        return statusCode;
       });
    
   }
 
-
+  getMySubscription(){
+    console.log('getMySubscription');
+    return this.http.get(rootPath+'/mysubscriprions');
+  }
 
 
 }
