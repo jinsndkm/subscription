@@ -97,9 +97,10 @@
                         <div class="col-md-2">
 
                           <h3>{{upgradeSubscription.planFamilyRelationship[item-1].destinationPlanFrequency.interval}}</h3>
+                          
                           <p> Frequency</p>
                         </div>
-                        <a href="payment.html" class="btn-upgrade btn btn-info btm-mt" style="float: right;"> Upgrade </a>
+                        <a (click)="migratePlan({{upgradeSubscription.planFamilyRelationship[item-1].id$}})" class="btn-upgrade btn btn-info btm-mt" style="float: right;"> Upgrade </a>
                       </div>
                     </div>
                   </div>

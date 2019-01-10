@@ -28,8 +28,9 @@ export class UpgradeSubscriptionComponent implements OnInit {
     this.data.listUpgradeSubscriptions(subId).subscribe(
       data => this.upgradeSubscriptions = data
     );
-
-   
   }
 
+  migratePlan(plansFamilyRltnId){
+    alert("Migrating..."+plansFamilyRltnId)
+  }
 }
