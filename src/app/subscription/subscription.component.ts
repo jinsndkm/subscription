@@ -23,10 +23,9 @@ export class SubscriptionComponent implements OnInit {
     if (confirm("Are you sure to cancel?")) {
       var resu = this.data.cancelSubscription(subId);
 
-      alert("FINAL::>" + resu);
-      this.data.getMySubscription().subscribe(
-        data => this.mysubscriptions$ = data
-      );
+      // this.data.getMySubscription().subscribe(
+      //   data => this.mysubscriptions$ = data
+      // );
     }
 
   }

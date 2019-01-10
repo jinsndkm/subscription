@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpRequest, HttpHeaders, HttpParams } from '@angular/common/http';
+import { stat } from 'fs';
 
 var rootPath = "http://localhost:3000";
 
@@ -8,7 +9,6 @@ const httpOptions = {
     'Access-Control-Allow-Origin': '*'
   })
 };
-
 
 @Injectable({
   providedIn: 'root'
@@ -52,6 +52,7 @@ export class DataService {
       headers: headers
     })
       .subscribe(data => {
+        data => statusCode = data
       });
 
   }
