@@ -9,6 +9,7 @@ import { DataService } from '../data.service';
 export class UpgradeSubscriptionComponent implements OnInit {
   upgradeSubscriptions: Object;
   items: any[];
+  subId:string;
   constructor(private data: DataService,private route: ActivatedRoute) { }
 
   createRange(number){
@@ -21,16 +22,19 @@ export class UpgradeSubscriptionComponent implements OnInit {
 
 
   ngOnInit() {
-    let subId;
+    
     this.route.queryParams.subscribe(params => {
-      subId = params.subId;
+      this.subId = params.subId;
     })
-    this.data.listUpgradeSubscriptions(subId).subscribe(
+    this.data.listUpgradeSubscriptions(this.subId).subscribe(
       data => this.upgradeSubscriptions = data
     );
   }
 
-  migratePlan(plansFamilyRltnId){
+  migratePlan(plansFamilyRltnId,subId){
+    alert(this.subId)
+    this.data.migrateSubsctiption(plansFamilyRltnId,this.subId);
+    alert("SUBID:::>"+this.subId)
     alert("Migrating..."+plansFamilyRltnId)
   }
 }
