@@ -62,5 +62,11 @@ export class DataService {
     return this.http.get(rootPath+'/mysubscriprions');
   }
 
+  viewSubscriptionDetails(subId){
+    console.log("Angular viewSubscriptionDetails");
+    //alert(subId);
+    return this.http.get(rootPath+'/mysubscription/viewSubscription/'+subId);
+  }
+
 
 }

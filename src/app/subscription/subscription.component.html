@@ -93,14 +93,14 @@
                       </div>
                       <div class="col-md-2">
                         <div class="eql-padding">
-                          <span class="warning bold">{{ mysubscriptions.status }}</span>
+                          <span class="warning bold">{{ mysubscriptions.status }}  </span>
                         </div>
                       </div>
 
 
                       <div class="col-md-2">
                         <div class="eql-padding">
-                          <a routerLink="viewSubscription" class="details link">View Details </a>
+                          <a [routerLink]="['viewSubscription']" [queryParams]="{subId:mysubscriptions.planFrequency.planRevisionId}"  class="details link">View Details </a>
                         </div>
                       </div>
 
