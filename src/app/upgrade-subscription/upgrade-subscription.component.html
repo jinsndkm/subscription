@@ -65,124 +65,48 @@
               </div>
               <div class="row">
                 <div class="col-md-12">
-                  <form>
-                    <div class="subscription">
+                  <!-- <form> -->
+                  
+                    <div class="subscription" *ngFor="let upgradeSubscription of upgradeSubscriptions;let i = index">
+                        <div *ngFor="let item of createRange(upgradeSubscription.planFamilyRelationship.length)$">
                       <div class="form-group row mrg-btm-0">
-                        <div class="col-sm-1">
+                        <!-- <div class="col-sm-1">
                           <div class="form-check-inline eql-padding">
                             <label class="form-check-label">
                               <input type="checkbox" class="form-check-input" value="">
                             </label>
                           </div>
 
-                        </div>
-
-
-
+                        </div> -->
 
                         <div class="col-md-2">
-                          <h3>Sevice Family</h3>
-                          <p> Plan Family </p>
+                          <h3>{{ upgradeSubscription.name }}</h3>
+                          <p> {{ upgradeSubscription.code }} </p>
                         </div>
 
-
                         <div class="col-md-2">
-                          <h3>Upgrade </h3>
+                          <h3>{{upgradeSubscription.planFamilyRelationship[item-1].relationshipMigrationType}} </h3>
                           <p>Type </p>
                         </div>
 
                         <div class="col-md-2">
 
-                          <h3>RMS(rms)</h3>
+                          <h3>{{ upgradeSubscription.plans[i].planName }}</h3>
                           <p> Plan</p>
                         </div>
                         <div class="col-md-2">
 
-                          <h3>Every 5 Year</h3>
+                          <h3>{{upgradeSubscription.planFamilyRelationship[item-1].destinationPlanFrequency.interval}}</h3>
+                          
                           <p> Frequency</p>
                         </div>
+                        <a (click)="migratePlan(upgradeSubscription.planFamilyRelationship[item-1].id)" class="btn-upgrade btn btn-info btm-mt" style="float: right;"> Upgrade </a>
                       </div>
                     </div>
-
-                    <div class="subscription">
-                      <div class="form-group row mrg-btm-0">
-                        <div class="col-sm-1">
-                          <div class="form-check-inline eql-padding">
-                            <label class="form-check-label">
-                              <input type="checkbox" class="form-check-input" value="">
-                            </label>
-                          </div>
-
-                        </div>
+                  </div>
 
 
-
-
-                        <div class="col-md-2">
-                          <h3>Sevice Family</h3>
-                          <p> Plan Family </p>
-                        </div>
-
-
-                        <div class="col-md-2">
-                          <h3>Upgrade </h3>
-                          <p>Type </p>
-                        </div>
-
-                        <div class="col-md-2">
-
-                          <h3>RMS(rms)</h3>
-                          <p> Plan</p>
-                        </div>
-                        <div class="col-md-2">
-
-                          <h3>Every 2 Year</h3>
-                          <p> Frequency</p>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="subscription">
-                      <div class="form-group row mrg-btm-0">
-                        <div class="col-sm-1">
-                          <div class="form-check-inline eql-padding">
-                            <label class="form-check-label">
-                              <input type="checkbox" class="form-check-input" value="">
-                            </label>
-                          </div>
-
-                        </div>
-
-
-
-
-                        <div class="col-md-2">
-                          <h3>Sevice Family</h3>
-                          <p> Plan Family </p>
-                        </div>
-
-
-                        <div class="col-md-2">
-                          <h3>Upgrade </h3>
-                          <p>Type </p>
-                        </div>
-
-                        <div class="col-md-2">
-
-                          <h3>RMS(rms)</h3>
-                          <p> Plan</p>
-                        </div>
-                        <div class="col-md-2">
-
-                          <h3>Every 1 Year</h3>
-                          <p> Frequency</p>
-                        </div>
-                      </div>
-                    </div>
-
-
-
-                  </form>
+                  <!-- </form> -->
                 </div>
               </div>
 
@@ -193,8 +117,8 @@
 
               <div class="row" style="margin-top: 10px;">
                 <div class="col-md-12">
-
-                  <a href="payment.html" class="btn-upgrade btn btn-info btm-mt" style="float: right;"> Upgrade </a>
+<!-- 
+                  <a href="payment.html" class="btn-upgrade btn btn-info btm-mt" style="float: right;"> Upgrade </a> -->
 
                 </div>
               </div>
