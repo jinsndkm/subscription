@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from '../data.service';
+import { from } from 'rxjs';
+
+import {enableProdMode} from '@angular/core';
+import * as $ from "jquery";
+enableProdMode();
 
 @Component({
   selector: 'app-myservice',
@@ -7,9 +13,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MyserviceComponent implements OnInit {
 
-  constructor() { }
+  servicesList$: Object;
+
+  constructor(private data: DataService) { }
 
   ngOnInit() {
+    this.data.getAllFusebillServices().subscribe(
+      data => this.servicesList$ = data
+    );
   }
+
+
 
 }

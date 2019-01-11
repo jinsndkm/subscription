@@ -35,8 +35,9 @@ export class DataService {
         'Content-Type': 'application/json'
       })
     });*/
+console.log("fusebill service");
 
-    return this.http.get(rootPath + '/fusebill');
+    return this.http.get(rootPath + '/servicelist');
 
   }
 
