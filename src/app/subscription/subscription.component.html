@@ -86,7 +86,8 @@
                       <div class="col-sm-2">
                         <div class="form-check-inline eql-padding">
                           <label class="form-check-label fs-9 black">
-                            <input type="checkbox" class="form-check-input" value="" checked="">Auto Renewal
+                              <input ng-model="myCheckbox" type="checkbox" value="{{mysubscriptions.planFrequency.planRevisionId}}" (change)="autorenewalFunction(mysubscriptions.planFrequency.planRevisionId)" checked>Auto Renewal
+                            <!-- <input type="checkbox" class="form-check-input" value="" checked="" ng-model="myCheckbox"  ng-change='someFunction(myCheckbox)'">Auto Renewal -->
                           </label>
                         </div>
 

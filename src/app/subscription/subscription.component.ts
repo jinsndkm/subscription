@@ -8,6 +8,7 @@ import { DataService } from '../data.service';
 export class SubscriptionComponent implements OnInit {
 
   mysubscriptions$ : Object;
+  autorenewal$ : Object;
 
   constructor(private data:DataService) { }
 
@@ -27,6 +28,13 @@ export class SubscriptionComponent implements OnInit {
       );
     }
   
+  }
+
+  autorenewalFunction(subscriptionId: String){
+    console.log("subscriptionId ::>> "+subscriptionId);
+    this.data.enableDisableAutorenewal(subscriptionId).subscribe(
+      data=>this.autorenewal$=data
+    );
   }
 
 }
