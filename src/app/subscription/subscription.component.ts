@@ -20,12 +20,15 @@ export class SubscriptionComponent implements OnInit {
   }
   //Method to delete an active subscription
   cancelSubscription(subId) {
-    if (confirm("Are you sure to cancel?")) {
-      var resu = this.data.cancelSubscription(subId);
 
-      // this.data.getMySubscription().subscribe(
-      //   data => this.mysubscriptions$ = data
-      // );
+    if(confirm("Are you sure to cancel?")) {
+      let resu=this.data.cancelSubscription(subId);
+      
+      alert("FINAL::>"+JSON.stringify(resu.toString()));
+      this.data.getMySubscription().subscribe(
+        data => this.mysubscriptions$=data
+      );
+
     }
 
   }
