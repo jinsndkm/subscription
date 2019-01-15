@@ -54,7 +54,6 @@ export class DataService {
       .subscribe(data => {
         data => statusCode = data
       });
-
   }
 
   getMySubscription() {
@@ -65,6 +64,7 @@ export class DataService {
   listUpgradeSubscriptions(subscriptionId) {
     return this.http.get(rootPath + '/subscription/listupgradesubscriptions/' + subscriptionId);
   }
+
 
   migrateSubsctiption(plansFamilyRltnId,subId) {
     const migrationBody = {
@@ -85,5 +85,11 @@ export class DataService {
     
       });
   }
+  viewSubscriptionDetails(subId){
+    console.log("Angular viewSubscriptionDetails");
+    //alert(subId);
+    return this.http.get(rootPath+'/mysubscription/viewSubscription/'+subId);
+  }
+
 
 }
