@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 export class SubscriptionComponent implements OnInit {
 
   mysubscriptions$: Object;
+  items$:Object;
  
   constructor(private data: DataService,private router: Router) { }
 
@@ -21,11 +22,10 @@ export class SubscriptionComponent implements OnInit {
   //Method to delete an active subscription
   cancelSubscription(subId) {
     if (confirm("Are you sure to cancel?")) {
-      var resu = this.data.cancelSubscription(subId);
-
-      // this.data.getMySubscription().subscribe(
-      //   data => this.mysubscriptions$ = data
-      // );
+      this.items$ = this.data.cancelSubscription(subId);
+      this.data.getMySubscription().subscribe(
+        data => this.mysubscriptions$ = data
+      );
     }
 
   }
