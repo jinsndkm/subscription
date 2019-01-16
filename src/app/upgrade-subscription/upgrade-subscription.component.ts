@@ -32,9 +32,6 @@ export class UpgradeSubscriptionComponent implements OnInit {
   }
 
   migratePlan(plansFamilyRltnId,subId){
-    alert(this.subId)
     this.data.migrateSubsctiption(plansFamilyRltnId,this.subId);
-    alert("SUBID:::>"+this.subId)
-    alert("Migrating..."+plansFamilyRltnId)
   }
 }
