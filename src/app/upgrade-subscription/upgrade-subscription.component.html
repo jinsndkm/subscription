@@ -64,12 +64,12 @@
                 </div>
               </div>
               <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-12"  *ngIf="upgradeSubscriptions?.length > 0">
                   <!-- <form> -->
                   
                     <div class="subscription" *ngFor="let upgradeSubscription of upgradeSubscriptions;let i = index">
                         <div *ngFor="let item of createRange(upgradeSubscription.planFamilyRelationship.length)$">
-                      <div class="form-group row mrg-btm-0">
+                      <div class="form-group row mrg-btm-0" >
                         <!-- <div class="col-sm-1">
                           <div class="form-check-inline eql-padding">
                             <label class="form-check-label">
@@ -107,6 +107,9 @@
 
 
                   <!-- </form> -->
+                </div>
+                <div class="col-md-12"  *ngIf="upgradeSubscriptions?.length == 0">
+                <p>Sorry no plans are available for migration!</p>
                 </div>
               </div>
 

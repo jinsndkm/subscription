@@ -53,6 +53,11 @@ export class DataService {
     })
       .subscribe(data => {
         data => statusCode = data
+        if(data.HttpStatusCode==400){
+          alert("Something Went wrong! Please try again")
+        }else{
+          alert("Subscription cancelled successfully")
+        }
       });
   }
 
@@ -67,6 +72,8 @@ export class DataService {
 
 
   migrateSubsctiption(plansFamilyRltnId,subId) {
+    let planBody={"statusCode":"0"};
+    let plan;
     const migrationBody = {
       "customerId": "4871251",
       "planFamilyRelationshipId": plansFamilyRltnId,
@@ -78,12 +85,22 @@ export class DataService {
       .set('Content-Type', 'application/json')
       .set('Access-Control-Allow-Origin', '*');
 
-    return this.http.post(rootPath + '/subscription/migratesubscription/', migrationBody, {
+      plan= this.http.post(rootPath + '/subscription/migratesubscription/', migrationBody, {
       headers: headers
     })
       .subscribe(data => {
-    
+        data => planBody = data
+        if(data.HttpStatusCode==400){
+          alert("Something Went wrong! Please try again")
+          planBody.statusCode="400";
+          return planBody;
+        }else{
+          alert("Plan successfully migrated")
+          return planBody;
+        }
+        // return data;
       });
+       return planBody;
   }
   viewSubscriptionDetails(subId){
     console.log("Angular viewSubscriptionDetails");
