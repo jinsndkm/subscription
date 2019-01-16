@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
-import { Router } from '@angular/router';
+import { HideMenusService } from '../hide-menus.service';
 @Component({
   selector: 'app-subscription',
   templateUrl: './subscription.component.html',
@@ -11,10 +11,10 @@ export class SubscriptionComponent implements OnInit {
   mysubscriptions$: Object;
   items$:Object;
  
-  constructor(private data: DataService,private router: Router) { }
+  constructor(private data: DataService,public nav: HideMenusService) { }
 
   ngOnInit() {
-
+    this.nav.show();
     this.data.getMySubscription().subscribe(
       data => this.mysubscriptions$ = data
     );
