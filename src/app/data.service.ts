@@ -54,7 +54,6 @@ export class DataService {
       .subscribe(data => {
         data => statusCode = data
         var json = JSON.parse(JSON.stringify(data));
-        alert(json.HttpStatusCode)
         if(json.HttpStatusCode==400){
           alert("Something Went wrong! Please try again")
         }else{
