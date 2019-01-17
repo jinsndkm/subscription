@@ -48,44 +48,41 @@ export class DataService {
       .set('Content-Type', 'application/json')
       .set('Access-Control-Allow-Origin', '*');
 
-      return this.http.post(rootPath + '/subscription/cancel', subscriptionBody, {
+    return this.http.post(rootPath + '/subscription/cancel', subscriptionBody, {
       headers: headers
     })
       .subscribe(data => {
       });
-   
+
   }
 
-  getMySubscription(){
+  getMySubscription() {
     console.log('getMySubscription');
-    return this.http.get(rootPath+'/mysubscriprions');
+    return this.http.get(rootPath + '/mysubscriprions');
   }
 
-  viewSubscriptionDetails(subId){
+  viewSubscriptionDetails(subId) {
     console.log("Angular viewSubscriptionDetails");
     //alert(subId);
-    return this.http.get(rootPath+'/mysubscription/viewSubscription/'+subId);
+    return this.http.get(rootPath + '/mysubscription/viewSubscription/' + subId);
   }
 
-  enableDisableAutorenewal(subscriptionId){
-    console.log("Angular auto renewal");
+  enableDisableAutorenewal(subscriptionId) {
+    return this.http.get(rootPath + '/mysubscription/autorenewal/' + subscriptionId);
+  }
 
+  updateAutorenewal(customerId,planRevisionId) {
+    alert("Hello >>>" + customerId +" "+planRevisionId);
+    // const subscriptionBody = { "subscriptionId": mysubscriptions, "cancellationOption": "None" };
+    // const headers = new HttpHeaders()
+    //   .set('Authorization', 'Basic MDpEZk9jcExWQVFFczk1U1hPSWhER0J0RzFXOFJCaGs3UVFsU2xOQ0JJRUJ4Y1NSSG9JQXAzbTJVdGFWNVRZUlVN')
+    //   .set('Content-Type', 'application/json')
+    //   .set('Access-Control-Allow-Origin', '*');
 
-    const subscriptionBody = { "subscriptionId": subscriptionId, "cancellationOption": "None" };
-    const headers = new HttpHeaders()
-      .set('Authorization', 'Basic MDpEZk9jcExWQVFFczk1U1hPSWhER0J0RzFXOFJCaGs3UVFsU2xOQ0JJRUJ4Y1NSSG9JQXAzbTJVdGFWNVRZUlVN')
-      .set('Content-Type', 'application/json')
-      .set('Access-Control-Allow-Origin', '*');
-
-      return this.http.post(rootPath + '/subscription/cancel', subscriptionBody, {
-      headers: headers
-    })
-      .subscribe(data => {
-      });
-
-
-
-    return this.http.put(rootPath+'/mysubscription/autorenewal/'+subscriptionId);
+    // return this.http.put(rootPath + '/subscription/cancel', subscriptionBody, {
+    //   headers: headers
+    // }).subscribe(data => {
+    //   });
   }
 
 }
