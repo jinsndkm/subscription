@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DataService } from '../data.service';
+import { NgxSpinnerService } from 'ngx-spinner';
+
 @Component({
   selector: 'app-upgrade-subscription',
   templateUrl: './upgrade-subscription.component.html',
@@ -11,7 +13,7 @@ export class UpgradeSubscriptionComponent implements OnInit {
   items: any[];
   subId: string;
   aa: Object;
-  constructor(private data: DataService, private route: ActivatedRoute) { }
+  constructor(private data: DataService, private route: ActivatedRoute,private spinner: NgxSpinnerService) { }
 
   createRange(number) {
     this.items = [];
@@ -23,13 +25,17 @@ export class UpgradeSubscriptionComponent implements OnInit {
 
 
   ngOnInit() {
-
+    this.spinner.show();
     this.route.queryParams.subscribe(params => {
       this.subId = params.subId;
     })
     this.data.listUpgradeSubscriptions(this.subId).subscribe(
       data => this.upgradeSubscriptions = data
     );
+    setTimeout(() => {
+      /** spinner ends after 5 seconds */
+      this.spinner.hide();
+  }, 2000);
   }
 
   migratePlan(plansFamilyRltnId, subId) {
