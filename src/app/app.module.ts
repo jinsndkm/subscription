@@ -4,7 +4,7 @@ import {FormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http'
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { FilterPipeModule } from 'ngx-filter-pipe'; 
-
+import {NgxPaginationModule} from 'ngx-pagination';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
@@ -48,7 +48,8 @@ import { FooterComponent } from './footer/footer.component';
     HttpClientModule,
     FormsModule   ,
     NgxSpinnerModule,
-    FilterPipeModule
+    FilterPipeModule,
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]
