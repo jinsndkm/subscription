@@ -2,8 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http'
-
-
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { FilterPipeModule } from 'ngx-filter-pipe'; 
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -46,8 +46,9 @@ import { FooterComponent } from './footer/footer.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule    
-    
+    FormsModule   ,
+    NgxSpinnerModule,
+    FilterPipeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
