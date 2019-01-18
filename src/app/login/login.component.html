@@ -1,23 +1,66 @@
-<form >
-  <div class="imgcontainer">
-    <img src="img_avatar2.png" alt="Avatar" class="avatar">
+<div class="row">
+<div class="col-md-4">
+  <div class="left-section"> 
+
+
+
+
+    <form >
+     
+      
+        <div class="container">
+            <div class="head"> 
+                <img src="assets/logo.png" class="img-responsive" />
+               <h2 class="welcome"> Welcome </h2>
+               <h1>  Log into your account </h1>
+            </div>
+
+          <label for="uname" class="label">Email address</label>
+          <input type="text" [(ngModel)]="userName" class="input-style"  placeholder="enter email address" name="uname" required>
+      
+          <label for="psw" class="label">Password</label>
+          <input type="password" [(ngModel)]="password" class="input-style"  placeholder="password" name="psw" required>
+      <div class="row">
+<div class="col-md-12">
+
+    <button type="submit" (click)="validateLogin()" class="login">Login</button>
+</div>
+
+      </div>
+       
+          <!-- <label>
+            <input type="checkbox" checked="checked" name="remember"> Remember me
+          </label> -->
+        </div>
+      
+        <!-- <div class="container" style="background-color:#f1f1f1">
+          <button type="button" class="cancelbtn">Cancel</button>
+          <span class="psw">Forgot <a href="#">password?</a></span>
+        </div> -->
+      </form>
+    </div>
+
+</div>
+<div class="col-md-8">
+  <div class="right-section">
+
+<div class="content">
+<img src="assets/s-logo.png" class="img-responsive"/>
+<h2>Bayshore is here for you</h2>
+<p> Supporting you and your loved ones through your caregiving journey.</p>
+  
+</div>
+
+
   </div>
 
-  <div class="container">
-    <label for="uname"><b>Username</b></label>
-    <input type="text" [(ngModel)]="userName"  placeholder="Enter Username" name="uname" required>
+  
 
-    <label for="psw"><b>Password</b></label>
-    <input type="password" [(ngModel)]="password"  placeholder="Enter Password" name="psw" required>
 
-    <button type="submit" (click)="validateLogin()">Login</button>
-    <label>
-      <input type="checkbox" checked="checked" name="remember"> Remember me
-    </label>
-  </div>
+</div>
 
-  <div class="container" style="background-color:#f1f1f1">
-    <button type="button" class="cancelbtn">Cancel</button>
-    <span class="psw">Forgot <a href="#">password?</a></span>
-  </div>
-</form>
+
+
+</div>
+
+
