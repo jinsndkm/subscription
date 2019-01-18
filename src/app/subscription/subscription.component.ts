@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
 import { HideMenusService } from '../hide-menus.service';
 import { Session } from 'protractor';
+import { FilterPipe } from 'ngx-filter-pipe';
 import { NgxSpinnerService } from 'ngx-spinner';
 @Component({
   selector: 'app-subscription',
@@ -12,8 +13,11 @@ export class SubscriptionComponent implements OnInit {
 
   mysubscriptions$: Object;
   items$:Object;
+
+  users: any[] = [];
+  userFilter: any = {  };
  
-  constructor(private data: DataService,public nav: HideMenusService,private spinner: NgxSpinnerService) { }
+  constructor(private data: DataService,public nav: HideMenusService,private spinner: NgxSpinnerService,private filterPipe: FilterPipe) { }
 
   ngOnInit() {
     this.spinner.show();
@@ -24,6 +28,7 @@ export class SubscriptionComponent implements OnInit {
       data => {this.mysubscriptions$ = data},()=>{
         
       }
+      
     );
     setTimeout(() => {
       /** spinner ends after 5 seconds */
