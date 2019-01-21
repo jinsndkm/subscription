@@ -6,10 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./myservice.component.scss']
 })
 export class MyserviceComponent implements OnInit {
-
+  userName: String;
   constructor() { }
 
   ngOnInit() {
+    this.userName=localStorage.getItem("userName");
   }
 
 }
