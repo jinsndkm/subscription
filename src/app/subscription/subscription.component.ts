@@ -31,10 +31,19 @@ export class SubscriptionComponent implements OnInit {
 
   }
 
-  autorenewalFunction(subscriptionId: String) {
+  autorenewalFunction(subscriptionId: String, e) {
+    if (e.target.checked == true) {
+      this.data.disableAutorenewal(subscriptionId, "true").subscribe(
+        data => this.autorenewal$ = data
+      );
+      alert("Auto renewal is on")
+    } else if (e.target.checked == false) {
+      this.data.enableAutorenewal(subscriptionId, "false").subscribe(
+        data => this.autorenewal$ = data
+      );
+      alert("Auto renewal is off")
+    }
 
-    this.data.enableDisableAutorenewal(subscriptionId).subscribe(
-      data => this.autorenewal$ = data
-    );
+    
   }
 }

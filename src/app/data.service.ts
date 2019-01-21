@@ -63,26 +63,15 @@ export class DataService {
 
   viewSubscriptionDetails(subId) {
     console.log("Angular viewSubscriptionDetails");
-    //alert(subId);
     return this.http.get(rootPath + '/mysubscription/viewSubscription/' + subId);
   }
 
-  enableDisableAutorenewal(subscriptionId) {
-    return this.http.get(rootPath + '/mysubscription/autorenewal/' + subscriptionId);
+  enableAutorenewal(subscriptionId,status) {
+    return this.http.get(rootPath + '/mysubscription/autorenewal/' + subscriptionId+'/'+status);
   }
 
-  updateAutorenewal(customerId,planRevisionId) {
-    alert("Hello >>>" + customerId +" "+planRevisionId);
-    // const subscriptionBody = { "subscriptionId": mysubscriptions, "cancellationOption": "None" };
-    // const headers = new HttpHeaders()
-    //   .set('Authorization', 'Basic MDpEZk9jcExWQVFFczk1U1hPSWhER0J0RzFXOFJCaGs3UVFsU2xOQ0JJRUJ4Y1NSSG9JQXAzbTJVdGFWNVRZUlVN')
-    //   .set('Content-Type', 'application/json')
-    //   .set('Access-Control-Allow-Origin', '*');
-
-    // return this.http.put(rootPath + '/subscription/cancel', subscriptionBody, {
-    //   headers: headers
-    // }).subscribe(data => {
-    //   });
+  disableAutorenewal(subscriptionId,status) {
+    return this.http.get(rootPath + '/mysubscription/autorenewal/'+subscriptionId+'/'+status);
   }
 
-}
+} 
