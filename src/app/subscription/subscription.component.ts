@@ -4,6 +4,7 @@ import { HideMenusService } from '../hide-menus.service';
 import { Session } from 'protractor';
 import { FilterPipe } from 'ngx-filter-pipe';
 import { NgxSpinnerService } from 'ngx-spinner';
+import {NgxPaginationModule} from 'ngx-pagination';
 @Component({
   selector: 'app-subscription',
   templateUrl: './subscription.component.html',

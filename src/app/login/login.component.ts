@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit {
   
   validateLogin() {
     if(this.userName=='admin'&&this.password=='admin'){
+      sessionStorage.setItem("userName","Marry");
          this.router.navigate(['home']);
     }else{
     alert("Invalid username or Password")}

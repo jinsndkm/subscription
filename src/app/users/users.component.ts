@@ -15,10 +15,11 @@ enableProdMode();
 export class UsersComponent implements OnInit {
 
   users$ : Object;
-
+  userName:String;
   constructor(private data: DataService,public nav: HideMenusService) { }
 
   ngOnInit() {
+    this.userName= sessionStorage.getItem("userName");
     this.nav.show();
     this.data.getUsers().subscribe(
       data => this.users$ = data
