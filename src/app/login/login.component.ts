@@ -14,6 +14,7 @@ export class LoginComponent implements OnInit {
     this.nav.hide();
   }
 
+  
   validateLogin() {
     if(this.userName=='admin'&&this.password=='admin'){
          this.router.navigate(['home']);
