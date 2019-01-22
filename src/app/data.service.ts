@@ -61,12 +61,15 @@ export class DataService {
           alert("Subscription cancelled successfully")
         }
       });
+
   }
 
   getMySubscription() {
     console.log('getMySubscription');
     return this.http.get(rootPath + '/mysubscriprions');
   }
+
+ 
 
   listUpgradeSubscriptions(subscriptionId) {
     return this.http.get(rootPath + '/subscription/listupgradesubscriptions/' + subscriptionId);
@@ -107,9 +110,15 @@ export class DataService {
   }
   viewSubscriptionDetails(subId){
     console.log("Angular viewSubscriptionDetails");
-    //alert(subId);
-    return this.http.get(rootPath+'/mysubscription/viewSubscription/'+subId);
+    return this.http.get(rootPath + '/mysubscription/viewSubscription/' + subId);
   }
 
+  enableAutorenewal(subscriptionId,status) {
+    return this.http.get(rootPath + '/mysubscription/autorenewal/' + subscriptionId+'/'+status);
+  }
 
-}
+  disableAutorenewal(subscriptionId,status) {
+    return this.http.get(rootPath + '/mysubscription/autorenewal/'+subscriptionId+'/'+status);
+  }
+
+} 

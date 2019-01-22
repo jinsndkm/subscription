@@ -12,6 +12,11 @@ import { NgxSpinnerService } from 'ngx-spinner';
 export class SubscriptionComponent implements OnInit {
 
   mysubscriptions$: Object;
+
+  autorenewal$: Object;
+
+
+  constructor(private data: DataService) { }
   items$:Object;
 
   users: any[] = [];
@@ -19,12 +24,14 @@ export class SubscriptionComponent implements OnInit {
  
   constructor(private data: DataService,public nav: HideMenusService,private spinner: NgxSpinnerService,private filterPipe: FilterPipe) { }
 
+
   ngOnInit() {
     this.spinner.show();
     sessionStorage.setItem("SessionStorage","ss");
     localStorage.setItem("sessionVale","s");
     this.nav.show();
     this.data.getMySubscription().subscribe(
+
       data => {this.mysubscriptions$ = data},()=>{
         
       }
@@ -46,4 +53,19 @@ export class SubscriptionComponent implements OnInit {
 
   }
 
+  autorenewalFunction(subscriptionId: String, e) {
+    if (e.target.checked == true) {
+      this.data.disableAutorenewal(subscriptionId, "true").subscribe(
+        data => this.autorenewal$ = data
+      );
+      alert("Auto renewal is on")
+    } else if (e.target.checked == false) {
+      this.data.enableAutorenewal(subscriptionId, "false").subscribe(
+        data => this.autorenewal$ = data
+      );
+      alert("Auto renewal is off")
+    }
+
+    
+  }
 }

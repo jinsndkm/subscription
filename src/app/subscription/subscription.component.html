@@ -79,15 +79,21 @@
               <ul>
                 <li *ngFor="let mysubscriptions of mysubscriptions$ | filterBy: userFilter">
 
-
+                  
                   <div class="subscription">
                     <div class="form-group row mrg-btm-0">
                       <label for="inputPassword" class="col-sm-3 col-form-label mrg-btm-0 fs-9 black">{{mysubscriptions.planName}}</label>
+
                       <div class="col-sm-2">
                         <div class="form-check-inline eql-padding">
-                          <label class="form-check-label fs-9 black">
-                            <input type="checkbox" class="form-check-input" value="" checked="">Auto Renewal
+                          <label class="form-check-label fs-9 black" *ngIf="mysubscriptions.status== 'Active' && mysubscriptions.remainingInterval == null">
+                              <input ng-model="myCheckbox" type="checkbox"  data-md-icheck (change)="autorenewalFunction(mysubscriptions.planFrequency.planRevisionId,$event)" checked>Auto Renewal
+                            <!-- <input type="checkbox" class="form-check-input" value="" checked="" ng-model="myCheckbox"  ng-change='someFunction(myCheckbox)'">Auto Renewal -->
                           </label>
+                          <label class="form-check-label fs-9 black" *ngIf="mysubscriptions.status== 'Active' && mysubscriptions.remainingInterval != null">
+                            <input ng-model="myCheckbox" type="checkbox"  data-md-icheck (change)="autorenewalFunction(mysubscriptions.planFrequency.planRevisionId,$event)" >Auto Renewal
+                          <!-- <input type="checkbox" class="form-check-input" value="" checked="" ng-model="myCheckbox"  ng-change='someFunction(myCheckbox)'">Auto Renewal -->
+                        </label>
                         </div>
 
                       </div>
