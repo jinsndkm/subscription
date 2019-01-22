@@ -17,7 +17,7 @@ export class SubscriptionComponent implements OnInit {
   autorenewal$: Object;
 
 
-  constructor(private data: DataService) { }
+
   items$:Object;
 
   users: any[] = [];
