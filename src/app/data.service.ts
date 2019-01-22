@@ -4,6 +4,7 @@ import { HttpClient, HttpRequest, HttpHeaders, HttpParams } from '@angular/commo
 
 var rootPath = "http://localhost:3000";
 
+
 const httpOptions = {
   headers: new HttpHeaders({
     'Access-Control-Allow-Origin': '*'
@@ -53,7 +54,8 @@ export class DataService {
     })
       .subscribe(data => {
         data => statusCode = data
-        if(data.HttpStatusCode==400){
+        var json = JSON.parse(JSON.stringify(data));
+        if(json.HttpStatusCode==400){
           alert("Something Went wrong! Please try again")
         }else{
           alert("Subscription cancelled successfully")
@@ -90,10 +92,13 @@ export class DataService {
     })
       .subscribe(data => {
         data => planBody = data
-        if(data.HttpStatusCode==400){
+        var json = JSON.parse(JSON.stringify(data));
+        if(json.HttpStatusCode==400){
+
           alert("Something Went wrong! Please try again")
           planBody.statusCode="400";
           return planBody;
+          
         }else{
           alert("Plan successfully migrated")
           return planBody;
