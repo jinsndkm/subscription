@@ -22,7 +22,13 @@ body {
    height: 100%;
 
    #content {
-       padding: 30px 50px;
+      
+    .page-padding
+    {
+        padding: 30px 50px;
+       
+    min-height: calc(105% - 13em);
+    }
 
 .mrg-btm-0
 {

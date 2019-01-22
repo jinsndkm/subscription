@@ -57,7 +57,7 @@
               <div class="row">
                 <!--search-section-->
                 <div class="col-md-12">
-                  <form class="form-inline pull-left" style="float: left;">
+                  <!-- <form class="form-inline pull-left" style="float: left;">
 
                     <select id="inputState" class="form-control ">
                       <option selected="">Ascending</option>
@@ -65,9 +65,9 @@
 
                     </select>
 
-                  </form>
+                  </form> -->
                   <form class="form-inline pull-right" style="float: right;">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <input class="form-control mr-sm-2" [(ngModel)]="userFilter.planName" name="dd" type="search" placeholder="Search  by plan" aria-label="Search">
                     <button class="btn btn-outline-success my-2 my-sm-0 btm-mt" type="submit">Search</button>
                   </form>
                 </div>
@@ -77,7 +77,7 @@
             <form>
 
               <ul>
-                <li *ngFor="let mysubscriptions of mysubscriptions$">
+                <li *ngFor="let mysubscriptions of mysubscriptions$ | filterBy: userFilter">
 
                   
                   <div class="subscription">
@@ -112,8 +112,11 @@
 
                       <div class="col-md-3">
                         
-                        <button type="button" class="btn btn-danger btn-cancel btm-mt" (click)="cancelSubscription('1160897')">Cancel</button>
-                        <a routerLink="upgradeSubscription" class="btn-upgrade btn btn-info btm-mt"> Upgrade </a>
+                        <button type="button" class="btn btn-danger btn-cancel btm-mt" (click)="cancelSubscription(mysubscriptions.planFrequency.planRevisionId)">Cancel</button>
+                        <div *ngIf="mysubscriptions.status=='Active';then content"></div>    
+                        <ng-template #content> <a [routerLink]="['upgradeSubscription']" [queryParams]="{subId: mysubscriptions.planFrequency.planRevisionId}" class="btn-upgrade btn btn-info btm-mt" > Upgrade </a></ng-template>
+                       
+                       
                       </div>
                     </div>
                   </div>
