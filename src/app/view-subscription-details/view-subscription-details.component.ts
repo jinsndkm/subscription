@@ -16,6 +16,7 @@ export class ViewSubscriptionDetailsComponent implements OnInit {
 
 
   ngOnInit() {
+    
     var subId;
     this.route.queryParams.subscribe(params => {
       console.log(params.subId);

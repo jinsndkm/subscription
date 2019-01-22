@@ -74,7 +74,7 @@ export class DataService {
 
 
   migrateSubsctiption(plansFamilyRltnId,subId) {
-    let planBody={"statusCode":"0"};
+    let planBody;
     let plan;
     const migrationBody = {
       "customerId": "4871251",
@@ -94,9 +94,7 @@ export class DataService {
         data => planBody = data
         var json = JSON.parse(JSON.stringify(data));
         if(json.HttpStatusCode==400){
-
           alert("Something Went wrong! Please try again")
-          planBody.statusCode="400";
           return planBody;
           
         }else{

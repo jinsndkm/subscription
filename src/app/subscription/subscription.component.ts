@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
 import { HideMenusService } from '../hide-menus.service';
+import { Session } from 'protractor';
+import { FilterPipe } from 'ngx-filter-pipe';
+import { NgxSpinnerService } from 'ngx-spinner';
 @Component({
   selector: 'app-subscription',
   templateUrl: './subscription.component.html',
@@ -10,14 +13,27 @@ export class SubscriptionComponent implements OnInit {
 
   mysubscriptions$: Object;
   items$:Object;
+
+  users: any[] = [];
+  userFilter: any = {  };
  
-  constructor(private data: DataService,public nav: HideMenusService) { }
+  constructor(private data: DataService,public nav: HideMenusService,private spinner: NgxSpinnerService,private filterPipe: FilterPipe) { }
 
   ngOnInit() {
+    this.spinner.show();
+    sessionStorage.setItem("SessionStorage","ss");
+    localStorage.setItem("sessionVale","s");
     this.nav.show();
     this.data.getMySubscription().subscribe(
-      data => this.mysubscriptions$ = data
+      data => {this.mysubscriptions$ = data},()=>{
+        
+      }
+      
     );
+    setTimeout(() => {
+      /** spinner ends after 5 seconds */
+      this.spinner.hide();
+  }, 2000);
   }
   //Method to delete an active subscription
   cancelSubscription(subId) {
