@@ -24,8 +24,10 @@
       <div class="panel-section">
 
         <div class="card common-card">
-          <div class="card-header common-panel-head">
-            <!-- <div class="row">
+          <ul>
+            <li *ngFor="let mySubscrriptionDetails of mySubscrriptionDetails$">
+              <div class="card-header common-panel-head">
+                <!-- <div class="row">
                          <div class="col-md-2">
     
     
@@ -42,65 +44,73 @@
                        </div> -->
 
 
-            <div class="head-score">
+                <div class="head-score">
 
-              <i class="fas fa-align-justify l-icon"></i>
-            </div>
-            <div class="head-overview">
-              <p class="short-head">ADD MORE SERVICE</p>
-              <p class="head"> Remort Monitoring Services</p>
+                  <i class="fas fa-align-justify l-icon"></i>
+                </div>
 
 
-            </div>
 
-          </div>
-          <div class="card-body common-panel-body">
-            <div class="subscription-details">
 
-                <form>
+                <div class="head-overview">
+                  <p class="short-head">ADD MORE SERVICE</p>
+                  <p class="head"> {{mySubscrriptionDetails.planName}}</p>
+                </div>
 
-                  <div class="row">
-                    <div class="col-md-3 col-sm-3 col-xs-12">
-                      <h4 class="fs-9"> Created</h4>
-                      <p class="fs-9"> 11/10/2017 </p>
 
-                    </div>
-                    <div class="col-md-3 col-sm-3 col-xs-12">
-                      <h4 class="fs-9"> Activated</h4>
-                      <p class="fs-9"> 11/10/2017 </p>
+              </div>
+              <div class="card-body common-panel-body">
+                <div class="subscription-details">
 
-                    </div>
-                    <div class="col-md-3 col-sm-3 col-xs-12">
-                      <h4 class="fs-9"> Recharge</h4>
-                      <p class="fs-9"> Everey One Month </p>
-                    </div>
-                    <div class="col-md-3 col-sm-3 col-xs-12">
-                      <h4 class="fs-9"> Next Recharge</h4>
-                      <p class="fs-9"> 25/12/2018 </p>
-                    </div>
+                  <form>
 
-                  </div>
-                  <div class="row">
-                    <div class="col-md-3 col-sm-3 col-xs-12">
-                      <h4 class="fs-9"> Expires</h4>
-                      <p class="fs-9"> 11/10/2019 </p>
+                    <div class="row">
+                      <div class="col-md-3 col-sm-3 col-xs-12">
+                        <h4 class="fs-9"> Created</h4>
+                        <p class="fs-9">
+                           {{mySubscrriptionDetails.createdTimestamp | date:'dd/MM/yyyy'}}
+                          </p>
 
-                    </div>
-                    <div class="col-md-3 col-sm-3 col-xs-12">
-                      <h4 class="fs-9"> Auto Renew</h4>
-                      <p class="fs-9"> Auto Renew No </p>
+                      </div>
+                      <div class="col-md-3 col-sm-3 col-xs-12">
+                        <h4 class="fs-9"> Activated</h4>
+                        <p class="fs-9">{{mySubscrriptionDetails.activatedTimestamp | date:'dd/MM/yyyy'}}  </p>
+
+                      </div>
+                      <div class="col-md-3 col-sm-3 col-xs-12">
+                        <h4 class="fs-9"> Recharge</h4>
+                        <p class="fs-9"> {{mySubscrriptionDetails.planFrequency.interval}} </p>
+                      </div>
+                      <div class="col-md-3 col-sm-3 col-xs-12">
+                        <h4 class="fs-9"> Next Recharge</h4>
+                        <p class="fs-9"> {{mySubscrriptionDetails.nextPeriodStartDate | date:'dd/MM/yyyy'}} </p>
+                      </div>
 
                     </div>
+                    <div class="row">
+                      <div class="col-md-3 col-sm-3 col-xs-12">
+                        <h4 class="fs-9"> Expires</h4>
+                        <p class="fs-9"> {{mySubscrriptionDetails.openSubscriptionPeriodEndDate | date:'dd/MM/yyyy'}} </p>
+
+                      </div>
+                      <div class="col-md-3 col-sm-3 col-xs-12">
+                        <h4 class="fs-9"> Auto Renewal</h4>
+                        <p class="fs-9" *ngIf="mySubscrriptionDetails.remainingInterval==null"> Auto Renewal On </p>
+                        <p class="fs-9" *ngIf="mySubscrriptionDetails.remainingInterval!=null"> Auto Renewal Off </p>
+
+                      </div>
 
 
-                  </div>
+                    </div>
 
-                </form>
+                  </form>
 
-        
-            </div>
 
-          </div>
+                </div>
+
+              </div>
+            </li>
+          </ul>
         </div>
 
       </div>

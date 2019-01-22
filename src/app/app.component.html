@@ -1,9 +1,29 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div id="container">
-<app-sidebar></app-sidebar>
+<app-sidebar ></app-sidebar>
   <!-- <app-login></app-login> -->
+  <!-- <ngx-spinner></ngx-spinner> -->
   <div id="content">
 
+   <ngx-spinner
+bdColor = "rgba(51, 51, 51, 0.8)"
+size = "medium"
+color = "#fff"
+type = "ball-8bits"
+></ngx-spinner>
+
+    <div class="page-padding"> 
+
     <router-outlet></router-outlet>
+  </div>
+    <app-footer></app-footer>
 </div>
+
+
+
+
+
+
+
+
 </div>

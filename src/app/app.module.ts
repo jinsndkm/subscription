@@ -1,9 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule} from '@angular/core';
+import {FormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http'
-
-
-
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { FilterPipeModule } from 'ngx-filter-pipe'; 
+import {NgxPaginationModule} from 'ngx-pagination';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
@@ -20,6 +21,7 @@ import { MyserviceComponent } from './myservice/myservice.component';
 import { SubscriptionComponent } from './subscription/subscription.component';
 import { UpgradeSubscriptionComponent } from './upgrade-subscription/upgrade-subscription.component';
 import { ViewSubscriptionDetailsComponent } from './view-subscription-details/view-subscription-details.component';
+import { FooterComponent } from './footer/footer.component';
 
 
 
@@ -38,12 +40,16 @@ import { ViewSubscriptionDetailsComponent } from './view-subscription-details/vi
     SubscriptionComponent,
     UpgradeSubscriptionComponent,
     ViewSubscriptionDetailsComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
-    
+    HttpClientModule,
+    FormsModule   ,
+    NgxSpinnerModule,
+    FilterPipeModule,
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]

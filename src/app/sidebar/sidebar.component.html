@@ -1,36 +1,36 @@
-<nav>
+<nav *ngIf="nav.visible">
 
-    <a routerLink="">
+    <a routerLink="home">
         <img src="../assets/s-logo.png" class="logo">
    </a>
   <ul>
  
       <li>
-          <a routerLink="">
+          <a routerLink="home">
             <i class="material-icons icons">home</i>
             <span class="label">Home</span>
           </a>
         </li>
     <li>
-      <a routerLink="users">
+      <a >
         <i class="material-icons icons">account_circle</i>
         <span class="label">Profile</span>
       </a>
     </li>
     <li>
-        <a routerLink="posts">
+        <a>
           <i class="material-icons icons">favorite</i>
           <span class="label">Care Plan</span>
         </a>
       </li>
       <li>
-          <a routerLink="posts">
+          <a>
             <i class="material-icons icons">supervised_user_circle</i>
             <span class="label">Contact</span>
           </a>
         </li>
         <li>
-            <a routerLink="posts">
+            <a>
               <i class="material-icons icons">help</i>
               <span class="label">Help</span>
             </a>

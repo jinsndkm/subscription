@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { DataService } from '../data.service';
 
 @Component({
   selector: 'app-view-subscription-details',
@@ -7,9 +9,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ViewSubscriptionDetailsComponent implements OnInit {
 
-  constructor() { }
+  mySubscrriptionDetails$: Object
+
+  constructor(private route: ActivatedRoute, private data: DataService) { }
+
+
 
   ngOnInit() {
+    
+    var subId;
+    this.route.queryParams.subscribe(params => {
+      console.log(params.subId);
+      subId = params.subId;
+      
+    })
+    this.data.viewSubscriptionDetails(subId).subscribe(
+      data => {this.mySubscrriptionDetails$ = data;
+        this.mySubscrriptionDetails$ = Array.of(this.mySubscrriptionDetails$); 
+      }
+    );
   }
-
 }
+
