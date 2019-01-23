@@ -8,6 +8,38 @@ body {
     font-family: 'Montserrat', sans-serif;
     height: 100vh;
 }
+
+
+pagination-template
+{
+  ul.ngx-pagination
+  {
+     li
+     {
+         padding: 0px !important;
+         a
+         {
+            font-size: 1.1em !important;
+            text-decoration: none;
+            font-weight:500 !important;
+            color: #757575 !important;
+         }
+     }
+     .current
+     {
+        font-size: 1.1em !important;
+        text-decoration: none;
+ 
+        color:#81c183  !important;
+     }
+     .disabled
+     {
+        padding: 0px 8px 0px 8px !important;
+     }
+  }
+}
+
+
 #content
 {
     background: url(assets/page-bg.png);
@@ -71,7 +103,8 @@ body {
 .link
 {
     font-size: 0.78em;
-    color: #0a0909;
+    color: #848484;
+    font-weight: 700;
 }
 .bold
 {
