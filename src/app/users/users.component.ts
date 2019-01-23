@@ -17,10 +17,6 @@ export class UsersComponent implements OnInit {
   plans:any = [];
   services$: Object;
 
-  constructor(private data: DataService) { }
-
-  ngOnInit() {
-    localStorage.setItem("Plans",this.plans);
 
 
   users$ : Object;

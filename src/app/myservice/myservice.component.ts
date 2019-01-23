@@ -30,18 +30,6 @@ plans:any = [];
     //alert();
 
   userName: String;
-  constructor() { }
 
-  ngOnInit() {
-    this.userName=localStorage.getItem("userName");
-
-  }
-
-  openModal(id: string){
-
-    alert(id);
-    let modal = _.findWhere(this.modals, { id: id });
-        modal.open();
 }
-
 }

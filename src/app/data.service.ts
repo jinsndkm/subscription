@@ -171,13 +171,15 @@ alert("DDD::>"+JSON.stringify(data))
       });
 
 
-  enableAutorenewal(subscriptionId,status) {
-    return this.http.get(rootPath + '/mysubscription/autorenewal/' + subscriptionId+'/'+status);
-  }
 
-  disableAutorenewal(subscriptionId,status) {
-    return this.http.get(rootPath + '/mysubscription/autorenewal/'+subscriptionId+'/'+status);
-
-  }
 
 } 
+enableAutorenewal(subscriptionId,status) {
+  return this.http.get(rootPath + '/mysubscription/autorenewal/' + subscriptionId+'/'+status);
+}
+
+disableAutorenewal(subscriptionId,status) {
+  return this.http.get(rootPath + '/mysubscription/autorenewal/'+subscriptionId+'/'+status);
+
+}
+}

@@ -54,7 +54,7 @@ const routes: Routes = [
     path:'home/mysubscription/viewSubscription',
     component:ViewSubscriptionDetailsComponent
   },{
-    path:'addservice',
+    path:'home/addservice',
     component:MyserviceComponent
   },{
     path:'addservice/viewplanproducts/:id',

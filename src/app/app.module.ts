@@ -44,7 +44,7 @@ import { FooterComponent } from './footer/footer.component';
     UpgradeSubscriptionComponent,
     ViewSubscriptionDetailsComponent,
 
-    PlanProductDetailsComponent
+    PlanProductDetailsComponent,
 
     FooterComponent,
 
