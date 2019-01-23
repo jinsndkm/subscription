@@ -4,6 +4,8 @@ import { from } from 'rxjs';
 
 import {enableProdMode} from '@angular/core';
 import * as $ from "jquery";
+import * as _ from "lodash"
+
 enableProdMode();
 
 @Component({
@@ -15,14 +17,26 @@ export class MyserviceComponent implements OnInit {
 
   servicesList$: Object;
 
+  private modals: any[] = [];
+plans:any = [];
   constructor(private data: DataService) { }
 
   ngOnInit() {
+
+    sessionStorage.setItem("Plans",this.plans);
     this.data.getAllFusebillServices().subscribe(
       data => this.servicesList$ = data
     );
+    //alert();
+
+    
   }
 
+  openModal(id: string){
 
+    alert(id);
+    let modal = _.findWhere(this.modals, { id: id });
+        modal.open();
+}
 
 }

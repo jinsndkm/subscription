@@ -12,15 +12,13 @@ enableProdMode();
   styleUrls: ['./users.component.scss']
 })
 export class UsersComponent implements OnInit {
-
-  users$ : Object;
+  plans:any = [];
+  services$: Object;
 
   constructor(private data: DataService) { }
 
   ngOnInit() {
-    this.data.getUsers().subscribe(
-      data => this.users$ = data
-    );
+    localStorage.setItem("Plans",this.plans);
   }
 
 }
