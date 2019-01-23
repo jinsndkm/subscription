@@ -14,6 +14,15 @@ enableProdMode();
 })
 export class UsersComponent implements OnInit {
 
+  plans:any = [];
+  services$: Object;
+
+  constructor(private data: DataService) { }
+
+  ngOnInit() {
+    localStorage.setItem("Plans",this.plans);
+
+
   users$ : Object;
   userName:String;
   constructor(private data: DataService,public nav: HideMenusService) { }
@@ -24,6 +33,7 @@ export class UsersComponent implements OnInit {
     this.data.getUsers().subscribe(
       data => this.users$ = data
     );
+
   }
 
 }

@@ -6,6 +6,32 @@
     {
         margin-top: 40px;
     }
+    .card{
+        
+
+        padding: 10px;
+        border-radius: 4px;
+        border-bottom: #333 solid 1px;
+        margin-bottom: 10px;
+        float: left !important;
+
+    }
+    .align{
+        float: left !important;
+    }
+    h4{
+        font-size: 18px;
+        line-height: 25px;
+        text-align: center;
+        text-decoration: to-upper-case($string: "")
+      
+    }
+    p{
+        font-size: 13px;
+        line-height: 25px;
+        text-align: justify;
+
+    }
     .panel-section
     {
     .addservice
@@ -15,7 +41,20 @@
         color: #596b81;
         .sercice-sec
         {
-
+            width: 100%;
+          .card
+          {
+              width: 100%;
+              min-height: 103px;
+              padding-top: 38px;
+              h4
+              {font-size: 16px;
+                  a
+                  {
+                      color:#555758;
+                  }
+              }
+          }
             .addonrow
             {
                 font-size: 13px;

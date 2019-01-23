@@ -1,6 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpRequest, HttpHeaders, HttpParams } from '@angular/common/http';
+
+import { Alert } from '../../node_modules/@types/selenium-webdriver';
+import * as _ from "lodash"
+
 // import { stat } from 'fs';
+
 
 var rootPath = "http://localhost:3000";
 
@@ -17,6 +22,7 @@ const httpOptions = {
 
 
 export class DataService {
+   status$: Object;
 
   constructor(private http: HttpClient) {
   }
@@ -36,8 +42,9 @@ export class DataService {
         'Content-Type': 'application/json'
       })
     });*/
+console.log("fusebill service");
 
-    return this.http.get(rootPath + '/fusebill');
+    return this.http.get(rootPath + '/servicelist');
 
   }
 
@@ -112,6 +119,57 @@ export class DataService {
     console.log("Angular viewSubscriptionDetails");
     return this.http.get(rootPath + '/mysubscription/viewSubscription/' + subId);
   }
+  getPlanProducts(subId){
+    
+    console.log('getPlanProducts '+subId);
+    return this.http.get(rootPath+'/planproducts/'+subId);
+  }
+
+  getPlanDetails(subId){
+    
+    console.log('getPlanProducts '+subId);
+    return this.http.get(rootPath+'/plandetails/'+subId);
+  }
+  
+  createSub(planFreID,customerID){
+
+    const subscriptionBody = { "CustomerID": customerID , "planFrequencyID": planFreID};
+    const headers = new HttpHeaders()
+      .set('Authorization', 'Basic MDpEZk9jcExWQVFFczk1U1hPSWhER0J0RzFXOFJCaGs3UVFsU2xOQ0JJRUJ4Y1NSSG9JQXAzbTJVdGFWNVRZUlVN')
+      .set('Content-Type', 'application/json')
+      .set('Access-Control-Allow-Origin', '*');
+
+      return this.http.post(rootPath + '/subscription/create', subscriptionBody, {
+      headers: headers
+    })
+      .subscribe(data => {
+this.status$=data;
+       
+alert("DDD::>"+JSON.stringify(data))
+//alert("DDD::>"+this.status$.id);
+//let planID= this.status$.id;
+const activationBody = { "subscriptionId": 1253769 };
+//const activationBody = { "subscriptionId": 12345 };
+const headers = new HttpHeaders()
+  .set('Authorization', 'Basic MDpEZk9jcExWQVFFczk1U1hPSWhER0J0RzFXOFJCaGs3UVFsU2xOQ0JJRUJ4Y1NSSG9JQXAzbTJVdGFWNVRZUlVN')
+  .set('Content-Type', 'application/json')
+  .set('Access-Control-Allow-Origin', '*');
+
+  return this.http.post(rootPath + '/subscription/activate', activationBody, {
+  headers: headers
+})
+  .subscribe(data => {
+this.status$=data;
+   
+alert("DDD::>"+JSON.stringify(data))
+
+   
+
+  });
+
+
+      });
+
 
   enableAutorenewal(subscriptionId,status) {
     return this.http.get(rootPath + '/mysubscription/autorenewal/' + subscriptionId+'/'+status);
@@ -119,6 +177,7 @@ export class DataService {
 
   disableAutorenewal(subscriptionId,status) {
     return this.http.get(rootPath + '/mysubscription/autorenewal/'+subscriptionId+'/'+status);
+
   }
 
 } 

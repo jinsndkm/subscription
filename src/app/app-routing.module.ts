@@ -13,7 +13,7 @@ import { SubscriptionComponent } from './subscription/subscription.component';
 import { MyserviceComponent } from './myservice/myservice.component';
 import { UpgradeSubscriptionComponent } from './upgrade-subscription/upgrade-subscription.component';
 import { ViewSubscriptionDetailsComponent } from './view-subscription-details/view-subscription-details.component';
-
+import { PlanProductDetailsComponent } from './plan-product-details/plan-product-details.component'
 
 const routes: Routes = [
   {
@@ -56,6 +56,9 @@ const routes: Routes = [
   },{
     path:'addservice',
     component:MyserviceComponent
+  },{
+    path:'addservice/viewplanproducts/:id',
+    component:PlanProductDetailsComponent
   }
  
 ];
