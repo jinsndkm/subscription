@@ -1,8 +1,151 @@
-/* Bordered form */
-form {
-    border: 3px solid #f1f1f1;
+
+
+
+
+
+.left-section
+{
+  .head
+  {
+    img
+    {
+
+    }
+    h2
+    {
+      font-family: "OpenSans", sans-serif;
+      font-size: 32px;
+      font-weight: 100;
+      color: #022D53;
+      line-height: 1;
+      margin-top: 64px;
+    }
+    h1 {
+      font-family: "OpenSans", sans-serif;
+      font-size: 1.125em;
+      font-weight: 400;
+      color: #1A2C3F;
+      line-height: 1;
+    };
+  }
+  .input-style
+  {  
+    
+    width: 264px !important;
+    font-family: "OpenSans", sans-serif;
+    font-size: 0.813em;
+    font-weight: 400;
+    color: #596B81;
+    line-height: 1.4;
+    width: 100%;
+    max-width: 500px;
+    height: 50px;
+    padding: 15px;
+    background-color: #FFFFFF;
+    border-radius: 4px;
+    border: solid 1px #EDF5F7;
+    -webkit-box-shadow: 0 0 6px 0 #2282bf;
+    box-shadow: 0 0 6px 0 #2282bf;
+  }
+  label
+  {
+    width: 100%;
+    margin-top: 40px;
+    font-family: "OpenSans", sans-serif;
+    font-size: 0.813em;
+    font-weight: 400;
+    color: #596B81;
+    line-height: 1.4;
+    letter-spacing: normal;
+    margin-bottom: 9px;
+  }
+  .login
+  {
+    width: 115px;
+    height: 40px;
+    font-family: "OpenSans", sans-serif;
+    font-size: 0.813em;
+    font-weight: 400;
+    color: #FFFFFF;
+    line-height: normal;
+    letter-spacing: normal;
+    border-radius: 5px;
+    background-color: #336699;
+    cursor: pointer;
+    -webkit-box-shadow: 0 0 6px 0 #2282bf;
+    box-shadow: 0 0 6px 0 #2282bf;
+  }
+}
+
+
+
+.right-section
+{
+
+  background: url(/assets/login-bg.png);
+  height: 101%;
+  min-height: 600px;
+  position: absolute;
+  background-color: #336699;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 0% 30%;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+ .content
+ {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 300px 10%;
+
+  h2
+  {
+    width: 100%;
+    font-family: "BreeSerif", sans-serif;
+    font-size: 38px;
+    font-weight: 400;
+    color: #FFFFFF;
+    line-height: 1;
+  
+    
+    &:after{
+
+      content: ' ';
+      display: block;
+      width: 110px;
+      height: 4px;
+      margin-top: 14px;
+      background-color: #FFAA2C;
+    }
   }
   
+  p
+  {
+    width: 100%;
+    font-family: "OpenSans", sans-serif;
+    font-size: 1.5em;
+    font-weight: 400;
+    color: #FFFFFF;
+    line-height: 1.4;
+    letter-spacing: 0.2px;
+    margin-top: 18px;
+  }
+
+
+ }
+
+
+}
+
+
+
+
+
+
+
   /* Full-width inputs */
   input[type=text], input[type=password] {
     width: 100%;

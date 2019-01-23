@@ -17,8 +17,12 @@ import { PlanProductDetailsComponent } from './plan-product-details/plan-product
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'home',
     component: UsersComponent
+  },
+  {
+    path: '',
+    component: LoginComponent
   },
   {
     path: 'details/:id',
@@ -41,13 +45,13 @@ const routes: Routes = [
     component:CreateUserComponent
   },
   {
-    path:'mysubscription',
+    path:'home/mysubscription',
     component:SubscriptionComponent
   }, {
-    path:'mysubscription/upgradeSubscription',
+    path:'home/mysubscription/upgradeSubscription',
     component:UpgradeSubscriptionComponent
   }, {
-    path:'mysubscription/viewSubscription',
+    path:'home/mysubscription/viewSubscription',
     component:ViewSubscriptionDetailsComponent
   },{
     path:'addservice',

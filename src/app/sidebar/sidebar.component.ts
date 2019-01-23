@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { HideMenusService } from '../hide-menus.service';
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
@@ -7,9 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SidebarComponent implements OnInit {
 
-  constructor() { }
+  constructor( public nav: HideMenusService ) { }
 
   ngOnInit() {
+ 
   }
 
 }

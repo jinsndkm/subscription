@@ -29,7 +29,12 @@ plans:any = [];
     );
     //alert();
 
-    
+  userName: String;
+  constructor() { }
+
+  ngOnInit() {
+    this.userName=localStorage.getItem("userName");
+
   }
 
   openModal(id: string){
