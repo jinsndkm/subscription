@@ -21,6 +21,9 @@ import { MyserviceComponent } from './myservice/myservice.component';
 import { SubscriptionComponent } from './subscription/subscription.component';
 import { UpgradeSubscriptionComponent } from './upgrade-subscription/upgrade-subscription.component';
 import { ViewSubscriptionDetailsComponent } from './view-subscription-details/view-subscription-details.component';
+
+import { PlanProductDetailsComponent } from './plan-product-details/plan-product-details.component'
+
 import { FooterComponent } from './footer/footer.component';
 
 
@@ -40,7 +43,11 @@ import { FooterComponent } from './footer/footer.component';
     SubscriptionComponent,
     UpgradeSubscriptionComponent,
     ViewSubscriptionDetailsComponent,
+
+    PlanProductDetailsComponent,
+
     FooterComponent,
+
   ],
   imports: [
     BrowserModule,
