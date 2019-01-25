@@ -1,20 +1,89 @@
 
 .section
 {
+
+
+    .common-card
+    {
+        background: #e0e8f7 !important;
+    }
     .greetings
 
     {
         margin-top: 40px;
     }
     .card{
-        
-
+        width: 100%;
+        background: #fff;
         padding: 10px;
         border-radius: 4px;
-        border-bottom: #333 solid 1px;
+     
         margin-bottom: 10px;
         float: left !important;
 
+    }
+    .card2
+    {
+        margin-top: 2%;
+        text-align: center;
+
+.active-btn
+{
+    background: #5fb35f;
+    border-radius: 18px;
+    margin: auto;
+    display: block;
+    width: 63%;
+    box-shadow: none;
+    border: navajowhite;
+    color: #fff;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+        h4
+        {
+            font-size: 21px !important;
+            padding-top: 20px !important;
+            padding-bottom: 14px !important;
+            color: #596b81 !important; 
+        }
+.med
+
+{
+    font-size: 47px;
+}
+.p1
+{
+    font-size: 26px;
+    padding: 9px 5px 10px 5px;
+    text-align: center;
+    margin-bottom: 0px;
+    color:#3588b1 !important;
+}
+.p2
+{
+margin-bottom: 0px;
+text-align: center;
+}
+
+ul
+{    min-height: 124px;
+    li
+    {
+    
+        background: #fff;
+        border-radius: 8px;
+        padding: 0px !important;
+        margin-bottom: 8px;
+        font-size: 12px !important;
+        text-align: left;
+
+        .circle
+        {
+            color: orange;
+        }
+    }
+}
     }
     .align{
         float: left !important;
@@ -23,7 +92,10 @@
         font-size: 18px;
         line-height: 25px;
         text-align: center;
-        text-decoration: to-upper-case($string: "")
+        text-decoration: to-upper-case($string: "");
+        color: #3a5d6f !important;
+        font-size: 18px;
+
       
     }
     p{
@@ -36,6 +108,15 @@
     {
     .addservice
     {
+
+
+h4.head1
+{
+    font-size: 24px;
+    padding-top: 14px;
+  
+    text-align: left;
+}
 
         font-family: "OpenSans", sans-serif;
         color: #596b81;
@@ -76,6 +157,45 @@
                 font-weight: bold;
             }
         }
+
+
+.addonsection
+{
+  
+ .margin
+ {
+    margin-bottom: 0;
+    margin-top: 19px;
+ }
+
+    .helth-icon
+    {
+        font-size: 42px;
+        text-align: center;
+        margin: auto;
+        display: block;
+    }
+    .addon-name
+    {
+        text-align: left;
+        a
+        {
+            color: #596b81 !important;
+        }
+    } 
+    .add-price{
+        color: #ff7800;
+        font-weight: bold;
+        /* padding-bottom: 0px !important; */
+        margin-bottom: 0px;
+    }
+    .add-details
+    {
+
+    }
+}
+
+
     }
 
     }
