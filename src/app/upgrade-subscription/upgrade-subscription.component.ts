@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DataService } from '../data.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { HideMenusService } from '../hide-menus.service';
 
 @Component({
   selector: 'app-upgrade-subscription',
@@ -13,7 +14,7 @@ export class UpgradeSubscriptionComponent implements OnInit {
   items: any[];
   subId: string;
   aa: Object;
-  constructor(private data: DataService, private route: ActivatedRoute,private spinner: NgxSpinnerService) { }
+  constructor(private data: DataService,public nav: HideMenusService, private route: ActivatedRoute,private spinner: NgxSpinnerService) { }
 
   createRange(number) {
     this.items = [];
@@ -26,6 +27,7 @@ export class UpgradeSubscriptionComponent implements OnInit {
 
   ngOnInit() {
     this.spinner.show();
+    this.nav.show();
     this.route.queryParams.subscribe(params => {
       this.subId = params.subId;
     })
