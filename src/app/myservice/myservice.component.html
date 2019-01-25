@@ -47,8 +47,8 @@
               <i class="fas fa-align-justify l-icon"></i>
             </div>
             <div class="head-overview">
-              <p class="short-head">SUBSCRIPTION </p>
-              <p class="head"> My Subscriptions</p>
+              <p class="short-head"> Add More Service </p>
+              <p class="head"> Add Service</p>
 
 
             </div>
@@ -60,52 +60,102 @@
 
               <form>
 
-                  
+                <h4 class="head1">Home Care Packages
+                </h4>
 
-                <div class="row"> 
-                    <div class="sercice-sec">
-                        <div *ngFor="let service of servicesList$" class="col-lg-3 col-md-3 col-sm-4 col-xs-6 align" >
-                            <div class=""  *ngIf="!service.code.startsWith('addon')">
-                        <div >
-                          <div class="card">
-                         <h4><a routerLink="/addservice/viewplanproducts/{{service.id}}">{{service.name}}</a></h4>
-                     
-                        <!-- <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.  </p>
+                <div class="row">
+                  <div class="sercice-sec">
+                    <div *ngFor="let service of servicesList$" class="col-lg-4 col-md-4 col-sm-4 col-xs-6 align">
+                      <div class="" *ngIf="!service.code.startsWith('addon')">
+                        <div>
+                          <div class="card card2">
+                            <h4>
+                              <a routerLink="/addservice/viewplanproducts/{{service.id}}">{{service.name}}</a>
+                            </h4>
+                            <i class="fas fa-briefcase-medical med"></i>
+
+                            <p class="p1"> $100 / Week</p>
+                            <p class="p2"> 24 Hours</p>
+
+
+                            <ul>
+                              <li>
+                                <i class="far fa-dot-circle circle"></i> Up to 24 hrs. of non-medical care service professional
+                              </li>
+                              <li>
+                                <i class="far fa-dot-circle circle"></i> Secure Videoconferencing with a qualified medical </li>
+                              <li>
+                                <i class="far fa-dot-circle circle"></i> Free Access to your Care Platform Activate
+                              </li>
+                              <li>
+                                <i class="far fa-dot-circle circle"></i> Dedicated Care Manager </li>
+
+
+
+                            </ul>
+
+
+                            <button class="active-btn btn btn-sucess"> Active </button>
+
+
+                            <!-- <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.  </p>
                         -->
+                          </div>
                         </div>
-                        </div>
-                        </div>
+                      </div>
                     </div>
-              </div> </div>
+                  </div>
+                </div>
 
 
-              <p>ADD-ONS</p>
+                <h4 class="head1">Our Digital Add Ons:</h4>
 
-              <div class="row"> 
-              <div class="sercice-sec">
-                
-                <div *ngFor="let service of servicesList$"  class="col-lg-3 col-md-3 col-sm-4 col-xs-6 align">
+                <div class="row">
+                  <div class="addonsection">
 
-                    <div class=""  *ngIf="service.code.startsWith('addon')" >
-                <div >
-                  <div class="card">
-                 <h4><a routerLink="/addservice/viewplanproducts/{{service.id}}">{{service.name}}</a></h4>
-             
-                <!-- <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.  </p>
+
+
+
+                    <div *ngFor="let service of servicesList$" class="col-md-12 align margin">
+<div class="row">  
+                      <div class="col-md-1">
+                          <i class="fas fa-medkit helth-icon"></i>
+
+                      </div>
+
+    <div class="col-md-9">
+                      <div class="" *ngIf="service.code.startsWith('addon')">
+                        <div>
+                          <div class="">
+                            <h4 class="addon-name">
+                              <a routerLink="/addservice/viewplanproducts/{{service.id}}">{{service.name}}</a>
+                            </h4>
+
+                            <p class="add-price"> $79 / Month with a free Google Home or Amazon Alexa device  </p>
+                             <p class="add-details"> A Personalized caregiver application with voice-based interface in your preferred language.
+                                Mary monitors your loved one’s health status and immediately alerts their caregivers if there are any changes in health conditions (including any adverse medication interactions).
+                                Mary also reminds your loved one of medication schedules , doctor’s appointments and follows up on their care plans to ensure their well-being.</p>
+                            <!-- <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.  </p>
                 -->
+
+                <button class="btn btn-success btn-sm"> Month Plan</button>  <button class="btn btn-success btn-sm m-left-3"> Annual Plan </button> 
+                          </div>
+                        </div>
+
+                      </div>
+
+                      </div>
+                    </div>
+
+
+                    </div>
+                  </div>
                 </div>
-                </div>
-
-</div>
-                
-            </div>
-      </div>  
-      </div>
 
 
-                
 
-               
+
+
 
               </form>
 
