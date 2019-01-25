@@ -22,7 +22,7 @@ const httpOptions = {
 
 
 export class DataService {
-   status$: Object;
+  status$: Object;
 
   constructor(private http: HttpClient) {
   }
@@ -42,7 +42,7 @@ export class DataService {
         'Content-Type': 'application/json'
       })
     });*/
-console.log("fusebill service");
+    console.log("fusebill service");
 
     return this.http.get(rootPath + '/servicelist');
 
@@ -62,9 +62,9 @@ console.log("fusebill service");
       .subscribe(data => {
         data => statusCode = data
         var json = JSON.parse(JSON.stringify(data));
-        if(json.HttpStatusCode==400){
+        if (json.HttpStatusCode == 400) {
           alert("Something Went wrong! Please try again")
-        }else{
+        } else {
           alert("Subscription cancelled successfully")
         }
       });
@@ -76,96 +76,97 @@ console.log("fusebill service");
     return this.http.get(rootPath + '/mysubscriprions');
   }
 
- 
+
 
   listUpgradeSubscriptions(subscriptionId) {
     return this.http.get(rootPath + '/subscription/listupgradesubscriptions/' + subscriptionId);
   }
 
 
-  migrateSubsctiption(plansFamilyRltnId,subId) {
+  migrateSubsctiption(plansFamilyRltnId, subId) {
     let planBody;
     let plan;
     const migrationBody = {
       "customerId": "4848884",
       "planFamilyRelationshipId": plansFamilyRltnId,
       "migrationTimingOption": "Now",
-      "subId":subId
+      "subId": subId
     };
     const headers = new HttpHeaders()
       .set('Authorization', 'Basic MDpEZk9jcExWQVFFczk1U1hPSWhER0J0RzFXOFJCaGs3UVFsU2xOQ0JJRUJ4Y1NSSG9JQXAzbTJVdGFWNVRZUlVN')
       .set('Content-Type', 'application/json')
       .set('Access-Control-Allow-Origin', '*');
 
-      plan= this.http.post(rootPath + '/subscription/migratesubscription/', migrationBody, {
+    plan = this.http.post(rootPath + '/subscription/migratesubscription/', migrationBody, {
       headers: headers
     })
       .subscribe(data => {
         data => planBody = data
         var json = JSON.parse(JSON.stringify(data));
-        if(json.HttpStatusCode==400){
+        if (json.HttpStatusCode == 400) {
           alert("Something Went wrong! Please try again")
           return planBody;
-          
-        }else{
+
+        } else {
           alert("Plan successfully migrated")
           return planBody;
         }
         // return data;
       });
-       return planBody;
+    return planBody;
   }
-  viewSubscriptionDetails(subId){
+  viewSubscriptionDetails(subId) {
     console.log("Angular viewSubscriptionDetails");
     return this.http.get(rootPath + '/mysubscription/viewSubscription/' + subId);
   }
-  getPlanProducts(subId){
-    
-    console.log('getPlanProducts '+subId);
-    return this.http.get(rootPath+'/planproducts/'+subId);
+  getPlanProducts(subId) {
+
+    console.log('getPlanProducts ' + subId);
+    return this.http.get(rootPath + '/planproducts/' + subId);
   }
 
-  getPlanDetails(subId){
-    
-    console.log('getPlanProducts '+subId);
-    return this.http.get(rootPath+'/plandetails/'+subId);
-  }
-  
-  createSub(planFreID,customerID){
+  getPlanDetails(subId) {
 
-    const subscriptionBody = { "CustomerID": customerID , "planFrequencyID": planFreID};
+    console.log('getPlanProducts ' + subId);
+    return this.http.get(rootPath + '/plandetails/' + subId);
+  }
+
+  createSub(planFreID, customerID) {
+
+    const subscriptionBody = { "CustomerID": customerID, "planFrequencyID": planFreID };
     const headers = new HttpHeaders()
       .set('Authorization', 'Basic MDpEZk9jcExWQVFFczk1U1hPSWhER0J0RzFXOFJCaGs3UVFsU2xOQ0JJRUJ4Y1NSSG9JQXAzbTJVdGFWNVRZUlVN')
       .set('Content-Type', 'application/json')
       .set('Access-Control-Allow-Origin', '*');
 
-      return this.http.post(rootPath + '/subscription/create', subscriptionBody, {
+    return this.http.post(rootPath + '/subscription/create', subscriptionBody, {
       headers: headers
     })
       .subscribe(data => {
-this.status$=data;
-       
-alert("DDD::>"+JSON.stringify(data))
-//alert("DDD::>"+this.status$.id);
-//let planID= this.status$.id;
-const activationBody = { "subscriptionId": 1253769 };
-//const activationBody = { "subscriptionId": 12345 };
-const headers = new HttpHeaders()
-  .set('Authorization', 'Basic MDpEZk9jcExWQVFFczk1U1hPSWhER0J0RzFXOFJCaGs3UVFsU2xOQ0JJRUJ4Y1NSSG9JQXAzbTJVdGFWNVRZUlVN')
-  .set('Content-Type', 'application/json')
-  .set('Access-Control-Allow-Origin', '*');
+        this.status$ = data;
 
-  return this.http.post(rootPath + '/subscription/activate', activationBody, {
-  headers: headers
-})
-  .subscribe(data => {
-this.status$=data;
-   
-alert("DDD::>"+JSON.stringify(data))
+        var json = JSON.parse(JSON.stringify(this.status$));
 
-   
+        var subId = json.id;
 
-  });
+
+        //alert("DDD::>"+this.status$.id);
+        //let planID= this.status$.id;
+        const activationBody = { "subscriptionId": subId };
+        //const activationBody = { "subscriptionId": 12345 };
+        const headers = new HttpHeaders()
+          .set('Authorization', 'Basic MDpEZk9jcExWQVFFczk1U1hPSWhER0J0RzFXOFJCaGs3UVFsU2xOQ0JJRUJ4Y1NSSG9JQXAzbTJVdGFWNVRZUlVN')
+          .set('Content-Type', 'application/json')
+          .set('Access-Control-Allow-Origin', '*');
+
+        return this.http.post(rootPath + '/subscription/activate', activationBody, {
+          headers: headers
+        })
+          .subscribe(data => {
+            this.status$ = data;
+
+
+          });
 
 
       });
@@ -173,13 +174,13 @@ alert("DDD::>"+JSON.stringify(data))
 
 
 
-} 
-enableAutorenewal(subscriptionId,status) {
-  return this.http.get(rootPath + '/mysubscription/autorenewal/' + subscriptionId+'/'+status);
-}
+  }
+  enableAutorenewal(subscriptionId, status) {
+    return this.http.get(rootPath + '/mysubscription/autorenewal/' + subscriptionId + '/' + status);
+  }
 
-disableAutorenewal(subscriptionId,status) {
-  return this.http.get(rootPath + '/mysubscription/autorenewal/'+subscriptionId+'/'+status);
+  disableAutorenewal(subscriptionId, status) {
+    return this.http.get(rootPath + '/mysubscription/autorenewal/' + subscriptionId + '/' + status);
 
-}
+  }
 }
