@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpRequest, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Router } from "@angular/router"
 
 import { Alert } from '../../node_modules/@types/selenium-webdriver';
 import * as _ from "lodash"
@@ -24,7 +25,7 @@ const httpOptions = {
 export class DataService {
   status$: Object;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router: Router) {
   }
 
   getUsers() {
@@ -163,18 +164,22 @@ export class DataService {
           headers: headers
         })
           .subscribe(data => {
-            this.status$ = data;
+            this.status$ = data
+            var json = JSON.parse(JSON.stringify(this.status$))
+          },
+          err => {
+            console.log(err)
+          },() => {
+            this.router.navigate(['SuccessMessage']);
+          }
+        );
 
 
-          });
 
 
       });
-
-
-
-
   }
+  
   enableAutorenewal(subscriptionId, status) {
     return this.http.get(rootPath + '/mysubscription/autorenewal/' + subscriptionId + '/' + status);
   }

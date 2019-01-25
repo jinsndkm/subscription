@@ -1,6 +1,7 @@
 import { Component, OnInit, Injectable } from '@angular/core';
 import { DataService } from '../data.service';
 import { ActivatedRoute } from "@angular/router";
+import { NgxSpinnerService } from 'ngx-spinner';
 
 import * as _ from "lodash"
 
@@ -21,7 +22,7 @@ export class PlanProductDetailsComponent implements OnInit {
 
   //t: number=0;
 
-  constructor(private data: DataService, private route: ActivatedRoute) { }
+  constructor(private data: DataService, private route: ActivatedRoute, private spinner: NgxSpinnerService) { }
 
   ngOnInit() {
     var subId;
@@ -149,7 +150,14 @@ export class PlanProductDetailsComponent implements OnInit {
   }
 
   subscribe(s) {
-    this.data.createSub(s, "4871251");
+    this.spinner.show();
+    setTimeout(() => {
+      /** spinner ends after 5 seconds */
+      this.spinner.hide();
+    }, 4000);
+    var status = this.data.createSub(s, "4871251");
+    var json = JSON.stringify(status);
+   
   }
 
   addtocart(planDetails) {
