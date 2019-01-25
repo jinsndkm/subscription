@@ -190,7 +190,7 @@ export class DataService {
 
   }
 
-}
+
 
 checkCardDetails(custId){
   console.log('CustomerID '+custId);

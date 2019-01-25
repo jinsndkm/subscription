@@ -18,7 +18,12 @@ export class PlanProductDetailsComponent implements OnInit {
   finalRes: Object;
   total: number = 0;
   planarray: any = [];
-
+  oldsession$: Object;
+  empList: Array<any> = [];
+  cartItems: Array<any> = [];
+  noOfCartItems: number = 0;
+  freId$: Object;
+  tempPlanProducts$: Object;
 
 
   //t: number=0;
@@ -49,8 +54,6 @@ export class PlanProductDetailsComponent implements OnInit {
         }
 
 
-
-        this.test()
 
       }
 
@@ -129,24 +132,7 @@ export class PlanProductDetailsComponent implements OnInit {
 
           }
 
-  test() {
-
-
-
-    let sum = 0;
-
-    for (let products of _.values(this.planProducts$)) {
-
-      // if(products.productType == 'RecurringService' && products.isIncludedByDefault == false){
-
-      // }else{
-      // sum+=products.orderToCashCycles[0].pricingModel.quantityRanges[0].prices[0].amount;
-      // }
-      sum += products.orderToCashCycles[0].pricingModel.quantityRanges[0].prices[0].amount;
-    }
-    this.grandTotal = sum;
-    return this.grandTotal;
-  }
+ 
 
 
 
@@ -186,42 +172,55 @@ export class PlanProductDetailsComponent implements OnInit {
    
   }
 
-  addtocart(planDetails) {
-    this.planarray = localStorage.getItem("Plans");
-    if (this.planarray == null) {
-      this.planarray = [];
-    } else {
 
 
-  yourfunc(addonvalue, event) {
 
-    if (event.target.checked) {
-      this.grandTotal = this.grandTotal + parseInt(addonvalue);
-    } else {
-      this.grandTotal = this.grandTotal - parseInt(addonvalue);
-    }
 
-    //this.test('s',this.grandTotal);
-
+ 
+  onChange(deviceValue) {
+    this.freId$ = deviceValue;
   }
 
-  subscribe(s) {
-
-
-    this.data.createSub(s, "4848884");
-  }
 
   addtocart(planDetails) {
-    this.planarray = localStorage.getItem("Plans");
-    if (this.planarray == null) {
-      this.planarray = [];
+    if (typeof this.freId$ === "undefined") {
+      planDetails.selectedFreId = planDetails.planFrequencies[0].id;
     } else {
-
-
-      this.planarray.push(planDetails);
-      localStorage.setItem("Plans", this.planarray);
-      alert(this.planarray.length)
+      planDetails.selectedFreId = this.freId$;
     }
+
+
+    this.data.getPlanProducts(planDetails.id).subscribe(
+      data => { this.tempPlanProducts$ = data },
+      err => {
+        console.log(err)
+      }, () => {
+
+       // this.test()
+      }
+
+    );
+    let total = 0;
+    for (let products of _.values(this.planProducts$)) {
+      for (let corderToCash of products.orderToCashCycles) {
+        if (corderToCash.planFrequencyId = planDetails.selectedFreId) {
+          total += corderToCash.pricingModel.quantityRanges[0].prices[0].amount;
+        }
+      }
+
+    }
+
+    planDetails.amount = total;
+
+    console.log(sessionStorage.getItem('cartList'));
+    this.oldsession$ = sessionStorage.getItem('cartList');
+    if (this.oldsession$ == "undefined") {
+    } else {
+      this.empList = JSON.parse(sessionStorage.getItem('cartList'));
+    }
+    this.empList.push(planDetails);
+    this.cartItems.push(planDetails);
+    sessionStorage.setItem("cartList", JSON.stringify(this.empList));
   }
 
   getAmount(plnID) {

@@ -61,36 +61,70 @@
 <table class="table">
   <thead>
 <tr>
-    <th>
-Plan
-      </th>
-      <th>
+    <th class="one">
         Product
       </th>
       <th>
-          Frequency
+       Price CAD
+      </th>
+      <th>
+         Freaquency 
         </th>
-        <th>
-            Amount
-          </th>
-        <th>
-           Action
-          </th>
+     
 </tr>
 
   </thead>
 
   <tbody>
-<tr>
+   
+<tr *ngFor="let cartItem of cartItems">
 
-<td>RMS</td>
-<td>RMS Product</td>
-<td>3 Months</td>
+<td>{{cartItem.name}}</td>
+<td>{{cartItem.amount}}</td>
+ <div  *ngFor="let plan of cartItem.planFrequencies">
+   <div *ngIf="cartItem.selectedFreId === plan.id">
+<td>{{plan.interval}}</td>
 
-<td>$500</td>
-<td><button  class="btn btn-danger btn-cancel btm-mt" type="button">Remove</button></td>
+</div>
+
+<!-- <td>{{plan.interval}}</td> -->
+</div>
+<td><button  class="btn btn-danger btn-cancel btm-mt" (click)="remove(cartItem)" type="button">Remove</button></td>
 </tr>
-<tr>
+
+<tr class="total">
+
+  <td >Total</td><td colspan="3">$2000</td>
+</tr>
+
+<!-- <tr>
+
+    <td>Home Care Package Basic</td>
+    <td>RMS Product</td>
+    
+    
+    <td><button  class="btn btn-danger btn-cancel btm-mt" type="button">Remove</button></td>
+    </tr> -->
+<!-- 
+    <tr>
+
+        <td>Home Care Package Basic</td>
+        <td>RMS Product</td>
+        
+        
+        <td><button  class="btn btn-danger btn-cancel btm-mt" type="button">Remove</button></td>
+        </tr>
+
+        <tr> -->
+<!-- 
+            <td>Home Care Package Basic</td>
+            <td>RMS Product</td>
+            
+            
+            <td><button  class="btn btn-danger btn-cancel btm-mt" type="button">Remove</button></td>
+            </tr> -->
+
+<!-- <tr>
 
     <td>RMS</td>
     <td>RMS Product</td>
@@ -115,29 +149,20 @@ Plan
 
             <td><button  class="btn btn-danger btn-cancel btm-mt" type="button">Remove</button></td>
             
-            </tr>
+            </tr> -->
 
   </tbody>
 
 
 </table>
+
 <div class="row">
-<div  class="col-md-12">
-<p class="t-amount"> Total Amount :$1900</p>
-
-</div>
-
 <div class="col-md-12">
     <a href="" class="up-link btn btn-success float-right btm-mt">Checkout</a>
     <a href="" class="up-link btn btn-success float-right btm-mt">Continue Shopping</a>
    
-
+ 
 </div>
-
-
-</div>
-
-
 
 
 </div>

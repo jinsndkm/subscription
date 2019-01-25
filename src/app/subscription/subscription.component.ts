@@ -19,7 +19,7 @@ export class SubscriptionComponent implements OnInit {
 
   items$: Object;
 
-  items$:Object;
+
 
 
   users: any[] = [];
