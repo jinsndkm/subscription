@@ -16,10 +16,8 @@ export class UsersComponent implements OnInit {
 
   plans:any = [];
   services$: Object;
-
-
-
   users$ : Object;
+ 
   userName:String;
   constructor(private data: DataService,public nav: HideMenusService) { }
 
@@ -29,6 +27,7 @@ export class UsersComponent implements OnInit {
     this.data.getUsers().subscribe(
       data => this.users$ = data
     );
+
 
   }
 

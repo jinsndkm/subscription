@@ -182,4 +182,11 @@ disableAutorenewal(subscriptionId,status) {
   return this.http.get(rootPath + '/mysubscription/autorenewal/'+subscriptionId+'/'+status);
 
 }
+
+checkCardDetails(custId){
+    alert("Chackkkkkkkk")
+  console.log('CustomerID '+custId);
+  return this.http.get(rootPath+'/checkcarddetails/'+custId);
+}
+
 }
