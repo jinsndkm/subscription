@@ -76,7 +76,7 @@
 
             <form>
 
-              <ul>
+              <ul class="lists">
                 <li *ngFor="let mysubscriptions of mysubscriptions$ | filterBy: userFilter | paginate: { itemsPerPage: 5, currentPage: p }">
 
                   
@@ -114,7 +114,7 @@
                         
                         <button type="button" class="btn btn-danger btn-cancel btm-mt" (click)="cancelSubscription(mysubscriptions.planFrequency.planRevisionId)">Cancel</button>
                         <div *ngIf="mysubscriptions.status=='Active';then content"></div>    
-                        <ng-template #content> <a [routerLink]="['upgradeSubscription']" [queryParams]="{subId: mysubscriptions.planFrequency.planRevisionId}" class="btn-upgrade btn btn-info btm-mt" > Upgrade </a></ng-template>
+                        <ng-template #content> <a [routerLink]="['upgradeSubscription']" [queryParams]="{subId: mysubscriptions.planFrequency.planRevisionId}" class="btn-upgrade btn btn-info btm-mt btn-link" > Upgrade </a></ng-template>
                        
                        
                       </div>
