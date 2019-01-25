@@ -25,6 +25,7 @@ import { ViewSubscriptionDetailsComponent } from './view-subscription-details/vi
 import { PlanProductDetailsComponent } from './plan-product-details/plan-product-details.component'
 
 import { FooterComponent } from './footer/footer.component';
+import { SuccessMessageComponent } from './success-message/success-message.component';
 
 
 
@@ -47,6 +48,8 @@ import { FooterComponent } from './footer/footer.component';
     PlanProductDetailsComponent,
 
     FooterComponent,
+
+    SuccessMessageComponent,
 
   ],
   imports: [

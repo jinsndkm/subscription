@@ -1,0 +1,28 @@
+
+.section
+{
+  .success
+  {
+    position: relative;
+    top: 50%;
+    text-align: center;
+    .checkicon
+    {
+        font-size: 2.1em;
+        color: #57bd57;
+        width: 75px;
+        height: 75px;
+        background: #bee4f7;
+        border-radius: 50%;
+        padding-top: 18px;
+    }
+      p
+      {
+          text-align: center;
+          font-size: 2em;
+          font-weight: bold;
+          color: #115f82;
+      }
+  }
+
+}
