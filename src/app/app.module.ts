@@ -27,6 +27,18 @@ import { PlanProductDetailsComponent } from './plan-product-details/plan-product
 import { FooterComponent } from './footer/footer.component';
 
 
+import { ReactiveFormsModule } from '@angular/forms';
+import { AddCardDetailsComponent } from './add-card-details/add-card-details.component';
+
+
+
+
+
+
+
+
+
+
 
 @NgModule({
   declarations: [
@@ -48,6 +60,9 @@ import { FooterComponent } from './footer/footer.component';
 
     FooterComponent,
 
+    AddCardDetailsComponent,
+
+
   ],
   imports: [
     BrowserModule,
@@ -56,7 +71,8 @@ import { FooterComponent } from './footer/footer.component';
     FormsModule   ,
     NgxSpinnerModule,
     FilterPipeModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

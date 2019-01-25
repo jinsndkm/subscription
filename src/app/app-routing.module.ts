@@ -14,6 +14,8 @@ import { MyserviceComponent } from './myservice/myservice.component';
 import { UpgradeSubscriptionComponent } from './upgrade-subscription/upgrade-subscription.component';
 import { ViewSubscriptionDetailsComponent } from './view-subscription-details/view-subscription-details.component';
 import { PlanProductDetailsComponent } from './plan-product-details/plan-product-details.component'
+import { AddCardDetailsComponent } from './add-card-details/add-card-details.component';
+
 
 const routes: Routes = [
   {
@@ -59,6 +61,9 @@ const routes: Routes = [
   },{
     path:'addservice/viewplanproducts/:id',
     component:PlanProductDetailsComponent
+  },{
+    path:'addcarddetails',
+    component:AddCardDetailsComponent
   }
  
 ];

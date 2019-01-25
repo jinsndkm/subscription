@@ -1,0 +1,253 @@
+
+  	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script>
+		var verifyCallback = function(response) {
+			document.getElementById("mySubmit").disabled = false;
+			$('input#recaptcha_token').val(response);
+		};
+		var expCallback = function () {
+			document.getElementById("mySubmit").disabled = true;
+		};
+		var onloadCallback = function() {
+			grecaptcha.render('exampleWithCallback', {
+				'sitekey': '<site key>', //replace with fusebill google public key
+				'callback': verifyCallback,
+				'expired-callback': expCallback
+			});
+		};
+	</script>
+
+<div class="section">
+  <div class="row">
+
+    <div class="col-md-12">
+
+      <img src="../assets/logo.png" />
+
+    </div>
+
+    <div class="col-md-12">
+      <div class="greetings">
+    
+
+      </div>
+
+
+    </div>
+  </div>
+
+
+    <div class="card-details">
+
+      <div class="row">
+<div class="col-md-12">
+    <form action="https://payments.subscriptionplatform.com/v2/payments/create" method="post">
+        
+  
+
+      
+
+     <h3> <i class="fas fa-credit-card"></i> Credit Card Details</h3>
+
+
+      <!-- <fieldset>
+
+
+
+          <div class="form-group row">
+              <label  for="CustomerId" class="col-md-3 col-sm-6 col-xs col-form-label common-size">Customer Id</label>
+              <div class="col-md-3 col-sm-6">
+                  <input autofocus="autofocus"  class="form-control "id="CustomerId" name="CustomerId" type="text" value="customer id here" />
+ 
+              </div>
+            </div>
+
+
+       
+          
+          <div class="form-group row">
+              <label for="PublicApiKey" class="col-md-3 col-sm-6 col-xs col-form-label common-size">Public Api Key</label>
+              <div class="col-md-3 col-sm-6">
+              <input id="PublicApiKey" name="PublicApiKey" class="form-control" type="text" value="your key here" />
+          </div>
+        </div>
+          
+          <div class="form-group row">
+              <label for="SuccessUri" class="col-md-3 col-sm-6 col-xs col-form-label common-size">Success Uri</label>
+              <div class="col-md-3 col-sm-6"> 
+              <input id="SuccessUri" name="SuccessUri"   class="form-control" type="text" value="https://www.success.com" />
+          </div></div>
+          
+          <div  class="form-group row">
+              <label for="FailUri" class="col-md-3 col-sm-6 col-xs col-form-label common-size">Fail Uri</label>
+            
+              <div class="col-md-3 col-sm-6"> 
+              <input id="FailUri" name="FailUri"  class="form-control" type="text" value="https://www.fail.com" />
+
+              </div>
+          </div>
+      </fieldset> -->
+
+  
+
+      <fieldset>
+          <div class="form-group row">
+              <label for="CardNumber" class="col-md-3 col-sm-6 col-xs col-form-label common-size">Card number</label>
+            
+              <div class="col-md-3 col-sm-6"> 
+              <input id="CardNumber" name="CardNumber"  class="form-control" type="text" value="4242424242424242" />
+ </div>
+
+          </div>
+              
+          <div class="form-group row">
+
+              <label for="FirstName" class="col-md-3 col-sm-6 col-xs col-form-label common-size">First name</label>
+              <div class="col-md-3 col-sm-6"> 
+             
+              <input id="FirstName" name="FirstName"   class="form-control" type="text" value="John" />
+</div>
+
+          </div>
+                
+          <div class="form-group row">
+
+              <label for="LastName" class="col-md-3 col-sm-6 col-xs col-form-label common-size">Last name</label>
+              <div class="col-md-3 col-sm-6"> 
+              <input id="LastName" name="LastName"  class="form-control" type="text" value="Doe" />
+
+              </div>
+
+          </div>
+          
+          <div class="form-group row">
+              <label for="ExpirationMonth"  class="col-md-3 col-sm-6 col-xs col-form-label common-size">Expiry month</label>
+              <div class="col-md-3 col-sm-6"> 
+              <div class="row">
+
+                <div class="col-md-6 col-xs-12">
+                    <input id="ExpirationMonth" name="ExpirationMonth"  class="form-control"  type="text" placeholder="Month" />
+                </div>
+ <div class="col-md-6 col-xs-12">
+    <input id="ExpirationMonth" name="ExpirationMonth"  class="form-control"  type="text" placeholder="Year"  />
+                </div>
+
+
+
+              </div>
+
+            
+              
+              </div>
+              
+
+          </div>
+                  
+     
+          
+          <div class="form-group row">
+              <label for="Cvv" class="col-md-3 col-sm-6 col-xs col-form-label common-size">CVV</label>
+            
+              <div class="col-md-3 col-sm-6"> 
+
+
+    <input id="Cvv" name="Cvv" type="text"   class="form-control"  />
+
+
+
+           
+
+              </div>
+
+          </div>
+      </fieldset>
+      
+   
+
+      <fieldset>
+          <div  class="form-group row">
+
+              <label for="Address1" class="col-md-3 col-sm-6 col-xs col-form-label common-size">Address 1</label>
+              <div class="col-md-3 col-sm-6"> 
+              <input id="Address1" name="Address1"  class="form-control" type="text" value="" />
+              </div>
+          </div>
+              
+          <div class="form-group row">
+              <label for="Address2" class="col-md-3 col-sm-6 col-xs col-form-label common-size">Address 2</label>
+              <div class="col-md-3 col-sm-6"> 
+              <input id="Address2" name="Address2"  class="form-control" type="text" value="" />
+              </div>
+
+          </div>
+          
+          <div class="form-group row">
+              <label for="City" class="col-md-3 col-sm-6 col-xs col-form-label common-size">City</label>
+              <div class="col-md-3 col-sm-6"> 
+              <input id="City" name="City" type="text"   class="form-control" value="" />
+              </div>
+
+
+          </div>
+          
+          <div class="form-group row">
+
+              <label for="CountryId" class="col-md-3 col-sm-6 col-xs col-form-label common-size">Country</label>
+              <div class="col-md-3 col-sm-6"> 
+              <input id="CountryId" name="CountryId"   class="form-control" type="text" value="" />
+              </div>
+
+          </div>
+              
+          <div class="form-group row">
+              <label for="StateId" class="col-md-3 col-sm-6 col-xs col-form-label common-size">State</label>
+              <div class="col-md-3 col-sm-6"> 
+              <input id="StateId" name="StateId"  class="form-control" type="text" value="" />
+          </div> </div>
+          
+          <div class="form-group row">
+              <label for="PostalZip" class="col-md-3 col-sm-6 col-xs col-form-label common-size">Postal / Zip code</label>
+              <div class="col-md-3 col-sm-6"> 
+              <input id="PostalZip" name="PostalZip"  class="form-control"  type="text" value="" />
+          </div> </div>
+          
+              
+          <input id="MakeDefault" name="MakeDefault" type="hidden" value="true" />
+          <div class="g-recaptcha" id="exampleWithCallback"></div>
+          <input id="recaptcha_token" type="hidden"   class="form-control" name="recaptcha_token" />
+          <div class="form-group row">
+              <div class="col-md-6 col-sm-6"> 
+                  <input type="submit" id="mySubmit" class="btn btn-success btn-sm float-right" disabled />
+                </div>
+    
+            </div>
+      </fieldset>
+    
+    
+      
+
+
+
+  </form>
+
+
+
+  </div>
+
+
+      </div>
+
+
+
+    </div>
+
+
+
+
+
+
+
+
+  </div>
+
+<script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer> </script>
