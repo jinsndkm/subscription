@@ -25,6 +25,19 @@ import { ViewSubscriptionDetailsComponent } from './view-subscription-details/vi
 import { PlanProductDetailsComponent } from './plan-product-details/plan-product-details.component'
 
 import { FooterComponent } from './footer/footer.component';
+import { SuccessMessageComponent } from './success-message/success-message.component';
+
+
+import { ReactiveFormsModule } from '@angular/forms';
+import { AddCardDetailsComponent } from './add-card-details/add-card-details.component';
+
+
+
+
+
+
+
+
 
 
 
@@ -48,6 +61,11 @@ import { FooterComponent } from './footer/footer.component';
 
     FooterComponent,
 
+    AddCardDetailsComponent,
+
+    SuccessMessageComponent,
+
+
   ],
   imports: [
     BrowserModule,
@@ -56,7 +74,8 @@ import { FooterComponent } from './footer/footer.component';
     FormsModule   ,
     NgxSpinnerModule,
     FilterPipeModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

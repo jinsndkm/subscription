@@ -15,6 +15,12 @@ import { UpgradeSubscriptionComponent } from './upgrade-subscription/upgrade-sub
 import { ViewSubscriptionDetailsComponent } from './view-subscription-details/view-subscription-details.component';
 import { PlanProductDetailsComponent } from './plan-product-details/plan-product-details.component'
 
+import { AddCardDetailsComponent } from './add-card-details/add-card-details.component';
+
+
+import { SuccessMessageComponent } from './success-message/success-message.component';
+
+
 const routes: Routes = [
   {
     path: 'home',
@@ -59,7 +65,16 @@ const routes: Routes = [
   },{
     path:'addservice/viewplanproducts/:id',
     component:PlanProductDetailsComponent
-  }
+  },{
+
+    path:'addcarddetails',
+    component:AddCardDetailsComponent
+  },
+  {
+    path: 'SuccessMessage',
+    component: SuccessMessageComponent
+  },
+
  
 ];
 
