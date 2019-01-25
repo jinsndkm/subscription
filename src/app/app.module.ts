@@ -28,6 +28,18 @@ import { FooterComponent } from './footer/footer.component';
 import { SuccessMessageComponent } from './success-message/success-message.component';
 
 
+import { ReactiveFormsModule } from '@angular/forms';
+import { AddCardDetailsComponent } from './add-card-details/add-card-details.component';
+
+
+
+
+
+
+
+
+
+
 
 @NgModule({
   declarations: [
@@ -49,7 +61,10 @@ import { SuccessMessageComponent } from './success-message/success-message.compo
 
     FooterComponent,
 
+    AddCardDetailsComponent,
+
     SuccessMessageComponent,
+
 
   ],
   imports: [
@@ -59,7 +74,8 @@ import { SuccessMessageComponent } from './success-message/success-message.compo
     FormsModule   ,
     NgxSpinnerModule,
     FilterPipeModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
