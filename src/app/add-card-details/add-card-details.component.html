@@ -2,6 +2,7 @@
   	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 	<script>
 		var verifyCallback = function(response) {
+            alert("ss")
 			document.getElementById("mySubmit").disabled = false;
 			$('input#recaptcha_token').val(response);
 		};
@@ -9,8 +10,9 @@
 			document.getElementById("mySubmit").disabled = true;
 		};
 		var onloadCallback = function() {
+            alert("sss")
 			grecaptcha.render('exampleWithCallback', {
-				'sitekey': '<site key>', //replace with fusebill google public key
+				'sitekey': 'fbce7af9-d2eb-43ab-9870-d90e87217a3d', //replace with fusebill google public key
 				'callback': verifyCallback,
 				'expired-callback': expCallback
 			});
@@ -50,14 +52,14 @@
      <h3> <i class="fas fa-credit-card"></i> Credit Card Details</h3>
 
 
-      <!-- <fieldset>
+       <fieldset>
 
 
 
           <div class="form-group row">
               <label  for="CustomerId" class="col-md-3 col-sm-6 col-xs col-form-label common-size">Customer Id</label>
               <div class="col-md-3 col-sm-6">
-                  <input autofocus="autofocus"  class="form-control "id="CustomerId" name="CustomerId" type="text" value="customer id here" />
+                  <input autofocus="autofocus"  class="form-control "id="CustomerId" name="CustomerId" type="text" value="4848849" />
  
               </div>
             </div>
@@ -68,7 +70,7 @@
           <div class="form-group row">
               <label for="PublicApiKey" class="col-md-3 col-sm-6 col-xs col-form-label common-size">Public Api Key</label>
               <div class="col-md-3 col-sm-6">
-              <input id="PublicApiKey" name="PublicApiKey" class="form-control" type="text" value="your key here" />
+              <input id="PublicApiKey" name="PublicApiKey" class="form-control" type="text" value="fbce7af9-d2eb-43ab-9870-d90e87217a3d" />
           </div>
         </div>
           
@@ -86,7 +88,7 @@
 
               </div>
           </div>
-      </fieldset> -->
+      </fieldset>
 
   
 
@@ -217,7 +219,7 @@
           <input id="recaptcha_token" type="hidden"   class="form-control" name="recaptcha_token" />
           <div class="form-group row">
               <div class="col-md-6 col-sm-6"> 
-                  <input type="submit" id="mySubmit" class="btn btn-success btn-sm float-right" disabled />
+                  <input type="submit" id="mySubmit" class="btn btn-success btn-sm float-right"  />
                 </div>
     
             </div>

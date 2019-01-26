@@ -70,7 +70,12 @@ export class PlanProductDetailsComponent implements OnInit {
 
     );
 
+    this.oldsession$ = sessionStorage.getItem('cartList');
+    if (this.oldsession$ == null) {
+    } else {
+      this.cartItems = JSON.parse(sessionStorage.getItem('cartList'));
 
+    }
 
 
 
@@ -86,23 +91,12 @@ export class PlanProductDetailsComponent implements OnInit {
 
       if (from == "change") {
         for (let i = 0; i < this.planProducts$[j].orderToCashCycles.length; i++) {
-
-          //alert(this.planProducts$[j].orderToCashCycles[i].pricingModel.quantityRanges[0].prices[0].amount);
-          // if(products.productType == 'RecurringService' && products.isIncludedByDefault == false){
-
-          // }else{
-          // sum+=products.orderToCashCycles[0].pricingModel.quantityRanges[0].prices[0].amount;
-          // }
-          //alert(this.planProducts$[j].orderToCashCycles[i].planFrequencyId)
-
-
           if (this.planProducts$[j].orderToCashCycles[i].planFrequencyId == plnID) {
 
             sum = sum + this.planProducts$[j].orderToCashCycles[i].pricingModel.quantityRanges[0].prices[0].amount;
             this.grandTotal = sum;
 
             document.getElementById("test4" + j).innerHTML = "$" + this.planProducts$[j].orderToCashCycles[i].pricingModel.quantityRanges[0].prices[0].amount;
-
 
           }
 
@@ -132,7 +126,7 @@ export class PlanProductDetailsComponent implements OnInit {
 
           }
 
- 
+
 
 
 
@@ -169,14 +163,14 @@ export class PlanProductDetailsComponent implements OnInit {
     }, 4000);
     var status = this.data.createSub(s, "4871251");
     var json = JSON.stringify(status);
-   
+
   }
 
 
 
 
 
- 
+
   onChange(deviceValue) {
     this.freId$ = deviceValue;
   }
@@ -196,7 +190,7 @@ export class PlanProductDetailsComponent implements OnInit {
         console.log(err)
       }, () => {
 
-       // this.test()
+        // this.test()
       }
 
     );
@@ -214,7 +208,7 @@ export class PlanProductDetailsComponent implements OnInit {
 
     console.log(sessionStorage.getItem('cartList'));
     this.oldsession$ = sessionStorage.getItem('cartList');
-    if (this.oldsession$ == "undefined") {
+    if (this.oldsession$ == null) {
     } else {
       this.empList = JSON.parse(sessionStorage.getItem('cartList'));
     }
