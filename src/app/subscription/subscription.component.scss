@@ -8,11 +8,24 @@
     }
     .panel-section
     {
+
+       ul.lists
+             {
+                li{
+                  padding: 0px !important;
+                   }
+              }
+
       .subscription
       {
         box-shadow: 1px 2px 3px #f3f2f2;
         margin-bottom: 10px;
         padding-bottom: 5px;
+        a.btn-link
+        {
+            color: #fff !important;
+            font-weight: 500 !important;
+        }
         .warning
         {
             color: #ffc107;
@@ -30,7 +43,7 @@
         }
         label
         {
-            font-family: "OpenSans", sans-serif;
+           
             font-size: .925em;
             font-weight: 400;
             color: #1A2C3F;
@@ -38,7 +51,9 @@
         }
 
       }
-
+    
+  
     }
 
 }
+

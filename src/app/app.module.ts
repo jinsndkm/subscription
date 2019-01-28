@@ -25,6 +25,7 @@ import { ViewSubscriptionDetailsComponent } from './view-subscription-details/vi
 import { PlanProductDetailsComponent } from './plan-product-details/plan-product-details.component'
 
 import { FooterComponent } from './footer/footer.component';
+import { SuccessMessageComponent } from './success-message/success-message.component';
 
 
 import { ReactiveFormsModule } from '@angular/forms';
@@ -61,6 +62,8 @@ import { AddCardDetailsComponent } from './add-card-details/add-card-details.com
     FooterComponent,
 
     AddCardDetailsComponent,
+
+    SuccessMessageComponent,
 
 
   ],

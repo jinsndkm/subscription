@@ -17,8 +17,10 @@ export class SubscriptionComponent implements OnInit {
   autorenewal$: Object;
 
 
-
   items$: Object;
+
+  items$:Object;
+
 
   users: any[] = [];
   userFilter: any = {};
