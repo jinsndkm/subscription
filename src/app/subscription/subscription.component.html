@@ -91,12 +91,12 @@
                       </div>
 
                       <div class="col-md-3">
-
-                        <button type="button" class="btn btn-danger btn-cancel btm-mt" (click)="cancelSubscription(mysubscriptions.planFrequency.planRevisionId)">Cancel</button>
-                        <div *ngIf="mysubscriptions.status=='Active';then content"></div>
-                        <ng-template #content> <a [routerLink]="['upgradeSubscription']" [queryParams]="{subId: mysubscriptions.planFrequency.planRevisionId}"
-                            class="btn-upgrade btn btn-info btm-mt btn-link"> Upgrade </a></ng-template>
-
+          
+                        <button type="button" class="btn btn-danger btn-cancel btm-mt" (click)="cancelSubscription(mysubscriptions.planFrequency.planRevisionId,mysubscriptions.planName)">Cancel</button>
+                        <div *ngIf="mysubscriptions.status=='Active';then content"></div>    
+                        <ng-template #content> <a [routerLink]="['upgradeSubscription']" [queryParams]="{subId: mysubscriptions.planFrequency.planRevisionId}" class="btn-upgrade btn btn-info btm-mt btn-link" > Upgrade </a></ng-template>
+                       
+                       
 
                       </div>
                     </div>

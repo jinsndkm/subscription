@@ -77,6 +77,9 @@ const routes: Routes = [
   {
     path: 'myCart',
     component: CartDetailsComponent
+  } ,{
+    path:'myCart/addservice',
+    component:MyserviceComponent
   }
  
 ];
