@@ -1,7 +1,7 @@
 
 .section
 {
-
+    font-family: 'Montserrat', sans-serif !important;
 
     .common-card
     {
@@ -26,6 +26,8 @@
     {
         margin-top: 2%;
         text-align: center;
+        min-height: 496px !important;
+        font-family: 'Montserrat', sans-serif !important;
 
 .active-btn
 {
@@ -54,8 +56,8 @@
 }
 .p1
 {
-    font-size: 26px;
-    padding: 9px 5px 10px 5px;
+    font-size: 19px;
+    padding: 27px 5px 28px 5px;
     text-align: center;
     margin-bottom: 0px;
     color:#3588b1 !important;
@@ -64,6 +66,7 @@
 {
 margin-bottom: 0px;
 text-align: center;
+min-height: 132px;
 }
 
 ul
@@ -108,8 +111,10 @@ ul
     {
     .addservice
     {
-
-
+        font-family: 'Montserrat', sans-serif !important;
+a{
+    text-decoration: none !important;
+}
 h4.head1
 {
     font-size: 24px;

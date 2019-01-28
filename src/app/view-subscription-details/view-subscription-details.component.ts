@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DataService } from '../data.service';
 import { HideMenusService } from '../hide-menus.service';
+
 @Component({
   selector: 'app-view-subscription-details',
   templateUrl: './view-subscription-details.component.html',
