@@ -9,7 +9,7 @@
 
     <div class="col-md-12">
       <div class="greetings">
-        <p>Welcome to Mary's care dashboard</p>
+        <!-- <p>Welcome to Mary's care dashboard</p> -->
 
       </div>
 
@@ -25,21 +25,6 @@
 
         <div class="card common-card">
           <div class="card-header common-panel-head">
-            <!-- <div class="row">
-                     <div class="col-md-2">
-
-
-                     </div>
-                     <div class="col-md-10">
-                       <h4>SUBSCRIPTION </h4>
-
-                       <h3>My Subscriptions</h3>
-
-                      
-                     </div>
-
-
-                   </div> -->
             <div class="head-score">
 
               <i class="fas fa-align-justify l-icon"></i>
@@ -54,118 +39,71 @@
           </div>
           <div class="card-body common-panel-body">
             <div class="panel-features">
-         
+
               <div class="row">
-<div class="col-md-12">
+                <div class="col-md-12">
 
-<table class="table">
-  <thead>
-<tr>
-    <th class="one">
-        Product
-      </th>
-      <th>
-       Price CAD
-      </th>
-      <th>
-         Freaquency 
-        </th>
-     
-</tr>
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th class="one">
+                          Product
+                        </th>
+                        <th>
+                          Price CAD
+                        </th>
+                        <th>
+                          Frequency
+                        </th>
 
-  </thead>
+                      </tr>
 
-  <tbody>
-   
-<tr *ngFor="let cartItem of cartItems;let i = index">
+                    </thead>
 
-<td>{{cartItem.name}}</td>
-<td>{{cartItem.amount}}</td>
- <div  *ngFor="let plan of cartItem.planFrequencies">
-   <div *ngIf="cartItem.selectedFreId === plan.id">
-<td>{{plan.interval}}</td>
+                    <tbody>
 
-</div>
+                      <tr *ngFor="let cartItem of cartItems;let i = index">
 
-<!-- <td>{{plan.interval}}</td> -->
-</div>
-<td><button  class="btn btn-danger btn-cancel btm-mt" (click)="remove(cartItem)" type="button">Remove</button></td>
-</tr>
+                        <td>{{cartItem.name}}</td>
+                        <td>{{cartItem.amount}}</td>
+                        <div *ngFor="let plan of cartItem.planFrequencies">
+                          <div *ngIf="cartItem.selectedFreId === plan.id">
+                            <td>{{plan.interval}}</td>
+                          </div>
 
-<tr class="total">
+                        </div>
+                        <td><button class="btn btn-danger btn-cancel btm-mt" (click)="remove(cartItem)" type="button">Remove</button></td>
+                      </tr>
 
-  <td >Total</td><td colspan="3">${{grandTotal}}</td>
-</tr>
+                      <tr class="total">
 
-<!-- <tr>
+                        <td>Total</td>
+                        <td colspan="3">${{grandTotal}}</td>
+                      </tr>
 
-    <td>Home Care Package Basic</td>
-    <td>RMS Product</td>
-    
-    
-    <td><button  class="btn btn-danger btn-cancel btm-mt" type="button">Remove</button></td>
-    </tr> -->
-<!-- 
-    <tr>
-
-        <td>Home Care Package Basic</td>
-        <td>RMS Product</td>
-        
-        
-        <td><button  class="btn btn-danger btn-cancel btm-mt" type="button">Remove</button></td>
-        </tr>
-
-        <tr> -->
-<!-- 
-            <td>Home Care Package Basic</td>
-            <td>RMS Product</td>
-            
-            
-            <td><button  class="btn btn-danger btn-cancel btm-mt" type="button">Remove</button></td>
-            </tr> -->
-
-<!-- <tr>
-
-    <td>RMS</td>
-    <td>RMS Product</td>
-    <td>3 Months</td>
-    <td>200$</td>
-    <td><button  class="btn btn-danger btn-cancel btm-mt" type="button">Remove</button></td>
-    </tr>
-    <tr>
-
-        <td>RMS</td>
-        <td>RMS Product</td>
-        <td>3 Months</td>
-        <td>900$</td>
-        <td><button  class="btn btn-danger btn-cancel btm-mt" type="button">Remove</button></td>
-        </tr>
-        <tr>
-
-            <td>RMS</td>
-            <td>RMS Product</td>
-            <td>3 Months</td>
-            <td>100$</td>
-
-            <td><button  class="btn btn-danger btn-cancel btm-mt" type="button">Remove</button></td>
-            
-            </tr> -->
-
-  </tbody>
+                    </tbody>
 
 
-</table>
-  
-<div class="row">
-<div class="col-md-12">
-  <button class="up-link btn btn-success float-right btm-mt"  (click)="subscribe(cartItems)">Checkout</button>
-    <a href="" class="up-link btn btn-success float-right btm-mt">Continue Shopping</a>
-   
- 
-</div>
+                  </table>
+
+                  <div class="row">
+                    <div class="col-md-12">
+                        <div *ngIf="grandTotal==0;then content"></div>    
+                        <ng-template #content> 
+                        <button class="up-link btn btn-success float-right btm-mt" (click)="subscribe(cartItems)">Checkout</button>
+                        <a href="" class="up-link btn btn-success float-right btm-mt">Continue Shopping</a>
+                      </ng-template>
+                      </div>
+
+                    </div>
 
 
-</div>
+                  </div>
+
+
+
+                </div>
+
 
 
 
@@ -173,21 +111,10 @@
 
 
 
-
             </div>
-
-      
-
           </div>
+
         </div>
-
       </div>
-
-
-
     </div>
   </div>
-
-
-</div>
-<!--seection-->

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
 import { from } from 'rxjs';
-
+import { HideMenusService } from '../hide-menus.service';
 import {enableProdMode} from '@angular/core';
 import * as $ from "jquery";
 import * as _ from "lodash"
@@ -19,10 +19,10 @@ export class MyserviceComponent implements OnInit {
 
   private modals: any[] = [];
 plans:any = [];
-  constructor(private data: DataService) { }
+  constructor(private data: DataService, public nav: HideMenusService) { }
 
   ngOnInit() {
-
+    this.nav.show();
     sessionStorage.setItem("Plans",this.plans);
     this.data.getAllFusebillServices().subscribe(
       data => this.servicesList$ = data

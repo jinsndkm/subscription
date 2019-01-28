@@ -2,7 +2,7 @@ import { Component, OnInit, Injectable } from '@angular/core';
 import { DataService } from '../data.service';
 import { ActivatedRoute } from "@angular/router";
 import { NgxSpinnerService } from 'ngx-spinner';
-
+import { HideMenusService } from '../hide-menus.service';
 import * as _ from "lodash"
 
 @Component({
@@ -28,12 +28,13 @@ export class PlanProductDetailsComponent implements OnInit {
 
   //t: number=0;
 
-  constructor(private data: DataService, private route: ActivatedRoute, private spinner: NgxSpinnerService) { }
+  constructor(private data: DataService, private route: ActivatedRoute,public nav: HideMenusService, private spinner: NgxSpinnerService) { }
 
   //t: number=0;
 
 
   ngOnInit() {
+    this.nav.show();
     var subId;
     this.route.params.subscribe(params => {
       console.log(params.id);

@@ -28,6 +28,10 @@ export class CartDetailsComponent implements OnInit {
     const index1 = this.cartItems.indexOf(cartModel);
     this.cartItems.splice(index1, 1);
     sessionStorage.setItem("cartList", JSON.stringify(this.cartItems));
+    this.grandTotal=0;
+    this.cartItems.forEach(element => {
+      this.grandTotal += element.amount;
+    });
   }
   subscribe(checkOutItems) {
     this.spinner.show();
