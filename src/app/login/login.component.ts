@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit {
   cardDetails$:Object;
   ngOnInit() {
     this.nav.hide();
-
+    sessionStorage.removeItem('cartList');
 
   }
 

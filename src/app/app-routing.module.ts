@@ -17,7 +17,7 @@ import { PlanProductDetailsComponent } from './plan-product-details/plan-product
 
 import { AddCardDetailsComponent } from './add-card-details/add-card-details.component';
 
-
+import { CartDetailsComponent } from './cart-details/cart-details.component'
 import { SuccessMessageComponent } from './success-message/success-message.component';
 
 
@@ -74,7 +74,13 @@ const routes: Routes = [
     path: 'SuccessMessage',
     component: SuccessMessageComponent
   },
-
+  {
+    path: 'myCart',
+    component: CartDetailsComponent
+  } ,{
+    path:'myCart/addservice',
+    component:MyserviceComponent
+  }
  
 ];
 

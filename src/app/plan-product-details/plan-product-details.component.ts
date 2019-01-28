@@ -2,7 +2,7 @@ import { Component, OnInit, Injectable } from '@angular/core';
 import { DataService } from '../data.service';
 import { ActivatedRoute } from "@angular/router";
 import { NgxSpinnerService } from 'ngx-spinner';
-
+import { HideMenusService } from '../hide-menus.service';
 import * as _ from "lodash"
 
 @Component({
@@ -18,17 +18,23 @@ export class PlanProductDetailsComponent implements OnInit {
   finalRes: Object;
   total: number = 0;
   planarray: any = [];
-
+  oldsession$: Object;
+  empList: Array<any> = [];
+  cartItems: Array<any> = [];
+  noOfCartItems: number = 0;
+  freId$: Object;
+  tempPlanProducts$: Object;
 
 
   //t: number=0;
 
-  constructor(private data: DataService, private route: ActivatedRoute, private spinner: NgxSpinnerService) { }
+  constructor(private data: DataService, private route: ActivatedRoute,public nav: HideMenusService, private spinner: NgxSpinnerService) { }
 
   //t: number=0;
 
 
   ngOnInit() {
+    this.nav.show();
     var subId;
     this.route.params.subscribe(params => {
       console.log(params.id);
@@ -50,8 +56,6 @@ export class PlanProductDetailsComponent implements OnInit {
 
 
 
-        this.test()
-
       }
 
     );
@@ -67,7 +71,12 @@ export class PlanProductDetailsComponent implements OnInit {
 
     );
 
+    this.oldsession$ = sessionStorage.getItem('cartList');
+    if (this.oldsession$ == null) {
+    } else {
+      this.cartItems = JSON.parse(sessionStorage.getItem('cartList'));
 
+    }
 
 
 
@@ -83,23 +92,12 @@ export class PlanProductDetailsComponent implements OnInit {
 
       if (from == "change") {
         for (let i = 0; i < this.planProducts$[j].orderToCashCycles.length; i++) {
-
-          //alert(this.planProducts$[j].orderToCashCycles[i].pricingModel.quantityRanges[0].prices[0].amount);
-          // if(products.productType == 'RecurringService' && products.isIncludedByDefault == false){
-
-          // }else{
-          // sum+=products.orderToCashCycles[0].pricingModel.quantityRanges[0].prices[0].amount;
-          // }
-          //alert(this.planProducts$[j].orderToCashCycles[i].planFrequencyId)
-
-
           if (this.planProducts$[j].orderToCashCycles[i].planFrequencyId == plnID) {
 
             sum = sum + this.planProducts$[j].orderToCashCycles[i].pricingModel.quantityRanges[0].prices[0].amount;
             this.grandTotal = sum;
 
             document.getElementById("test4" + j).innerHTML = "$" + this.planProducts$[j].orderToCashCycles[i].pricingModel.quantityRanges[0].prices[0].amount;
-
 
           }
 
@@ -129,24 +127,7 @@ export class PlanProductDetailsComponent implements OnInit {
 
           }
 
-  test() {
 
-
-
-    let sum = 0;
-
-    for (let products of _.values(this.planProducts$)) {
-
-      // if(products.productType == 'RecurringService' && products.isIncludedByDefault == false){
-
-      // }else{
-      // sum+=products.orderToCashCycles[0].pricingModel.quantityRanges[0].prices[0].amount;
-      // }
-      sum += products.orderToCashCycles[0].pricingModel.quantityRanges[0].prices[0].amount;
-    }
-    this.grandTotal = sum;
-    return this.grandTotal;
-  }
 
 
 
@@ -183,45 +164,58 @@ export class PlanProductDetailsComponent implements OnInit {
     }, 4000);
     var status = this.data.createSub(s, "4871251");
     var json = JSON.stringify(status);
-   
+
   }
+
+
+
+
+
+
+  onChange(deviceValue) {
+    this.freId$ = deviceValue;
+  }
+
 
   addtocart(planDetails) {
-    this.planarray = localStorage.getItem("Plans");
-    if (this.planarray == null) {
-      this.planarray = [];
+    if (typeof this.freId$ === "undefined") {
+      planDetails.selectedFreId = planDetails.planFrequencies[0].id;
     } else {
-
-
-  yourfunc(addonvalue, event) {
-
-    if (event.target.checked) {
-      this.grandTotal = this.grandTotal + parseInt(addonvalue);
-    } else {
-      this.grandTotal = this.grandTotal - parseInt(addonvalue);
+      planDetails.selectedFreId = this.freId$;
     }
 
-    //this.test('s',this.grandTotal);
 
-  }
+    this.data.getPlanProducts(planDetails.id).subscribe(
+      data => { this.tempPlanProducts$ = data },
+      err => {
+        console.log(err)
+      }, () => {
 
-  subscribe(s) {
+        // this.test()
+      }
 
+    );
+    let total = 0;
+    for (let products of _.values(this.planProducts$)) {
+      for (let corderToCash of products.orderToCashCycles) {
+        if (corderToCash.planFrequencyId = planDetails.selectedFreId) {
+          total += corderToCash.pricingModel.quantityRanges[0].prices[0].amount;
+        }
+      }
 
-    this.data.createSub(s, "4848884");
-  }
-
-  addtocart(planDetails) {
-    this.planarray = localStorage.getItem("Plans");
-    if (this.planarray == null) {
-      this.planarray = [];
-    } else {
-
-
-      this.planarray.push(planDetails);
-      localStorage.setItem("Plans", this.planarray);
-      alert(this.planarray.length)
     }
+
+    planDetails.amount = total;
+
+    console.log(sessionStorage.getItem('cartList'));
+    this.oldsession$ = sessionStorage.getItem('cartList');
+    if (this.oldsession$ == null) {
+    } else {
+      this.empList = JSON.parse(sessionStorage.getItem('cartList'));
+    }
+    this.empList.push(planDetails);
+    this.cartItems.push(planDetails);
+    sessionStorage.setItem("cartList", JSON.stringify(this.empList));
   }
 
   getAmount(plnID) {

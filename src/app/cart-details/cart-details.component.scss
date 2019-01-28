@@ -20,6 +20,11 @@
                     {
                         font-weight: 600 !important;
                         color: #596B81;
+                        border: transparent;
+                    }
+                    th.one
+                    {
+                        width:67%;
                     }
                 }
             }
@@ -27,12 +32,24 @@
             {
                 tr
                 {
-                    border: transparent !important;
+                    background: #e9eff3;
+                    border-bottom: 4px solid #fff;
                     td
                     {
                         border: none;
                     }
                 }
+                tr.total
+                {
+
+                    background: #83949e !important;
+                    td
+                    {
+                        color:#fff !important;
+                        font-weight: bold;
+                    } 
+                }
+                
             }
         }
 

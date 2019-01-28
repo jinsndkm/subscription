@@ -19,7 +19,7 @@ export class SubscriptionComponent implements OnInit {
 
   items$: Object;
 
-  items$:Object;
+
 
 
   users: any[] = [];
@@ -46,8 +46,8 @@ export class SubscriptionComponent implements OnInit {
     }, 2000);
   }
   //Method to delete an active subscription
-  cancelSubscription(subId) {
-    if (confirm("Are you sure to cancel?")) {
+  cancelSubscription(subId,planname) {
+    if (confirm("Are you sure to cancel "+planname+"?")) {
       this.items$ = this.data.cancelSubscription(subId);
       this.data.getMySubscription().subscribe(
         data => this.mysubscriptions$ = data
