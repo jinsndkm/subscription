@@ -146,17 +146,7 @@ export class PlanProductDetailsComponent implements OnInit {
 
 
 
-  yourfunc(addonvalue, event) {
-
-    if (event.target.checked) {
-      this.grandTotal = this.grandTotal + parseInt(addonvalue);
-    } else {
-      this.grandTotal = this.grandTotal - parseInt(addonvalue);
-    }
-
-    //this.test('s',this.grandTotal);
-
-  }
+  
 
   subscribe(s) {
     this.spinner.show();
