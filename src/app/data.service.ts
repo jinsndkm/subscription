@@ -136,7 +136,7 @@ export class DataService {
 
     const subscriptionBody = { "CustomerID": customerID, "planFrequencyID": planFreID };
     const headers = new HttpHeaders()
-      .set('Authorization', 'Basic MDpEZk9jcExWQVFFczk1U1hPSWhER0J0RzFXOFJCaGs3UVFsU2xOQ0JJRUJ4Y1NSSG9JQXAzbTJVdGFWNVRZUlVN')
+      .set('Authorization', 'Basic MDpRU2tCZlRkVGVVVGVYWTRyNllmZEhITlRKMEhmWHphdXZ5cEFmNFpYOEMwTnEwUm5sZHRlRXpWS2ttU3Z2dVdH')
       .set('Content-Type', 'application/json')
       .set('Access-Control-Allow-Origin', '*');
 
@@ -149,7 +149,6 @@ export class DataService {
         var json = JSON.parse(JSON.stringify(this.status$));
 
         var subId = json.id;
-
 
         //alert("DDD::>"+this.status$.id);
         //let planID= this.status$.id;
@@ -195,6 +194,10 @@ export class DataService {
 checkCardDetails(custId){
   console.log('CustomerID '+custId);
   return this.http.get(rootPath+'/checkcarddetails/'+custId);
+}
+
+getMySubscriptionPlanDetails(){
+  return this.http.get(rootPath+'/checkcarddetails/');
 }
 
 }

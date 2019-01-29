@@ -13,6 +13,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 export class SubscriptionComponent implements OnInit {
 
   mysubscriptions$: Object;
+  planDetails$: Object;
 
   autorenewal$: Object;
 
@@ -35,8 +36,10 @@ export class SubscriptionComponent implements OnInit {
     this.nav.show();
     this.data.getMySubscription().subscribe(
 
-      data => { this.mysubscriptions$ = data }, () => {
-
+      data => { this.mysubscriptions$ = data },
+      err => {
+        console.log(err)
+      }, () => {
       }
 
     );
@@ -46,8 +49,8 @@ export class SubscriptionComponent implements OnInit {
     }, 2000);
   }
   //Method to delete an active subscription
-  cancelSubscription(subId,planname) {
-    if (confirm("Are you sure to cancel "+planname+"?")) {
+  cancelSubscription(subId, planname) {
+    if (confirm("Are you sure to cancel " + planname + "?")) {
       this.items$ = this.data.cancelSubscription(subId);
       this.data.getMySubscription().subscribe(
         data => this.mysubscriptions$ = data
