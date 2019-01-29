@@ -50,7 +50,7 @@ export class PlanProductDetailsComponent implements OnInit {
 
 
 
-        this.test()
+     
 
       }
 
@@ -129,24 +129,7 @@ export class PlanProductDetailsComponent implements OnInit {
 
           }
 
-  test() {
-
-
-
-    let sum = 0;
-
-    for (let products of _.values(this.planProducts$)) {
-
-      // if(products.productType == 'RecurringService' && products.isIncludedByDefault == false){
-
-      // }else{
-      // sum+=products.orderToCashCycles[0].pricingModel.quantityRanges[0].prices[0].amount;
-      // }
-      sum += products.orderToCashCycles[0].pricingModel.quantityRanges[0].prices[0].amount;
-    }
-    this.grandTotal = sum;
-    return this.grandTotal;
-  }
+  
 
 
 
@@ -186,30 +169,10 @@ export class PlanProductDetailsComponent implements OnInit {
    
   }
 
-  addtocart(planDetails) {
-    this.planarray = localStorage.getItem("Plans");
-    if (this.planarray == null) {
-      this.planarray = [];
-    } else {
+  
 
 
-  yourfunc(addonvalue, event) {
-
-    if (event.target.checked) {
-      this.grandTotal = this.grandTotal + parseInt(addonvalue);
-    } else {
-      this.grandTotal = this.grandTotal - parseInt(addonvalue);
-    }
-
-    //this.test('s',this.grandTotal);
-
-  }
-
-  subscribe(s) {
-
-
-    this.data.createSub(s, "4848884");
-  }
+ 
 
   addtocart(planDetails) {
     this.planarray = localStorage.getItem("Plans");
