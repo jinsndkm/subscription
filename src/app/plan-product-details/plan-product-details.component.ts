@@ -97,7 +97,7 @@ export class PlanProductDetailsComponent implements OnInit {
             sum = sum + this.planProducts$[j].orderToCashCycles[i].pricingModel.quantityRanges[0].prices[0].amount;
             this.grandTotal = sum;
 
-            document.getElementById("test4" + j).innerHTML = "$" + this.planProducts$[j].orderToCashCycles[i].pricingModel.quantityRanges[0].prices[0].amount;
+            document.getElementById("test4" +j).innerHTML = "$" + this.planProducts$[j].orderToCashCycles[i].pricingModel.quantityRanges[0].prices[0].amount;
 
           }
 
@@ -122,7 +122,7 @@ export class PlanProductDetailsComponent implements OnInit {
             sum = sum + this.planProducts$[j].orderToCashCycles[i].pricingModel.quantityRanges[0].prices[0].amount;
             this.grandTotal = sum;
 
-            //document.getElementById("test4"+j).innerHTML = "$"+this.planProducts$[j].orderToCashCycles[i].pricingModel.quantityRanges[0].prices[0].amount;
+            document.getElementById("test4"+j).innerHTML = "$"+this.planProducts$[j].orderToCashCycles[i].pricingModel.quantityRanges[0].prices[0].amount;
 
 
           }
@@ -198,7 +198,7 @@ export class PlanProductDetailsComponent implements OnInit {
     let total = 0;
     for (let products of _.values(this.planProducts$)) {
       for (let corderToCash of products.orderToCashCycles) {
-        if (corderToCash.planFrequencyId = planDetails.selectedFreId) {
+        if (corderToCash.planFrequencyId == planDetails.selectedFreId) {
           total += corderToCash.pricingModel.quantityRanges[0].prices[0].amount;
         }
       }

@@ -96,14 +96,14 @@
        <div class="col-md-3 col-sm-3">
       
  
-         <select id="inputState" (change)="onChange($event.target.value)" class="form-control " #planfreqID>
+         <select id="inputState" (change)="getAmount($event.target.value)" class="form-control " #planfreqID>
           
            <option *ngFor="let plan of planDetails$.planFrequencies"  [value]="plan.id">{{plan.interval}}</option>
          </select>
  
        </div>
      </div>
-     <div *ngFor="let products of planProducts$" >
+     <div *ngFor="let products of planProducts$;let i=index" >
      
      <div class="form-group row addonrow">
        <div class="col-md-3 col-sm-3">
