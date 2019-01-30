@@ -51,7 +51,7 @@ export class PlanProductDetailsComponent implements OnInit {
 
           this.getTotalAmount(this.planProducts$[0].orderToCashCycles[0].planFrequencyId, "init")
         } else {
-          this.getTotalAmount(this.planProducts$[0].orderToCashCycles[1].planFrequencyId, "init")
+          this.getTotalAmount(this.planProducts$[0].orderToCashCycles[0].planFrequencyId, "init")
         }
 
 
