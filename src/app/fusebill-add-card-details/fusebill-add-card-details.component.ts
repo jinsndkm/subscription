@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
 import { stringify } from '@angular/compiler/src/util';
 import { Router } from '@angular/router'
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-fusebill-add-card-details',
@@ -12,10 +13,10 @@ export class FusebillAddCardDetailsComponent implements OnInit {
 
   key$: Object;
 
-  constructor(private data: DataService, private router: Router) { }
+  constructor(private data: DataService, private router: Router,private spinner: NgxSpinnerService) { }
 
   ngOnInit() {
-
+    this.spinner.show();
     this.data.getSingleSignOnKey("4871251").subscribe(
 
       data => { this.key$ = data },
@@ -26,6 +27,10 @@ export class FusebillAddCardDetailsComponent implements OnInit {
       }
 
     );
+    setTimeout(() => {
+      /** spinner ends after 5 seconds */
+      this.spinner.hide();
+    }, 3500);
   }
 
 }
