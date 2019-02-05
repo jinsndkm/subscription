@@ -157,6 +157,9 @@ export class PlanProductDetailsComponent implements OnInit {
   }
 
   subscribe(s) {
+    alert("Subscription")
+    alert("your defalut card is::"+sessionStorage.getItem("cardNumner"));
+    
     this.spinner.show();
     setTimeout(() => {
       /** spinner ends after 5 seconds */
