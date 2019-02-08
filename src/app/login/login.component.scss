@@ -1,3 +1,10 @@
+.row-
+{
+  margin-right: -49px !important;
+  min-height: 99vh;
+}
+
+
 
 
 
@@ -31,7 +38,7 @@
   .input-style
   {  
     
-    width: 264px !important;
+   
     font-family: "OpenSans", sans-serif;
     font-size: 0.813em;
     font-weight: 400;
@@ -83,7 +90,7 @@
 {
 
   background: url(/assets/login-bg.png);
-  height: 101%;
+  height: 10%;
   min-height: 600px;
   position: absolute;
   background-color: #336699;
@@ -213,3 +220,11 @@
     }
   }
   
+
+  @media screen and (max-width: 767px) {
+    .mobile-hide
+    {
+      display: none;
+    }
+   
+  }
