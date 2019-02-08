@@ -25,7 +25,7 @@ export class PlanProductDetailsComponent implements OnInit {
   freId$: Object;
   tempPlanProducts$: Object;
 
-
+  key$: Object;
   //t: number=0;
 
   constructor(private data: DataService, private route: ActivatedRoute,public nav: HideMenusService, private spinner: NgxSpinnerService) { }
@@ -34,6 +34,7 @@ export class PlanProductDetailsComponent implements OnInit {
 
 
   ngOnInit() {
+    sessionStorage.setItem("redirectPage",window.location.href);
     this.nav.show();
     var subId;
     this.route.params.subscribe(params => {
@@ -157,8 +158,8 @@ export class PlanProductDetailsComponent implements OnInit {
   }
 
   subscribe(s) {
-    alert("Subscription")
-    alert("your defalut card is::"+sessionStorage.getItem("cardNumner"));
+    if(sessionStorage.getItem("isCardAdded")=="true"){
+      if (confirm("Are you sure want to subscribe using the card "+sessionStorage.getItem("cardNumner"))) {
     
     this.spinner.show();
     setTimeout(() => {
@@ -167,6 +168,26 @@ export class PlanProductDetailsComponent implements OnInit {
     }, 4000);
     var status = this.data.createSub(s, "4949161");
     var json = JSON.stringify(status);
+  }}else{
+    if (confirm("No card is added yet. Please clik Ok for add a new card.")) {
+      this.spinner.show();
+      this.data.getSingleSignOnKey("4871251").subscribe(
+  
+        data => { this.key$ = data },
+        err => {
+          console.log(err)
+        }, () => {
+          window.location.href = 'https://solutions.mybillsystem.com/ManagedPortal/PaymentMethod?token=' + this.key$;
+        }
+  
+      );
+      setTimeout(() => {
+        /** spinner ends after 5 seconds */
+        this.spinner.hide();
+      }, 3500);
+    }
+    
+  }
 
   }
 

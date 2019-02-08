@@ -22,7 +22,7 @@ export class UsersComponent implements OnInit {
   constructor(private data: DataService,public nav: HideMenusService) { }
 
   ngOnInit() {
-    sessionStorage.setItem("redirectPage","home");
+    sessionStorage.setItem("redirectPage",window.location.href);
     this.userName= sessionStorage.getItem("userName");
     this.nav.show();
     this.data.getUsers().subscribe(
