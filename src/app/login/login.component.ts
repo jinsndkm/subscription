@@ -8,10 +8,10 @@ import { DataService } from '../data.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  constructor(public nav: HideMenusService,private router: Router,private data: DataService) { }
+  constructor(public nav: HideMenusService, private router: Router, private data: DataService) { }
   userName: string = '';
-  password:string='';
-  cardDetails$:Object;
+  password: string = '';
+  cardDetails$: Object;
   ngOnInit() {
 
     this.nav.hide();
@@ -19,25 +19,38 @@ export class LoginComponent implements OnInit {
 
   }
 
-  
+
   validateLogin() {
-    if(this.userName=='admin'&&this.password=='admin'){
-      this.cardDetails$=this.data.checkCardDetails(4871251).subscribe(
-        data => {this.cardDetails$ = data}
+
+    if (this.userName == 'admin' && this.password == 'admin') {
+      this.cardDetails$ = this.data.checkCardDetails(4849387).subscribe(
+        data => { this.cardDetails$ = data }
+
         ,
         err => {
           console.log(err)
         }, () => {
-          if(JSON.stringify(this.cardDetails$).length>2){
-           sessionStorage.setItem("isCardAdded","true");
-          }else{
-            sessionStorage.setItem("isCardAdded","false");
+          var json = JSON.parse(JSON.stringify(this.cardDetails$));
+
+          alert(json.length)
+          if (json.length > 0) {
+            for (let i = 0; i < json.length; i++) {
+              if (json[i].isDefault == true) {
+                sessionStorage.setItem("cardNumner",json[i].maskedCardNumber);
+              } 
+            }
+
+            sessionStorage.setItem("isCardAdded", "true");
+          } else {
+            alert("No")
+            sessionStorage.setItem("isCardAdded", "false");
           }
         }
       );
-      sessionStorage.setItem("userName","Marry");
-         this.router.navigate(['home']);
-    }else{
-    alert("Invalid username or Password")}
+      sessionStorage.setItem("userName", "Marry");
+      this.router.navigate(['home']);
+    } else {
+      alert("Invalid username or Password")
+    }
   }
 }
