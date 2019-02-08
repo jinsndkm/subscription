@@ -13,7 +13,7 @@ export class RedirectionComponent implements OnInit {
   constructor( private data: DataService,public nav: HideMenusService) { }
 
   ngOnInit() {
-    this.nav.hide();
+    this.nav.show();
 //Card Details geting..///////////////////////////
     this.cardDetails$ = this.data.checkCardDetails(4871251).subscribe(
       data => { this.cardDetails$ = data }
