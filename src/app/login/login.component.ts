@@ -13,6 +13,7 @@ export class LoginComponent implements OnInit {
   password: string = '';
   cardDetails$: Object;
   ngOnInit() {
+
     this.nav.hide();
     sessionStorage.removeItem('cartList');
 
@@ -20,9 +21,11 @@ export class LoginComponent implements OnInit {
 
 
   validateLogin() {
+
     if (this.userName == 'admin' && this.password == 'admin') {
       this.cardDetails$ = this.data.checkCardDetails(4849387).subscribe(
         data => { this.cardDetails$ = data }
+
         ,
         err => {
           console.log(err)

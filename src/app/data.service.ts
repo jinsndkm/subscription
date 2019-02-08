@@ -8,7 +8,7 @@ import * as _ from "lodash"
 // import { stat } from 'fs';
 
 
-var rootPath = "http://202.21.33.42:3000";
+var rootPath = "http://localhost:3000";
 
 
 const httpOptions = {
@@ -198,6 +198,10 @@ checkCardDetails(custId){
 
 getMySubscriptionPlanDetails(){
   return this.http.get(rootPath+'/checkcarddetails/');
+}
+
+getSingleSignOnKey(custId){
+  return this.http.get(rootPath+'/getsignlesignonkey/'+custId);
 }
 
 }

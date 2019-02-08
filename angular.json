@@ -14,6 +14,7 @@
         }
       },
       "architect": {
+       
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
@@ -62,6 +63,7 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
             "browserTarget": "angular6:build"
+            ,  "port": 4200
           },
           "configurations": {
             "production": {

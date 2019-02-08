@@ -19,6 +19,8 @@ import { AddCardDetailsComponent } from './add-card-details/add-card-details.com
 
 import { CartDetailsComponent } from './cart-details/cart-details.component'
 import { SuccessMessageComponent } from './success-message/success-message.component';
+import { FusebillAddCardDetailsComponent } from './fusebill-add-card-details/fusebill-add-card-details.component';
+import { RedirectionComponent } from './redirection/redirection.component';
 
 
 const routes: Routes = [
@@ -65,11 +67,12 @@ const routes: Routes = [
   },{
     path:'addservice/viewplanproducts/:id',
     component:PlanProductDetailsComponent
-  },{
-
-    path:'addcarddetails',
-    component:AddCardDetailsComponent
   },
+  // {
+
+  //   path:'addcarddetails',
+  //   component:AddCardDetailsComponent
+  // },
   {
     path: 'SuccessMessage',
     component: SuccessMessageComponent
@@ -80,6 +83,12 @@ const routes: Routes = [
   } ,{
     path:'myCart/addservice',
     component:MyserviceComponent
+  },{
+    path:'home/addcarddetails',
+    component:FusebillAddCardDetailsComponent
+  },{
+    path:'redirect',
+    component:RedirectionComponent
   }
  
 ];
