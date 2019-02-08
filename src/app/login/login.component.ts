@@ -13,6 +13,7 @@ export class LoginComponent implements OnInit {
   password:string='';
   cardDetails$:Object;
   ngOnInit() {
+
     this.nav.hide();
     sessionStorage.removeItem('cartList');
 

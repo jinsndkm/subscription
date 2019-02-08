@@ -32,6 +32,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AddCardDetailsComponent } from './add-card-details/add-card-details.component';
 import {CartDetailsComponent} from './cart-details/cart-details.component';
 import { FusebillAddCardDetailsComponent } from './fusebill-add-card-details/fusebill-add-card-details.component';
+import { RedirectionComponent } from './redirection/redirection.component';
 
 
 
@@ -66,7 +67,8 @@ import { FusebillAddCardDetailsComponent } from './fusebill-add-card-details/fus
 
     SuccessMessageComponent,
     CartDetailsComponent,
-    FusebillAddCardDetailsComponent
+    FusebillAddCardDetailsComponent,
+    RedirectionComponent
 
   ],
   imports: [
