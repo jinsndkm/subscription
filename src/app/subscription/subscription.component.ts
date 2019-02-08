@@ -30,10 +30,8 @@ export class SubscriptionComponent implements OnInit {
 
 
   ngOnInit() {
-    sessionStorage.setItem("redirectPage","cart");
+    
     this.spinner.show();
-    sessionStorage.setItem("SessionStorage", "ss");
-    localStorage.setItem("sessionVale", "s");
     this.nav.show();
     this.data.getMySubscription().subscribe(
 

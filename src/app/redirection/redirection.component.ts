@@ -10,7 +10,14 @@ export class RedirectionComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    //window.location.href = 'http://localhost:4200/home';
+    alert(sessionStorage.getItem("redirectPage"))
+    if(sessionStorage.getItem("redirectPage")=='home'){
+      window.location.href = window.location.origin+'/home'
+    }else{
+      window.location.href = window.location.origin+'/myCart'
+      
+    }
+
   }
 
 }

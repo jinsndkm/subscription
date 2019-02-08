@@ -16,6 +16,7 @@ export class CartDetailsComponent implements OnInit {
   constructor(private data: DataService, public nav: HideMenusService, private spinner: NgxSpinnerService) { }
 
   ngOnInit() {
+    sessionStorage.setItem("redirectPage","cart");
     this.nav.show();
     this.cartItems = JSON.parse(sessionStorage.getItem('cartList'));
     this.cartItems.forEach(element => {
