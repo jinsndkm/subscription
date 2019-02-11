@@ -25,6 +25,7 @@ private custId:String;
     sessionStorage.setItem("redirectPage",window.location.href);
     this.nav.show();
     this.cartItems = JSON.parse(sessionStorage.getItem('cartList'));
+    alert(this.cartItems.length)
     this.cartItems.forEach(element => {
       this.grandTotal += element.amount;
     });
