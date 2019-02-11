@@ -181,7 +181,7 @@ export class PlanProductDetailsComponent implements OnInit {
         err => {
           console.log(err)
         }, () => {
-          window.location.href = 'https://solutions.mybillsystem.com/ManagedPortal/PaymentMethod?token=' + this.key$;
+          window.location.href = 'https://zoftsolutions.mybillsystem.com/ManagedPortal/PaymentMethod?token=' + this.key$;
         }
   
       );

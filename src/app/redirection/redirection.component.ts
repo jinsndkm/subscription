@@ -34,7 +34,7 @@ export class RedirectionComponent implements OnInit {
             } 
           }
 
-          sessionStorage.setItem("isCardAdded", "false");
+          sessionStorage.setItem("isCardAdded", "true");
         } else {
           sessionStorage.setItem("isCardAdded", "false");
         }
