@@ -3,6 +3,8 @@ import { HideMenusService } from '../hide-menus.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { DataService } from '../data.service';
 
+import { Globals } from '../globals/global';
+
 @Component({
   selector: 'app-cart-details',
   templateUrl: './cart-details.component.html',  
@@ -13,8 +15,11 @@ export class CartDetailsComponent implements OnInit {
   cartItems: Array<any> = [];
   grandTotal: number = 0;
   key$: Object;
+private custId:String;
+  constructor(private data: DataService, public nav: HideMenusService, private spinner: NgxSpinnerService,private global:Globals) { 
+    this.custId=global.CUSTOMER_ID;
+  }
 
-  constructor(private data: DataService, public nav: HideMenusService, private spinner: NgxSpinnerService) { }
 
   ngOnInit() {
     sessionStorage.setItem("redirectPage",window.location.href);
@@ -36,7 +41,6 @@ export class CartDetailsComponent implements OnInit {
     });
   }
   subscribe(checkOutItems) {
-
     if(sessionStorage.getItem("isCardAdded")=="true"){
       if (confirm("Are you sure want to subscribe using the card "+sessionStorage.getItem("cardNumner"))) {
       this.spinner.show();
@@ -45,7 +49,7 @@ export class CartDetailsComponent implements OnInit {
         this.spinner.hide();
       }, 4000);
       checkOutItems.forEach(element => {
-        var status = this.data.createSub(element.selectedFreId, "4871251");
+        var status = this.data.createSub(element.selectedFreId, this.custId);
       });
       sessionStorage.removeItem('cartList');
       var json = JSON.stringify(status);
@@ -53,7 +57,7 @@ export class CartDetailsComponent implements OnInit {
     }else{
       if (confirm("No card is added yet. Please clik Ok for add a new card.")) {
         this.spinner.show();
-        this.data.getSingleSignOnKey("4871251").subscribe(
+        this.data.getSingleSignOnKey(this.custId).subscribe(
     
           data => { this.key$ = data },
           err => {

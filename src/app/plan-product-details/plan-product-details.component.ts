@@ -4,6 +4,7 @@ import { ActivatedRoute } from "@angular/router";
 import { NgxSpinnerService } from 'ngx-spinner';
 import { HideMenusService } from '../hide-menus.service';
 import * as _ from "lodash"
+import { Globals } from '../globals/global';
 
 @Component({
   selector: 'app-plan-product-details',
@@ -27,8 +28,11 @@ export class PlanProductDetailsComponent implements OnInit {
 
   key$: Object;
   //t: number=0;
+  private custId:String;
 
-  constructor(private data: DataService, private route: ActivatedRoute,public nav: HideMenusService, private spinner: NgxSpinnerService) { }
+  constructor(private data: DataService, private route: ActivatedRoute,public nav: HideMenusService, private spinner: NgxSpinnerService,private global:Globals) {
+    this.custId=global.CUSTOMER_ID;
+   }
 
   //t: number=0;
 
@@ -166,12 +170,12 @@ export class PlanProductDetailsComponent implements OnInit {
       /** spinner ends after 5 seconds */
       this.spinner.hide();
     }, 4000);
-    var status = this.data.createSub(s, "4949161");
+    var status = this.data.createSub(s, this.custId);
     var json = JSON.stringify(status);
   }}else{
     if (confirm("No card is added yet. Please clik Ok for add a new card.")) {
       this.spinner.show();
-      this.data.getSingleSignOnKey("4871251").subscribe(
+      this.data.getSingleSignOnKey(this.custId).subscribe(
   
         data => { this.key$ = data },
         err => {

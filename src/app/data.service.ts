@@ -4,11 +4,13 @@ import { Router } from "@angular/router"
 
 import { Alert } from '../../node_modules/@types/selenium-webdriver';
 import * as _ from "lodash"
+import { Globals } from './globals/global';
+
 
 // import { stat } from 'fs';
 
 
-var rootPath = "http://localhost:3000";
+var rootPath = "http://202.21.33.42:3000";
 
 
 const httpOptions = {
@@ -24,8 +26,10 @@ const httpOptions = {
 
 export class DataService {
   status$: Object;
+  private custId:String;
 
-  constructor(private http: HttpClient, private router: Router) {
+  constructor(private http: HttpClient, private router: Router,private global:Globals) {
+    this.custId=global.CUSTOMER_ID;
   }
 
   getUsers() {
@@ -88,7 +92,7 @@ export class DataService {
     let planBody;
     let plan;
     const migrationBody = {
-      "customerId": "4848884",
+      "customerId": this.custId,
       "planFamilyRelationshipId": plansFamilyRltnId,
       "migrationTimingOption": "Now",
       "subId": subId

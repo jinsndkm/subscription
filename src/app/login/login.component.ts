@@ -2,13 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { HideMenusService } from '../hide-menus.service';
 import { Router, RouterModule } from '@angular/router';
 import { DataService } from '../data.service';
+
+import { Globals } from '../globals/global';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  constructor(public nav: HideMenusService, private router: Router, private data: DataService) { }
+  private custId:String;
+  constructor(public nav: HideMenusService, private router: Router, private data: DataService,private global:Globals) {    this.custId=global.CUSTOMER_ID; }
   userName: string = '';
   password: string = '';
   cardDetails$: Object;
@@ -23,7 +26,7 @@ export class LoginComponent implements OnInit {
   validateLogin() {
 
     if (this.userName == 'admin' && this.password == 'admin') {
-      this.cardDetails$ = this.data.checkCardDetails(4949161).subscribe(
+      this.cardDetails$ = this.data.checkCardDetails(this.custId).subscribe(
         data => { this.cardDetails$ = data }
 
         ,

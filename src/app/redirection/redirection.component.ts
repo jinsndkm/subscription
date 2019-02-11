@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
 import { HideMenusService } from '../hide-menus.service';
+import { Globals } from '../globals/global';
 
 @Component({
   selector: 'app-redirection',
@@ -9,13 +10,15 @@ import { HideMenusService } from '../hide-menus.service';
 })
 export class RedirectionComponent implements OnInit {
   cardDetails$: Object;
-
-  constructor( private data: DataService,public nav: HideMenusService) { }
+  private custId:String;
+  constructor( private data: DataService,public nav: HideMenusService,private global:Globals) {
+    this.custId=global.CUSTOMER_ID;
+   }
 
   ngOnInit() {
     this.nav.show();
 //Card Details geting..///////////////////////////
-    this.cardDetails$ = this.data.checkCardDetails(4871251).subscribe(
+    this.cardDetails$ = this.data.checkCardDetails(this.custId).subscribe(
       data => { this.cardDetails$ = data }
 
       ,

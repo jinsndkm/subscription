@@ -34,7 +34,7 @@ import {CartDetailsComponent} from './cart-details/cart-details.component';
 import { FusebillAddCardDetailsComponent } from './fusebill-add-card-details/fusebill-add-card-details.component';
 import { RedirectionComponent } from './redirection/redirection.component';
 
-
+import {Globals} from './globals/global'
 
 
 
@@ -81,7 +81,9 @@ import { RedirectionComponent } from './redirection/redirection.component';
     NgxPaginationModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    Globals
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
