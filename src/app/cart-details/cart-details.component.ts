@@ -25,10 +25,23 @@ private custId:String;
     sessionStorage.setItem("redirectPage",window.location.href);
     this.nav.show();
     this.cartItems = JSON.parse(sessionStorage.getItem('cartList'));
-    alert(this.cartItems.length)
     this.cartItems.forEach(element => {
       this.grandTotal += element.amount;
     });
+
+    if(sessionStorage.getItem("fusebillRedirect")=="true" && this.cartItems.length>1){
+      this.spinner.show();
+      setTimeout(() => {
+        /** spinner ends after 5 seconds */
+        this.spinner.hide();
+      }, 4000);
+      this.cartItems.forEach(element => {
+        var status = this.data.createSub(element.selectedFreId, this.custId);
+      });
+      sessionStorage.removeItem('cartList');
+      var json = JSON.stringify(status);
+    }
+    sessionStorage.setItem("fusebillRedirect","false");
     console.log(JSON.stringify(this.cartItems));
   } 
   remove(cartModel) {
@@ -57,6 +70,7 @@ private custId:String;
     }
     }else{
       if (confirm("No card is added yet. Please clik Ok for add a new card.")) {
+        sessionStorage.setItem("fusebillRedirect","true");
         this.spinner.show();
         this.data.getSingleSignOnKey(this.custId).subscribe(
     

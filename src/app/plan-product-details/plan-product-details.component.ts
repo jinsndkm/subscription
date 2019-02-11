@@ -247,6 +247,7 @@ export class PlanProductDetailsComponent implements OnInit {
   }
 
   getAmount(plnID) {
+    this.freId$ = plnID;
     this.getTotalAmount(plnID, "change")
   }
 

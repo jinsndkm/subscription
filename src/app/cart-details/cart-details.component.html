@@ -67,7 +67,7 @@
                         <td>{{cartItem.name}}</td>
                         <td>{{cartItem.amount}}</td>
                         <div *ngFor="let plan of cartItem.planFrequencies">
-                          <div *ngIf="cartItem.selectedFreId === plan.id">
+                          <div *ngIf="cartItem.selectedFreId == plan.id">
                             <td>{{plan.interval}}</td>
                           </div>
 
