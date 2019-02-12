@@ -38,6 +38,16 @@ export class PlanProductDetailsComponent implements OnInit {
 
 
   ngOnInit() {
+    if(sessionStorage.getItem("subId")!=null){
+      this.spinner.show();
+      var status = this.data.createSub(sessionStorage.getItem("subId"), this.custId);
+      var json = JSON.stringify(status);
+      sessionStorage.setItem("subId",null);
+      setTimeout(() => {
+        /** spinner ends after 5 seconds */
+        this.spinner.hide();
+      }, 4000);
+    }
     sessionStorage.setItem("redirectPage",window.location.href);
     this.nav.show();
     var subId;
@@ -162,6 +172,7 @@ export class PlanProductDetailsComponent implements OnInit {
   }
 
   subscribe(s) {
+    sessionStorage.setItem("subId",s);
     if(sessionStorage.getItem("isCardAdded")=="true"){
       if (confirm("Are you sure want to subscribe using the card "+sessionStorage.getItem("cardNumner"))) {
     
