@@ -36,6 +36,8 @@ import { RedirectionComponent } from './redirection/redirection.component';
 
 import {Globals} from './globals/global'
 
+import { TruncatePipe } from './limit-length';
+
 
 
 
@@ -68,7 +70,8 @@ import {Globals} from './globals/global'
     SuccessMessageComponent,
     CartDetailsComponent,
     FusebillAddCardDetailsComponent,
-    RedirectionComponent
+    RedirectionComponent,
+    TruncatePipe
 
   ],
   imports: [

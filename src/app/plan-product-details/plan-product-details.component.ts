@@ -174,7 +174,7 @@ export class PlanProductDetailsComponent implements OnInit {
   subscribe(s) {
     sessionStorage.setItem("subId",s);
     if(sessionStorage.getItem("isCardAdded")=="true"){
-      if (confirm("Are you sure want to subscribe using the card "+sessionStorage.getItem("cardNumner"))) {
+      if (confirm("We will use your default card "+sessionStorage.getItem("cardNumner") +" for completing the payment. To add a new card for the payment go to the dashboard, click on Manage Card Details and make the card as Default")) {
     
     this.spinner.show();
     setTimeout(() => {
