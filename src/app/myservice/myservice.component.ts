@@ -27,7 +27,7 @@ plans:any = [];
     this.data.getAllFusebillServices().subscribe(
       data => this.servicesList$ = data
     );
-    //alert();
+
 
   userName: String;
 
