@@ -140,7 +140,7 @@
          <!--  <input type="text" class="form-control-plaintext form-control" id="staticEmail"  placeholder=""> -->
          <!-- <span class="addon-price" > <i class="fas fa-dollar-sign dollor-icon"></i> {{products.orderToCashCycles[0].pricingModel.quantityRanges[0].prices[0].amount}} </span> -->
          <span *ngIf="products.orderToCashCycles.length==1" id="test4{{i}}" class="addon-price" >${{products.orderToCashCycles[0].pricingModel.quantityRanges[0].prices[0].amount}}  </span>
-         <span *ngIf="products.orderToCashCycles.length>1" id="test4{{i}}" class="addon-price" >${{products.orderToCashCycles[0].pricingModel.quantityRanges[0].prices[0].amount}}  </span>
+         <span *ngIf="products.orderToCashCycles.length>1" id="test4{{i}}" class="addon-price" >${{products.orderToCashCycles[1].pricingModel.quantityRanges[0].prices[0].amount}}  </span>
        </div>
      </div>
  </div>

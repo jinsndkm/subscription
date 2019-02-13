@@ -28,28 +28,57 @@ export class PlanProductDetailsComponent implements OnInit {
 
   key$: Object;
   //t: number=0;
-  private custId:String;
+  private custId: String;
 
-  constructor(private data: DataService, private route: ActivatedRoute,public nav: HideMenusService, private spinner: NgxSpinnerService,private global:Globals) {
-    this.custId=global.CUSTOMER_ID;
-   }
+  constructor(private data: DataService, private route: ActivatedRoute, public nav: HideMenusService, private spinner: NgxSpinnerService, private global: Globals) {
+    this.custId = global.CUSTOMER_ID;
+  }
 
   //t: number=0;
 
 
   ngOnInit() {
-    if(sessionStorage.getItem("subId")!=null){
-      this.spinner.show();
-      var status = this.data.createSub(sessionStorage.getItem("subId"), this.custId);
-      var json = JSON.stringify(status);
-      sessionStorage.setItem("subId",null);
-      setTimeout(() => {
-        /** spinner ends after 5 seconds */
-        this.spinner.hide();
-      }, 4000);
+   
+    if (sessionStorage.getItem("subId") != 'null') {
+      
+      if (sessionStorage.getItem("isCardAdded") == "true") {
+        if (confirm("We will use your default card " + sessionStorage.getItem("cardNumner") + " for completing the payment. To add a new card for the payment go to the dashboard, click on Manage Card Details and make the card as Default")) {
+
+          this.spinner.show();
+          var status = this.data.createSub(sessionStorage.getItem("subId"), this.custId);
+          var json = JSON.stringify(status);
+
+          sessionStorage.setItem("redirectPage", window.location.href);
+          this.nav.show();
+
+          setTimeout(() => {
+            /** spinner ends after 5 seconds */
+            this.spinner.hide();
+          }, 4000);
+        }
+      } else {
+        if (confirm("No card is added yet. Please clik Ok for add a new card.")) {
+          this.spinner.show();
+          this.data.getSingleSignOnKey(this.custId).subscribe(
+
+            data => { this.key$ = data },
+            err => {
+              console.log(err)
+            }, () => {
+              window.location.href = 'https://zoftsolutions.mybillsystem.com/ManagedPortal/PaymentMethod?token=' + this.key$;
+            }
+
+          );
+          setTimeout(() => {
+            /** spinner ends after 5 seconds */
+            this.spinner.hide();
+          }, 3500);
+        }
+
+      }
+
     }
-    sessionStorage.setItem("redirectPage",window.location.href);
-    this.nav.show();
+
     var subId;
     this.route.params.subscribe(params => {
       console.log(params.id);
@@ -66,7 +95,7 @@ export class PlanProductDetailsComponent implements OnInit {
 
           this.getTotalAmount(this.planProducts$[0].orderToCashCycles[0].planFrequencyId, "init")
         } else {
-          this.getTotalAmount(this.planProducts$[0].orderToCashCycles[0].planFrequencyId, "init")
+          this.getTotalAmount(this.planProducts$[0].orderToCashCycles[1].planFrequencyId, "init")
         }
 
 
@@ -102,42 +131,38 @@ export class PlanProductDetailsComponent implements OnInit {
 
     let sum = 0;
     let count = 0;
-    for (let j = 0; j < JSON.stringify(this.planProducts$).length; j++) {
-
-
+    // alert(JSON.stringify(this.planProducts$).length)
+    var json = JSON.parse(JSON.stringify(this.planProducts$));
+     for (let j = 0; j < json.length; j++) {
+     
+    
       if (from == "change") {
         for (let i = 0; i < this.planProducts$[j].orderToCashCycles.length; i++) {
+
           if (this.planProducts$[j].orderToCashCycles[i].planFrequencyId == plnID) {
 
             sum = sum + this.planProducts$[j].orderToCashCycles[i].pricingModel.quantityRanges[0].prices[0].amount;
             this.grandTotal = sum;
 
-            document.getElementById("test4" +j).innerHTML = "$" + this.planProducts$[j].orderToCashCycles[i].pricingModel.quantityRanges[0].prices[0].amount;
+            document.getElementById("test4" + j).innerHTML = "$" + this.planProducts$[j].orderToCashCycles[i].pricingModel.quantityRanges[0].prices[0].amount;
 
           }
 
 
-
+ 
 
         }
-      } else {
+
+} else {
         for (let i = 0; i < this.planProducts$[j].orderToCashCycles.length; i++) {
-
-          //alert(this.planProducts$[j].orderToCashCycles[i].pricingModel.quantityRanges[0].prices[0].amount);
-          // if(products.productType == 'RecurringService' && products.isIncludedByDefault == false){
-
-          // }else{
-          // sum+=products.orderToCashCycles[0].pricingModel.quantityRanges[0].prices[0].amount;
-          // }
-          //alert(this.planProducts$[j].orderToCashCycles[i].planFrequencyId)
-
+         
 
           if (this.planProducts$[j].orderToCashCycles[i].planFrequencyId == plnID) {
 
             sum = sum + this.planProducts$[j].orderToCashCycles[i].pricingModel.quantityRanges[0].prices[0].amount;
             this.grandTotal = sum;
 
-            document.getElementById("test4"+j).innerHTML = "$"+this.planProducts$[j].orderToCashCycles[i].pricingModel.quantityRanges[0].prices[0].amount;
+           // document.getElementById("test4" + i).innerHTML = "$" + this.planProducts$[j].orderToCashCycles[i].pricingModel.quantityRanges[0].prices[0].amount;
 
 
           }
@@ -150,7 +175,6 @@ export class PlanProductDetailsComponent implements OnInit {
         }
 
       }
-      count++;
     }
 
     return this.grandTotal;
@@ -172,37 +196,36 @@ export class PlanProductDetailsComponent implements OnInit {
   }
 
   subscribe(s) {
-    sessionStorage.setItem("subId",s);
-    if(sessionStorage.getItem("isCardAdded")=="true"){
-      if (confirm("We will use your default card "+sessionStorage.getItem("cardNumner") +" for completing the payment. To add a new card for the payment go to the dashboard, click on Manage Card Details and make the card as Default")) {
-    
-    this.spinner.show();
-    setTimeout(() => {
-      /** spinner ends after 5 seconds */
-      this.spinner.hide();
-    }, 4000);
-    var status = this.data.createSub(s, this.custId);
-    var json = JSON.stringify(status);
-  }}else{
-    if (confirm("No card is added yet. Please clik Ok for add a new card.")) {
-      this.spinner.show();
-      this.data.getSingleSignOnKey(this.custId).subscribe(
-  
-        data => { this.key$ = data },
-        err => {
-          console.log(err)
-        }, () => {
-          window.location.href = 'https://zoftsolutions.mybillsystem.com/ManagedPortal/PaymentMethod?token=' + this.key$;
-        }
-  
-      );
-      setTimeout(() => {
-        /** spinner ends after 5 seconds */
-        this.spinner.hide();
-      }, 3500);
+    sessionStorage.setItem("subId", s);
+    if (sessionStorage.getItem("isCardAdded") == "true") {
+      if (confirm("We will use your default card " + sessionStorage.getItem("cardNumner") + " for completing the payment. To add a new card for the payment go to the dashboard, click on Manage Card Details and make the card as Default")) {
+
+        this.spinner.show();
+        
+        var status = this.data.createSub(s, this.custId);
+        var json = JSON.stringify(status);
+        
+      }
+    } else {
+      if (confirm("No card is added yet. Please clik Ok for add a new card.")) {
+        this.spinner.show();
+        this.data.getSingleSignOnKey(this.custId).subscribe(
+
+          data => { this.key$ = data },
+          err => {
+            console.log(err)
+          }, () => {
+            window.location.href = 'https://zoftsolutions.mybillsystem.com/ManagedPortal/PaymentMethod?token=' + this.key$;
+          }
+
+        );
+        setTimeout(() => {
+          /** spinner ends after 5 seconds */
+          this.spinner.hide();
+        }, 3500);
+      }
+
     }
-    
-  }
 
   }
 

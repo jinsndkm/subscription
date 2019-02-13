@@ -39,13 +39,14 @@ export class SubscriptionComponent implements OnInit {
       err => {
         console.log(err)
       }, () => {
+        setTimeout(() => {
+          /** spinner ends after 5 seconds */
+          this.spinner.hide();
+        }, 2000);
       }
 
     );
-    setTimeout(() => {
-      /** spinner ends after 5 seconds */
-      this.spinner.hide();
-    }, 2000);
+   
   }
   //Method to delete an active subscription
   cancelSubscription(subId, planname) {
@@ -55,7 +56,7 @@ export class SubscriptionComponent implements OnInit {
         data => this.mysubscriptions$ = data
       );
     }
-
+    
   }
 
   autorenewalFunction(subscriptionId: String, e) {
