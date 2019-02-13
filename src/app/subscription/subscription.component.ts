@@ -35,7 +35,11 @@ export class SubscriptionComponent implements OnInit {
     this.nav.show();
     this.data.getMySubscription().subscribe(
 
-      data => { this.mysubscriptions$ = data },
+      data => {// this.mysubscriptions$ = data 
+        var json = JSON.parse(JSON.stringify(data));
+        this.mysubscriptions$=json.data;
+        alert(JSON.stringify(this.mysubscriptions$))
+      },
       err => {
         console.log(err)
       }, () => {
