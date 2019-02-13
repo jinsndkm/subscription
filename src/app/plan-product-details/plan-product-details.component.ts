@@ -38,10 +38,14 @@ export class PlanProductDetailsComponent implements OnInit {
 
 
   ngOnInit() {
-   
-    if (sessionStorage.getItem("subId") != 'null') {
-      
+
+    
+
+    if (sessionStorage.getItem("subId") != null && sessionStorage.getItem("subId") != 'null') {
+
       if (sessionStorage.getItem("isCardAdded") == "true") {
+       
+
         if (confirm("We will use your default card " + sessionStorage.getItem("cardNumner") + " for completing the payment. To add a new card for the payment go to the dashboard, click on Manage Card Details and make the card as Default")) {
 
           this.spinner.show();
@@ -55,8 +59,12 @@ export class PlanProductDetailsComponent implements OnInit {
             /** spinner ends after 5 seconds */
             this.spinner.hide();
           }, 4000);
+        } else {
+          
+          sessionStorage.setItem("subId", 'null');
         }
       } else {
+        
         if (confirm("No card is added yet. Please clik Ok for add a new card.")) {
           this.spinner.show();
           this.data.getSingleSignOnKey(this.custId).subscribe(
@@ -73,6 +81,9 @@ export class PlanProductDetailsComponent implements OnInit {
             /** spinner ends after 5 seconds */
             this.spinner.hide();
           }, 3500);
+        } else {
+          
+          sessionStorage.setItem("subId", 'null');
         }
 
       }
@@ -133,9 +144,9 @@ export class PlanProductDetailsComponent implements OnInit {
     let count = 0;
     // alert(JSON.stringify(this.planProducts$).length)
     var json = JSON.parse(JSON.stringify(this.planProducts$));
-     for (let j = 0; j < json.length; j++) {
-     
-    
+    for (let j = 0; j < json.length; j++) {
+
+
       if (from == "change") {
         for (let i = 0; i < this.planProducts$[j].orderToCashCycles.length; i++) {
 
@@ -149,20 +160,20 @@ export class PlanProductDetailsComponent implements OnInit {
           }
 
 
- 
+
 
         }
 
-} else {
+      } else {
         for (let i = 0; i < this.planProducts$[j].orderToCashCycles.length; i++) {
-         
+
 
           if (this.planProducts$[j].orderToCashCycles[i].planFrequencyId == plnID) {
 
             sum = sum + this.planProducts$[j].orderToCashCycles[i].pricingModel.quantityRanges[0].prices[0].amount;
             this.grandTotal = sum;
 
-           // document.getElementById("test4" + i).innerHTML = "$" + this.planProducts$[j].orderToCashCycles[i].pricingModel.quantityRanges[0].prices[0].amount;
+            // document.getElementById("test4" + i).innerHTML = "$" + this.planProducts$[j].orderToCashCycles[i].pricingModel.quantityRanges[0].prices[0].amount;
 
 
           }
@@ -201,10 +212,12 @@ export class PlanProductDetailsComponent implements OnInit {
       if (confirm("We will use your default card " + sessionStorage.getItem("cardNumner") + " for completing the payment. To add a new card for the payment go to the dashboard, click on Manage Card Details and make the card as Default")) {
 
         this.spinner.show();
-        
+
         var status = this.data.createSub(s, this.custId);
         var json = JSON.stringify(status);
-        
+
+      }else{
+        sessionStorage.setItem("subId", 'null');
       }
     } else {
       if (confirm("No card is added yet. Please clik Ok for add a new card.")) {
@@ -223,6 +236,8 @@ export class PlanProductDetailsComponent implements OnInit {
           /** spinner ends after 5 seconds */
           this.spinner.hide();
         }, 3500);
+      }else{
+        sessionStorage.setItem("subId", 'null');
       }
 
     }
