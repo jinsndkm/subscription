@@ -94,7 +94,7 @@
      <div class="form-group row">
        <div class="col-md-12">
 
-         <p class="description"> {{planDetails$.longdescription}} </p>
+         <p class="description"> {{planDetails$.name}} </p>
        </div>
        <label for="inputPassword" class="col-md-3 col-sm-3 col-xs col-form-label common-size">Select Frequency</label>
        <div class="col-md-3 col-sm-3">
@@ -102,7 +102,7 @@
  
          <select id="inputState" (change)="getAmount($event.target.value)" class="form-control " #planfreqID>
           
-           <option *ngFor="let plan of planDetails$.planFrequencies"  [value]="plan.id">{{plan.interval}}</option>
+           <option *ngFor="let plan of planProducts$"  [value]="plan.id">{{plan.nickname}}</option>
          </select>
  
        </div>
@@ -116,7 +116,8 @@
          <label class="f-1em">
           
            
-           <span class="min-w"> {{products.productName}} </span>
+           <!-- <span class="min-w"> {{products.nickname}} </span> -->
+           <span class="min-w"> Amount </span>
          </label>
          <!-- </div> -->
  
@@ -137,11 +138,11 @@
                  </div> -->
        </div>
        <div class="col-md-3 col-sm-3">
-         <!--  <input type="text" class="form-control-plaintext form-control" id="staticEmail"  placeholder=""> -->
-         <!-- <span class="addon-price" > <i class="fas fa-dollar-sign dollor-icon"></i> {{products.orderToCashCycles[0].pricingModel.quantityRanges[0].prices[0].amount}} </span> -->
-         <span *ngIf="products.orderToCashCycles.length==1" id="test4{{i}}" class="addon-price" >${{products.orderToCashCycles[0].pricingModel.quantityRanges[0].prices[0].amount}}  </span>
-         <span *ngIf="products.orderToCashCycles.length>1" id="test4{{i}}" class="addon-price" >${{products.orderToCashCycles[0].pricingModel.quantityRanges[0].prices[0].amount}}  </span>
-       </div>
+          <span class="addon-price" > <i class="fas fa-dollar-sign dollor-icon"></i> {{products.amount}} </span>
+          <div class="col-md-12"  *ngIf="products.productType== 'RecurringService' && products.isIncludedByDefault == false">
+         <span class="addon-price" > <i class="fas fa-dollar-sign dollor-icon"></i> {{products.amount}} </span>
+      </div>
+        </div>
      </div>
  </div>
  

@@ -56,18 +56,20 @@ export class PlanProductDetailsComponent implements OnInit {
       subId = params.id;
     })
     this.data.getPlanProducts(subId).subscribe(
-      data => { this.planProducts$ = data },
+      data => {
+        var json=JSON.parse(JSON.stringify(data));
+      this.planProducts$=json.data;},
       err => {
         console.log(err)
       }, () => {
 
 
-        if (this.planProducts$[0].orderToCashCycles.length == 1) {
+        // if (this.planProducts$[0].orderToCashCycles.length == 1) {
 
-          this.getTotalAmount(this.planProducts$[0].orderToCashCycles[0].planFrequencyId, "init")
-        } else {
-          this.getTotalAmount(this.planProducts$[0].orderToCashCycles[0].planFrequencyId, "init")
-        }
+        //   this.getTotalAmount(this.planProducts$[0].orderToCashCycles[0].planFrequencyId, "init")
+        // } else {
+        //   this.getTotalAmount(this.planProducts$[0].orderToCashCycles[0].planFrequencyId, "init")
+        // }
 
 
 
@@ -77,7 +79,10 @@ export class PlanProductDetailsComponent implements OnInit {
 
     this.data.getPlanDetails(subId).subscribe(
 
-      data => { this.planDetails$ = data },
+      data => {  
+        var json=JSON.parse(JSON.stringify(data));
+        this.planDetails$=json;
+      },
       err => {
         console.log(err)
       }, () => {

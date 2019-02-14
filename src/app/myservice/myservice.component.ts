@@ -22,11 +22,26 @@ plans:any = [];
   constructor(private data: DataService, public nav: HideMenusService) { }
 
   ngOnInit() {
-    this.nav.show();
-    sessionStorage.setItem("Plans",this.plans);
+    
+    //this.nav.show();
+    //sessionStorage.setItem("Plans",this.plans);
     this.data.getAllFusebillServices().subscribe(
-      data => this.servicesList$ = data
+      //data => this.servicesList$ = data
+      data => {
+      var json=JSON.parse(JSON.stringify(data));
+      this.servicesList$=json.data;
+      },
+      err => {
+        console.log(err)
+      }, () => {
+
+
+
+
+      }
+      
     );
+    alert(JSON.stringify(this.data));
 
 
   userName: String;
