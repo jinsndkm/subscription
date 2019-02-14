@@ -26,28 +26,28 @@ export class LoginComponent implements OnInit {
   validateLogin() {
 
     if (this.userName == 'admin' && this.password == 'admin') {
-      this.cardDetails$ = this.data.checkCardDetails(this.custId).subscribe(
-        data => { this.cardDetails$ = data }
+      // this.cardDetails$ = this.data.checkCardDetails(this.custId).subscribe(
+      //   data => { this.cardDetails$ = data }
 
-        ,
-        err => {
-          console.log(err)
-        }, () => {
-          var json = JSON.parse(JSON.stringify(this.cardDetails$));
+      //   ,
+      //   err => {
+      //     console.log(err)
+      //   }, () => {
+      //     var json = JSON.parse(JSON.stringify(this.cardDetails$));
 
-          if (json.length > 0) {
-            for (let i = 0; i < json.length; i++) {
-              if (json[i].isDefault == true) {
-                sessionStorage.setItem("cardNumner",json[i].maskedCardNumber);
-              } 
-            }
+      //     if (json.length > 0) {
+      //       for (let i = 0; i < json.length; i++) {
+      //         if (json[i].isDefault == true) {
+      //           sessionStorage.setItem("cardNumner",json[i].maskedCardNumber);
+      //         } 
+      //       }
 
-            sessionStorage.setItem("isCardAdded", "true");
-          } else {
-            sessionStorage.setItem("isCardAdded", "false");
-          }
-        }
-      );
+      //       sessionStorage.setItem("isCardAdded", "true");
+      //     } else {
+      //       sessionStorage.setItem("isCardAdded", "false");
+      //     }
+      //   }
+      // );
       sessionStorage.setItem("userName", "Marry");
       this.router.navigate(['home']);
     } else {

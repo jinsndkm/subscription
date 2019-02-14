@@ -35,7 +35,10 @@ export class SubscriptionComponent implements OnInit {
     this.nav.show();
     this.data.getMySubscription().subscribe(
 
-      data => { this.mysubscriptions$ = data },
+      data => { //this.mysubscriptions$ = data ;
+        var json = JSON.parse(JSON.stringify(data));
+        this.mysubscriptions$=json.data;
+      },
       err => {
         console.log(err)
       }, () => {
@@ -50,10 +53,27 @@ export class SubscriptionComponent implements OnInit {
   //Method to delete an active subscription
   cancelSubscription(subId, planname) {
     if (confirm("Are you sure to cancel " + planname + "?")) {
-      this.items$ = this.data.cancelSubscription(subId);
-      this.data.getMySubscription().subscribe(
-        data => this.mysubscriptions$ = data
-      );
+      this.items$ = this.data.cancelSubscription(subId).subscribe(
+
+        data => { //this.mysubscriptions$ = data ;
+          var json = JSON.parse(JSON.stringify(data));
+          // this.mysubscriptions$=json.data;
+          if(json.status=='canceled'){
+            alert("Subscription cancelled successfully")
+          }else{
+            alert("Sorry!Try again")
+          }
+         
+        },
+        err => {
+          console.log(err)
+        }, () => {
+        }
+  
+      );;
+      // this.data.getMySubscription().subscribe(
+      //   data => this.mysubscriptions$ = data
+      // );
     }
 
   }

@@ -54,26 +54,26 @@ export class DataService {
   }
 
   cancelSubscription(subscriptionId) {
-    let statusCode;
-    const subscriptionBody = { "subscriptionId": subscriptionId, "cancellationOption": "None" };
-    const headers = new HttpHeaders()
-      .set('Authorization', 'Basic MDpEZk9jcExWQVFFczk1U1hPSWhER0J0RzFXOFJCaGs3UVFsU2xOQ0JJRUJ4Y1NSSG9JQXAzbTJVdGFWNVRZUlVN')
-      .set('Content-Type', 'application/json')
-      .set('Access-Control-Allow-Origin', '*');
+    // let statusCode;
+    // // const subscriptionBody = { "subscriptionId": subscriptionId, "cancellationOption": "None" };
+    // // const headers = new HttpHeaders()
+    // //   .set('Authorization', 'Basic MDpEZk9jcExWQVFFczk1U1hPSWhER0J0RzFXOFJCaGs3UVFsU2xOQ0JJRUJ4Y1NSSG9JQXAzbTJVdGFWNVRZUlVN')
+    // //   .set('Content-Type', 'application/json')
+    // //   .set('Access-Control-Allow-Origin', '*');
 
-    return this.http.post(rootPath + '/subscription/cancel', subscriptionBody, {
-      headers: headers
-    })
-      .subscribe(data => {
-        data => statusCode = data
-        var json = JSON.parse(JSON.stringify(data));
-        if (json.HttpStatusCode == 400) {
-          alert("Something Went wrong! Please try again")
-        } else {
-          alert("Subscription cancelled successfully")
-        }
-      });
-
+    // return this.http.delete(rootPath + '/subscription/cancel', {
+     
+    // })
+    //   .subscribe(data => {
+    //     data => statusCode = data
+    //     var json = JSON.parse(JSON.stringify(data));
+    //     if (json.HttpStatusCode == 400) {
+    //       alert("Something Went wrong! Please try again")
+    //     } else {
+    //       alert("Subscription cancelled successfully")
+    //     }
+    //   });
+      return this.http.get(rootPath + '/subscription/cancel/' + subscriptionId);
   }
 
   getMySubscription() {
