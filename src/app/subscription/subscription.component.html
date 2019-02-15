@@ -59,17 +59,17 @@
 
                   <div class="subscription">
                     <div class="form-group row mrg-btm-0">
-                      <label for="inputPassword" class="col-sm-3 col-form-label mrg-btm-0 fs-9 black">{{mysubscriptions.planName}}</label>
+                      <label for="inputPassword" class="col-sm-3 col-form-label mrg-btm-0 fs-9 black">{{mysubscriptions.plan.nickname}}</label>
 
                       <div class="col-sm-2">
                         <div class="form-check-inline eql-padding">
-                          <label class="form-check-label fs-9 black" *ngIf="mysubscriptions.status== 'Active' && mysubscriptions.remainingInterval == null">
-                            <input ng-model="myCheckbox" type="checkbox" data-md-icheck (change)="autorenewalFunction(mysubscriptions.planFrequency.planRevisionId,$event)"
+                          <label class="form-check-label fs-9 black" *ngIf="mysubscriptions.plan.active== true && mysubscriptions.billing != 'send_invoice'">
+                            <input ng-model="myCheckbox" type="checkbox" data-md-icheck (change)="autorenewalFunction(mysubscriptions.id,$event)"
                               checked>Auto Renewal
                             <!-- <input type="checkbox" class="form-check-input" value="" checked="" ng-model="myCheckbox"  ng-change='someFunction(myCheckbox)'">Auto Renewal -->
                           </label>
-                          <label class="form-check-label fs-9 black" *ngIf="mysubscriptions.status== 'Active' && mysubscriptions.remainingInterval != null">
-                            <input ng-model="myCheckbox" type="checkbox" data-md-icheck (change)="autorenewalFunction(mysubscriptions.planFrequency.planRevisionId,$event)">Auto
+                          <label class="form-check-label fs-9 black" *ngIf="mysubscriptions.plan.active== true && mysubscriptions.billing == 'send_invoice'">
+                            <input ng-model="myCheckbox" type="checkbox" data-md-icheck (change)="autorenewalFunction(mysubscriptions.id,$event)">Auto
                             Renewal
                             <!-- <input type="checkbox" class="form-check-input" value="" checked="" ng-model="myCheckbox"  ng-change='someFunction(myCheckbox)'">Auto Renewal -->
                           </label>
@@ -78,23 +78,24 @@
                       </div>
                       <div class="col-md-2">
                         <div class="eql-padding">
-                          <span class="warning bold">{{ mysubscriptions.status }} </span>
+                          <span class="warning bold" *ngIf="mysubscriptions.plan.active==true">{{ mysubscriptions.status }} </span>
+                          <!-- <span class="warning bold">Active</span> -->
                         </div>
                       </div>
 
 
                       <div class="col-md-2">
                         <div class="eql-padding">
-                          <a [routerLink]="['viewSubscription']" [queryParams]="{subId:mysubscriptions.planFrequency.planRevisionId}"
+                          <a [routerLink]="['viewSubscription']" [queryParams]="{subId:mysubscriptions.plan.id}"
                             class="details link">View Details </a>
                         </div>
                       </div>
 
                       <div class="col-md-3">
           
-                        <button type="button" class="btn btn-danger btn-cancel btm-mt" (click)="cancelSubscription(mysubscriptions.planFrequency.planRevisionId,mysubscriptions.planName)">Cancel</button>
-                        <div *ngIf="mysubscriptions.status=='Active';then content"></div>    
-                        <ng-template #content> <a [routerLink]="['upgradeSubscription']" [queryParams]="{subId: mysubscriptions.planFrequency.planRevisionId}" class="btn-upgrade btn btn-info btm-mt btn-link" > Upgrade </a></ng-template>
+                        <button type="button" class="btn btn-danger btn-cancel btm-mt" (click)="cancelSubscription(mysubscriptions.id,mysubscriptions.plan.nickname)">Cancel</button>
+                        <div *ngIf="mysubscriptions.plan.active==true;then content"></div>    
+                        <ng-template #content> <a [routerLink]="['upgradeSubscription']" [queryParams]="{subId: mysubscriptions.plan.id}" class="btn-upgrade btn btn-info btm-mt btn-link" > Upgrade </a></ng-template>
                        
                        
 
