@@ -41,7 +41,7 @@ plans:any = [];
       }
       
     );
-    alert(JSON.stringify(this.data));
+    
 
 
   userName: String;
