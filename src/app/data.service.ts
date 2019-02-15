@@ -5,6 +5,7 @@ import { Router } from "@angular/router"
 import { Alert } from '../../node_modules/@types/selenium-webdriver';
 import * as _ from "lodash"
 import { Globals } from './globals/global';
+import { ALLOW_MULTIPLE_PLATFORMS } from '@angular/core/src/application_ref';
 
 
 // import { stat } from 'fs';
@@ -185,13 +186,19 @@ export class DataService {
   
   enableAutorenewal(subscriptionId) {
     
-    const activationBody = { "subscriptionId": subscriptionId };
+    
+    var querystring = require('querystring');
+ 
+// form data
+var postData = querystring.stringify({
+  "subscriptionId": subscriptionId 
+});
     //const activationBody = { "subscriptionId": 12345 };
     const headers = new HttpHeaders()
       .set('Authorization', 'Bearer sk_live_WcIoDcfVidYWkaNoELBX2NIX')
       .set('Content-Type', 'application/x-www-form-urlencoded')
       .set('Access-Control-Allow-Origin', '*');
-    return this.http.post(rootPath + '/mysubscription/autorenewal/disable',activationBody, {
+    return this.http.post(rootPath + '/mysubscription/autorenewal/disable',postData, {
       headers: headers
     })
       .subscribe(data => {
@@ -207,13 +214,18 @@ export class DataService {
   }
 
   disableAutorenewal(subscriptionId) {
-    const activationBody = { "subscriptionId": subscriptionId };
+    var querystring = require('querystring');
+ 
+    // form data
+    var postData = querystring.stringify({
+      "subscriptionId": subscriptionId 
+    });
     //const activationBody = { "subscriptionId": 12345 };
     const headers = new HttpHeaders()
       .set('Authorization', 'Bearer sk_live_WcIoDcfVidYWkaNoELBX2NIX')
       .set('Content-Type', 'application/x-www-form-urlencoded')
       .set('Access-Control-Allow-Origin', '*');
-    return this.http.post(rootPath + '/mysubscription/autorenewal/',activationBody, {
+    return this.http.post(rootPath + '/mysubscription/autorenewal/',postData, {
       headers: headers
     })
       .subscribe(data => {
