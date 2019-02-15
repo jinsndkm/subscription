@@ -65,7 +65,7 @@ export class PlanProductDetailsComponent implements OnInit {
         }
       } else {
         
-        if (confirm("No card is added yet. Please clik Ok for add a new card.")) {
+        if (confirm("You need at least one default payment method before subscribing a service. Please click ok to add a new payment method.")) {
           this.spinner.show();
           this.data.getSingleSignOnKey(this.custId).subscribe(
 
@@ -220,7 +220,7 @@ export class PlanProductDetailsComponent implements OnInit {
         sessionStorage.setItem("subId", 'null');
       }
     } else {
-      if (confirm("No card is added yet. Please clik Ok for add a new card.")) {
+      if (confirm("You need at least one default payment method before subscribing a service. Please click ok to add a new payment method.")) {
         this.spinner.show();
         this.data.getSingleSignOnKey(this.custId).subscribe(
 
