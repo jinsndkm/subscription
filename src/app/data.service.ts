@@ -5,6 +5,7 @@ import { Router } from "@angular/router"
 import { Alert } from '../../node_modules/@types/selenium-webdriver';
 import * as _ from "lodash"
 import { Globals } from './globals/global';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 
 // import { stat } from 'fs';
@@ -28,7 +29,7 @@ export class DataService {
   status$: Object;
   private custId:String;
 
-  constructor(private http: HttpClient, private router: Router,private global:Globals) {
+  constructor(private http: HttpClient, private router: Router,private global:Globals,private spinner: NgxSpinnerService) {
     this.custId=global.CUSTOMER_ID;
   }
 
@@ -71,6 +72,7 @@ export class DataService {
           alert("Something Went wrong! Please try again")
         } else {
           alert("Subscription cancelled successfully")
+          window.location.reload();
         }
       });
 
@@ -110,11 +112,13 @@ export class DataService {
         var json = JSON.parse(JSON.stringify(data));
         if (json.HttpStatusCode == 400) {
           alert("Something Went wrong! Please try again")
-          return planBody;
+          this.router.navigate(['home/mysubscription']);
+         // return planBody;
 
         } else {
-          alert("Plan successfully migrated")
-          return planBody;
+          alert("Plan upgraded successfully")
+          this.router.navigate(['home/mysubscription']);
+          //return planBody;
         }
         // return data;
       });
@@ -173,6 +177,7 @@ export class DataService {
           err => {
             console.log(err)
           },() => {
+            this.spinner.hide();
             this.router.navigate(['SuccessMessage']);
           }
         );
