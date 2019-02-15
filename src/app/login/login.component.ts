@@ -11,7 +11,7 @@ import { Globals } from '../globals/global';
 })
 export class LoginComponent implements OnInit {
   private custId:String;
-  constructor(public nav: HideMenusService, private router: Router, private data: DataService,private global:Globals) {    this.custId=global.CUSTOMER_ID; }
+  constructor(public nav: HideMenusService,  private router: Router, private data: DataService,private global:Globals) {    this.custId=global.CUSTOMER_ID; }
   userName: string = '';
   password: string = '';
   cardDetails$: Object;
@@ -48,7 +48,8 @@ export class LoginComponent implements OnInit {
       //     }
       //   }
       // );
-      sessionStorage.setItem("userName", "Marry");
+      sessionStorage.setItem("userName", "Marry"); 
+
       this.router.navigate(['home']);
     } else {
       alert("Invalid username or Password")

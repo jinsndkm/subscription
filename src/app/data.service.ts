@@ -183,12 +183,50 @@ export class DataService {
       });
   }
   
-  enableAutorenewal(subscriptionId, status) {
-    return this.http.get(rootPath + '/mysubscription/autorenewal/' + subscriptionId + '/' + status);
+  enableAutorenewal(subscriptionId) {
+    
+    const activationBody = { "subscriptionId": subscriptionId };
+    //const activationBody = { "subscriptionId": 12345 };
+    const headers = new HttpHeaders()
+      .set('Authorization', 'Bearer sk_live_WcIoDcfVidYWkaNoELBX2NIX')
+      .set('Content-Type', 'application/x-www-form-urlencoded')
+      .set('Access-Control-Allow-Origin', '*');
+    return this.http.post(rootPath + '/mysubscription/autorenewal/disable',activationBody, {
+      headers: headers
+    })
+      .subscribe(data => {
+        this.status$ = data
+        var json = JSON.parse(JSON.stringify(this.status$))
+      },
+      err => {
+        console.log(err)
+      },() => {
+        this.router.navigate(['SuccessMessage']);
+      }
+    );
   }
 
-  disableAutorenewal(subscriptionId, status) {
-    return this.http.get(rootPath + '/mysubscription/autorenewal/' + subscriptionId + '/' + status);
+  disableAutorenewal(subscriptionId) {
+    const activationBody = { "subscriptionId": subscriptionId };
+    //const activationBody = { "subscriptionId": 12345 };
+    const headers = new HttpHeaders()
+      .set('Authorization', 'Bearer sk_live_WcIoDcfVidYWkaNoELBX2NIX')
+      .set('Content-Type', 'application/x-www-form-urlencoded')
+      .set('Access-Control-Allow-Origin', '*');
+    return this.http.post(rootPath + '/mysubscription/autorenewal/',activationBody, {
+      headers: headers
+    })
+      .subscribe(data => {
+        this.status$ = data
+        var json = JSON.parse(JSON.stringify(this.status$))
+      },
+      err => {
+        console.log(err)
+      },() => {
+        this.router.navigate(['SuccessMessage']);
+      }
+    );
+
 
 
   }
