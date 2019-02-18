@@ -25,23 +25,24 @@ private custId:String;
     sessionStorage.setItem("redirectPage",window.location.href);
     this.nav.show();
     this.cartItems = JSON.parse(sessionStorage.getItem('cartList'));
+
     this.cartItems.forEach(element => {
       this.grandTotal += element.amount;
     });
 
-    if(sessionStorage.getItem("fusebillRedirect")=="true" && this.cartItems.length>1){
-      this.spinner.show();
-      setTimeout(() => {
-        /** spinner ends after 5 seconds */
-        this.spinner.hide();
-      }, 4000);
-      this.cartItems.forEach(element => {
-        var status = this.data.createSub(element.selectedFreId, this.custId);
-      });
-      sessionStorage.removeItem('cartList');
-      var json = JSON.stringify(status);
-    }
-    sessionStorage.setItem("fusebillRedirect","false");
+    // if(sessionStorage.getItem("fusebillRedirect")=="true" && this.cartItems.length>1){
+    //   this.spinner.show();
+    //   setTimeout(() => {
+    //     /** spinner ends after 5 seconds */
+    //     this.spinner.hide();
+    //   }, 4000);
+    //   this.cartItems.forEach(element => {
+    //     var status = this.data.createSub(element.selectedFreId, this.custId);
+    //   });
+    //   sessionStorage.removeItem('cartList');
+    //   var json = JSON.stringify(status);
+    // }
+    // sessionStorage.setItem("fusebillRedirect","false");
     console.log(JSON.stringify(this.cartItems));
   } 
   remove(cartModel) {
@@ -50,45 +51,47 @@ private custId:String;
     this.cartItems.splice(index1, 1);
     sessionStorage.setItem("cartList", JSON.stringify(this.cartItems));
     this.grandTotal=0;
+   
     this.cartItems.forEach(element => {
       this.grandTotal += element.amount;
     });
   }
   subscribe(checkOutItems) {
-    if(sessionStorage.getItem("isCardAdded")=="true"){
-      if (confirm("We will use your default card "+sessionStorage.getItem("cardNumner") +" for completing the payment. To add a new card for the payment go to the dashboard, click on Manage Card Details and make the card as Default")) {
+    // if(sessionStorage.getItem("isCardAdded")=="true"){
+      // if (confirm("We will use your default card "+sessionStorage.getItem("cardNumner") +" for completing the payment. To add a new card for the payment go to the dashboard, click on Manage Card Details and make the card as Default")) {
       this.spinner.show();
-      setTimeout(() => {
+      setTimeout(() => { 
         /** spinner ends after 5 seconds */
         this.spinner.hide();
-      }, 4000);
+      }, 4000);  
       checkOutItems.forEach(element => {
+        alert(">>"+element.selectedFreId+">>"+this.custId)
         var status = this.data.createSub(element.selectedFreId, this.custId);
       });
       sessionStorage.removeItem('cartList');
       var json = JSON.stringify(status);
-    }
-    }else{
-      if (confirm("No card is added yet. Please clik Ok for add a new card.")) {
-        sessionStorage.setItem("fusebillRedirect","true");
-        this.spinner.show();
-        this.data.getSingleSignOnKey(this.custId).subscribe(
+    // }
+    // }else{
+    //   if (confirm("No card is added yet. Please clik Ok for add a new card.")) {
+    //     sessionStorage.setItem("fusebillRedirect","true");
+    //     this.spinner.show();
+    //     this.data.getSingleSignOnKey(this.custId).subscribe(
     
-          data => { this.key$ = data },
-          err => {
-            console.log(err)
-          }, () => {
-            window.location.href = 'https://zoftsolutions.mybillsystem.com/ManagedPortal/PaymentMethod?token=' + this.key$;
-          }
+    //       data => { this.key$ = data },
+    //       err => {
+    //         console.log(err)
+    //       }, () => {
+    //         window.location.href = 'https://zoftsolutions.mybillsystem.com/ManagedPortal/PaymentMethod?token=' + this.key$;
+    //       }
     
-        );
-        setTimeout(() => {
-          /** spinner ends after 5 seconds */
-          this.spinner.hide();
-        }, 3500);
-      }
+    //     );
+    //     setTimeout(() => {
+    //       /** spinner ends after 5 seconds */
+    //       this.spinner.hide();
+    //     }, 3500);
+    //   }
       
-    }
+    // }
     
 
 

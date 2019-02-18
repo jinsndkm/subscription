@@ -5,6 +5,7 @@ import { Router } from "@angular/router"
 import { Alert } from '../../node_modules/@types/selenium-webdriver';
 import * as _ from "lodash"
 import { Globals } from './globals/global';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 
 // import { stat } from 'fs';
@@ -28,7 +29,7 @@ export class DataService {
   status$: Object;
   private custId:String;
 
-  constructor(private http: HttpClient, private router: Router,private global:Globals) {
+  constructor(private http: HttpClient, private router: Router,private global:Globals, private spinner: NgxSpinnerService) {
     this.custId=global.CUSTOMER_ID;
   }
 
@@ -54,26 +55,26 @@ export class DataService {
   }
 
   cancelSubscription(subscriptionId) {
-    let statusCode;
-    const subscriptionBody = { "subscriptionId": subscriptionId, "cancellationOption": "None" };
-    const headers = new HttpHeaders()
-      .set('Authorization', 'Basic MDpEZk9jcExWQVFFczk1U1hPSWhER0J0RzFXOFJCaGs3UVFsU2xOQ0JJRUJ4Y1NSSG9JQXAzbTJVdGFWNVRZUlVN')
-      .set('Content-Type', 'application/json')
-      .set('Access-Control-Allow-Origin', '*');
+    // let statusCode;
+    // // const subscriptionBody = { "subscriptionId": subscriptionId, "cancellationOption": "None" };
+    // // const headers = new HttpHeaders()
+    // //   .set('Authorization', 'Basic MDpEZk9jcExWQVFFczk1U1hPSWhER0J0RzFXOFJCaGs3UVFsU2xOQ0JJRUJ4Y1NSSG9JQXAzbTJVdGFWNVRZUlVN')
+    // //   .set('Content-Type', 'application/json')
+    // //   .set('Access-Control-Allow-Origin', '*');
 
-    return this.http.post(rootPath + '/subscription/cancel', subscriptionBody, {
-      headers: headers
-    })
-      .subscribe(data => {
-        data => statusCode = data
-        var json = JSON.parse(JSON.stringify(data));
-        if (json.HttpStatusCode == 400) {
-          alert("Something Went wrong! Please try again")
-        } else {
-          alert("Subscription cancelled successfully")
-        }
-      });
-
+    // return this.http.delete(rootPath + '/subscription/cancel', {
+     
+    // })
+    //   .subscribe(data => {
+    //     data => statusCode = data
+    //     var json = JSON.parse(JSON.stringify(data));
+    //     if (json.HttpStatusCode == 400) {
+    //       alert("Something Went wrong! Please try again")
+    //     } else {
+    //       alert("Subscription cancelled successfully")
+    //     }
+    //   });
+      return this.http.get(rootPath + '/subscription/cancel/' + subscriptionId);
   }
 
   getMySubscription() {
@@ -137,8 +138,8 @@ export class DataService {
   }
 
   createSub(planFreID, customerID) {
-
-    const subscriptionBody = { "CustomerID": customerID, "planFrequencyID": planFreID };
+    this.spinner.show();
+    const subscriptionBody = { "customer": customerID, "plan": planFreID };
     const headers = new HttpHeaders()
       .set('Authorization', 'Basic MDpRU2tCZlRkVGVVVGVYWTRyNllmZEhITlRKMEhmWHphdXZ5cEFmNFpYOEMwTnEwUm5sZHRlRXpWS2ttU3Z2dVdH')
       .set('Content-Type', 'application/json')
@@ -149,49 +150,114 @@ export class DataService {
     })
       .subscribe(data => {
         this.status$ = data;
-
         var json = JSON.parse(JSON.stringify(this.status$));
+        
+        
+        // var json = JSON.parse(JSON.stringify(this.status$));
 
-        var subId = json.id;
+        // var subId = json.id;
 
-        //alert("DDD::>"+this.status$.id);
-        //let planID= this.status$.id;
-        const activationBody = { "subscriptionId": subId };
-        //const activationBody = { "subscriptionId": 12345 };
-        const headers = new HttpHeaders()
-          .set('Authorization', 'Basic MDpEZk9jcExWQVFFczk1U1hPSWhER0J0RzFXOFJCaGs3UVFsU2xOQ0JJRUJ4Y1NSSG9JQXAzbTJVdGFWNVRZUlVN')
-          .set('Content-Type', 'application/json')
-          .set('Access-Control-Allow-Origin', '*');
+        // //alert("DDD::>"+this.status$.id);
+        // //let planID= this.status$.id;
+        // const activationBody = { "subscriptionId": subId };
+        // //const activationBody = { "subscriptionId": 12345 };
+        // const headers = new HttpHeaders()
+        //   .set('Authorization', 'Basic MDpEZk9jcExWQVFFczk1U1hPSWhER0J0RzFXOFJCaGs3UVFsU2xOQ0JJRUJ4Y1NSSG9JQXAzbTJVdGFWNVRZUlVN')
+        //   .set('Content-Type', 'application/json')
+        //   .set('Access-Control-Allow-Origin', '*');
 
-        return this.http.post(rootPath + '/subscription/activate', activationBody, {
-          headers: headers
-        })
-          .subscribe(data => {
-            this.status$ = data
-            var json = JSON.parse(JSON.stringify(this.status$))
-          },
-          err => {
-            console.log(err)
-          },() => {
+        // return this.http.post(rootPath + '/subscription/activate', activationBody, {
+        //   headers: headers
+        // })
+        //   .subscribe(data => {
+        //     this.status$ = data
+        //     var json = JSON.parse(JSON.stringify(this.status$))
+        //   },
+        //   err => {
+        //     console.log(err)
+        //   },() => {
+        //     this.router.navigate(['SuccessMessage']);
+        //   }
+        // );
+
+
+
+
+      },
+        err => {
+          console.log(err)
+        },() => {
+          var json = JSON.parse(JSON.stringify(this.status$));
+         
+          this.spinner.hide();
+          if(json.statusCode == 200){
             this.router.navigate(['SuccessMessage']);
           }
-        );
-
-
-
-
-      });
+          
+        });
   }
+
   
-  enableAutorenewal(subscriptionId, status) {
-    return this.http.get(rootPath + '/mysubscription/autorenewal/' + subscriptionId + '/' + status);
+  
+  enableAutorenewal(subscriptionId) {
+    
+    
+    var querystring = require('querystring');
+ 
+// form data
+var postData = querystring.stringify({
+  "subscriptionId": subscriptionId 
+});
+    //const activationBody = { "subscriptionId": 12345 };
+    const headers = new HttpHeaders()
+      .set('Authorization', 'Bearer sk_live_WcIoDcfVidYWkaNoELBX2NIX')
+      .set('Content-Type', 'application/x-www-form-urlencoded')
+      .set('Access-Control-Allow-Origin', '*');
+    return this.http.post(rootPath + '/mysubscription/autorenewal/disable',postData, {
+      headers: headers
+    })
+      .subscribe(data => {
+        this.status$ = data
+        var json = JSON.parse(JSON.stringify(this.status$))
+      },
+      err => {
+        console.log(err)
+      },() => {
+        this.router.navigate(['SuccessMessage']);
+      }
+    );
   }
 
-  disableAutorenewal(subscriptionId, status) {
-    return this.http.get(rootPath + '/mysubscription/autorenewal/' + subscriptionId + '/' + status);
+  disableAutorenewal(subscriptionId) {
+    var querystring = require('querystring');
+ 
+    // form data
+    var postData = querystring.stringify({
+      "subscriptionId": subscriptionId 
+    });
+    //const activationBody = { "subscriptionId": 12345 };
+    const headers = new HttpHeaders()
+      .set('Authorization', 'Bearer sk_live_WcIoDcfVidYWkaNoELBX2NIX')
+      .set('Content-Type', 'application/x-www-form-urlencoded')
+      .set('Access-Control-Allow-Origin', '*');
+    return this.http.post(rootPath + '/mysubscription/autorenewal/',postData, {
+      headers: headers
+    })
+      .subscribe(data => {
+        this.status$ = data
+        var json = JSON.parse(JSON.stringify(this.status$))
+      },
+      err => {
+        console.log(err)
+      },() => {
+        this.router.navigate(['SuccessMessage']);
+      }
+    );
+
 
 
   }
+
 
 
 
@@ -206,6 +272,10 @@ getMySubscriptionPlanDetails(){
 
 getSingleSignOnKey(custId){
   return this.http.get(rootPath+'/getsignlesignonkey/'+custId);
+}
+
+getSavedCardDetails(custId){
+  return this.http.get(rootPath+'/checkcarddetails/'+custId);
 }
 
 }

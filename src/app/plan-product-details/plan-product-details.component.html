@@ -43,7 +43,7 @@
      </div>
      <div class="head-overview">
        <p class="short-head">PRODUCT</p>
-       <p class="head"> {{planDetails$.name}}</p>
+       <p class="head"> </p>
     
   
      </div>
@@ -94,7 +94,7 @@
      <div class="form-group row">
        <div class="col-md-12">
 
-         <p class="description"> {{planDetails$.longdescription}} </p>
+         <p class="description"></p>
        </div>
        <label for="inputPassword" class="col-md-3 col-sm-3 col-xs col-form-label common-size">Select Frequency</label>
        <div class="col-md-3 col-sm-3">
@@ -102,13 +102,13 @@
  
          <select id="inputState" (change)="getAmount($event.target.value)" class="form-control " #planfreqID>
           
-           <option *ngFor="let plan of planDetails$.planFrequencies"  [value]="plan.id">{{plan.interval}}</option>
+           <option *ngFor="let plan of planProducts$"  [value]="plan.id">{{plan.nickname}}</option>
          </select>
  
        </div>
      </div>
      <div *ngFor="let products of planProducts$;let i=index" >
-     
+        <div class="col-md-12"  *ngIf="products.id == planfreqID.value ">
      <div class="form-group row addonrow">
        <div class="col-md-3 col-sm-3">
  
@@ -116,54 +116,65 @@
          <label class="f-1em">
           
            
-           <span class="min-w"> {{products.productName}} </span>
+        <span class="min-w"> Amount  </span>
          </label>
-         <!-- </div> -->
- 
- 
-         <!-- <div class="col-md-12"  *ngIf="products.productType== 'RecurringService' && products.isIncludedByDefault == false">
-             <label class="f-1em">
-                 <input type="checkbox" class="f" #titleInput1 value="{{products.orderToCashCycles[0].pricingModel.quantityRanges[0].prices[0].amount}}" style="margin-right: 7px;" (click)="yourfunc(titleInput1.value,$event)" >
-                 
-               <span class="min-w"> {{products.productName}} </span>
-             </label>
-             </div>
-             <div class="col-md-12"  *ngIf="products.productType== 'RecurringService' && products.isIncludedByDefault == true">
-                 <label class="f-1em">
-                   <span class="f" value="" style="margin-right: 22px;" ></span>
-                   
-                   <span class="min-w"> {{products.productName}} </span>
-                 </label>
-                 </div> -->
+        
        </div>
        <div class="col-md-3 col-sm-3">
-         <!--  <input type="text" class="form-control-plaintext form-control" id="staticEmail"  placeholder=""> -->
-         <!-- <span class="addon-price" > <i class="fas fa-dollar-sign dollor-icon"></i> {{products.orderToCashCycles[0].pricingModel.quantityRanges[0].prices[0].amount}} </span> -->
-         <span *ngIf="products.orderToCashCycles.length==1" id="test4{{i}}" class="addon-price" >${{products.orderToCashCycles[0].pricingModel.quantityRanges[0].prices[0].amount}}  </span>
-         <span *ngIf="products.orderToCashCycles.length>1" id="test4{{i}}" class="addon-price" >${{products.orderToCashCycles[0].pricingModel.quantityRanges[0].prices[0].amount}}  </span>
-       </div>
+          <!-- <span class="addon-price" > <i class="fas fa-dollar-sign dollor-icon"></i> {{amount}} </span> -->
+          
+         <span class="addon-price" > <i class="fas fa-dollar-sign dollor-icon"></i> {{products.amount}} </span>
+      
+        </div>
      </div>
+    
+    <div class="form-group row ">
+        <label for="staticEmail" class="col-md-3 col-sm-3 col-form-label common-size"> Total Price</label>
+        <div class="col-md-3 col-sm-3">
+          <!--  <input type="text" class="form-control-plaintext form-control" id="staticEmail"  placeholder=""> -->
+       
+         <span class="addon-price" id="testID">  <i class="fas fa-dollar-sign dollor-icon"></i>  {{products.amount}}</span>
+        </div>
+      </div> 
+
+      <div class="form-group row ">
+        
+        <div class="col-md-12">  
+
+        <div class="row">
+            <div class="col-md-6 col-sm-6">
+          
+                <div  *ngIf="cardStatus == 'true' ">
+       
+                    <button class="btn btn-success btm-mt float-right" (click)="addtocart(products)">Add to Cart</button>
+                    
+                    <a routerLink="/addservice/carddetails/{{planfreqID.value}}"> <button class="btn btn-success  btm-mt float-right">
+                     Subscribe</button></a>
+                      <!-- <button class="btn btn-success  btm-mt float-right" (click)="subscribe(planfreqID.value)">Subscribe</button> -->
+                      
+                  </div>
+                  <div  *ngIf="cardStatus == 'false' ">
+                  
+                   <button class="btn btn-success btm-mt float-right" (click)="addtocart(planDetails$)">Add to Cart</button>
+                   
+                   <a routerLink="/addservice/addcarddetails/{{planfreqID.value}}"> <button class="btn btn-success  btm-mt float-right">
+                    Subscribe</button></a>
+                     <!-- <button class="btn btn-success  btm-mt float-right" (click)="subscribe(planfreqID.value)">Subscribe</button> -->
+                     
+                 </div>
+                <!-- <button class="btn btn-success btm-mt float-right" (click)="addtocart(products)">Add to Cart</button>
+          <button class="btn btn-success  btm-mt float-right" (click)="subscribe(planfreqID.value)">Subscribe</button> -->
+        
+</div>
+        </div>
+
+      </div>
+    </div>
+
+    </div>
  </div>
  
-     <div class="form-group row ">
-       <label for="staticEmail" class="col-md-3 col-sm-3 col-form-label common-size"> Total Price</label>
-       <div class="col-md-3 col-sm-3">
-         <!--  <input type="text" class="form-control-plaintext form-control" id="staticEmail"  placeholder=""> -->
-      
-        <span class="addon-price" id="testID">  <i class="fas fa-dollar-sign dollor-icon"></i> {{grandTotal}}</span>
-       </div>
-     </div> 
-     
-     <div class="form-group row">
-       <div class="col-md-6">
-          
-         <button class="btn btn-success btm-mt float-right" (click)="addtocart(planDetails$)">Add to Cart</button>
- 
-           <button class="btn btn-success  btm-mt float-right" (click)="subscribe(planfreqID.value)">Subscribe</button>
-           
-       </div>
- 
-     </div>
+    
    </div>    
    
          

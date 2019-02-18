@@ -11,7 +11,7 @@ import { Globals } from '../globals/global';
 })
 export class LoginComponent implements OnInit {
   private custId:String;
-  constructor(public nav: HideMenusService, private router: Router, private data: DataService,private global:Globals) {    this.custId=global.CUSTOMER_ID; }
+  constructor(public nav: HideMenusService,  private router: Router, private data: DataService,private global:Globals) {    this.custId=global.CUSTOMER_ID; }
   userName: string = '';
   password: string = '';
   cardDetails$: Object;
@@ -26,21 +26,25 @@ export class LoginComponent implements OnInit {
   validateLogin() {
 
     if (this.userName == 'admin' && this.password == 'admin') {
+
       this.cardDetails$ = this.data.checkCardDetails(this.custId).subscribe(
-        data => { this.cardDetails$ = data }
+        data => {  
+          var json=JSON.parse(JSON.stringify(data));
+          this.cardDetails$=json.data;
+        }
 
         ,
         err => {
           console.log(err)
         }, () => {
           var json = JSON.parse(JSON.stringify(this.cardDetails$));
-
           if (json.length > 0) {
-            for (let i = 0; i < json.length; i++) {
-              if (json[i].isDefault == true) {
-                sessionStorage.setItem("cardNumner",json[i].maskedCardNumber);
-              } 
-            }
+           // for (let i = 0; i < json.length; i++) {
+             // if (json[i].isDefault == true) {
+                
+                sessionStorage.setItem("cardNumner",json[0].last4);
+             // } 
+            //}
 
             sessionStorage.setItem("isCardAdded", "true");
           } else {
@@ -49,6 +53,30 @@ export class LoginComponent implements OnInit {
         }
       );
       sessionStorage.setItem("userName", "Marry");
+
+      // this.cardDetails$ = this.data.checkCardDetails(this.custId).subscribe(
+      //   data => { this.cardDetails$ = data }
+
+      //   ,
+      //   err => {
+      //     console.log(err)
+      //   }, () => {
+      //     var json = JSON.parse(JSON.stringify(this.cardDetails$));
+
+      //     if (json.length > 0) {
+      //       for (let i = 0; i < json.length; i++) {
+      //         if (json[i].isDefault == true) {
+      //           sessionStorage.setItem("cardNumner",json[i].maskedCardNumber);
+      //         } 
+      //       }
+
+      //       sessionStorage.setItem("isCardAdded", "true");
+      //     } else {
+      //       sessionStorage.setItem("isCardAdded", "false");
+      //     }
+      //   }
+      // );
+
       this.router.navigate(['home']);
     } else {
       alert("Invalid username or Password")

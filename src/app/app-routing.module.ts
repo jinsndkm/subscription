@@ -21,6 +21,7 @@ import { CartDetailsComponent } from './cart-details/cart-details.component'
 import { SuccessMessageComponent } from './success-message/success-message.component';
 import { FusebillAddCardDetailsComponent } from './fusebill-add-card-details/fusebill-add-card-details.component';
 import { RedirectionComponent } from './redirection/redirection.component';
+import { PaymentDetailsComponent } from './payment-details/payment-details.component';
 
 
 const routes: Routes = [
@@ -89,6 +90,10 @@ const routes: Routes = [
   },{
     path:'redirect',
     component:RedirectionComponent
+  }
+  ,{
+    path:'addservice/carddetails/:id',
+    component:PaymentDetailsComponent
   }
  
 ];
