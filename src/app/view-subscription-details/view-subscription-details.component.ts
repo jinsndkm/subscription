@@ -20,7 +20,7 @@ export class ViewSubscriptionDetailsComponent implements OnInit {
     this.nav.show();
     var subId;
     this.route.queryParams.subscribe(params => {
-      console.log(params.subId);
+      alert(params.subId.id)
       subId = params.subId;
       
     })

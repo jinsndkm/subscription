@@ -37,6 +37,7 @@ export class SubscriptionComponent implements OnInit {
 
       data => { //this.mysubscriptions$ = data ;
         var json = JSON.parse(JSON.stringify(data));
+     
         this.mysubscriptions$=json.data;
       },
       err => {
