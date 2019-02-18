@@ -25,7 +25,8 @@
 
         <div class="card common-card">
           <ul>
-            <li *ngFor="let mySubscrriptionDetails of mySubscrriptionDetails$">
+            <!-- <li *ngFor="let mySubscrriptionDetails of mySubscrriptionDetails$"> -->
+                <li>
               <div class="card-header common-panel-head">
                 <!-- <div class="row">
                          <div class="col-md-2">
@@ -54,7 +55,7 @@
 
                 <div class="head-overview">
                   <p class="short-head">ADD MORE SERVICE</p>
-                  <p class="head"> {{mySubscrriptionDetails.planName}}</p>
+                  <p class="head"> {{mySubscrriptionDetails$.items.data[0].plan.nickname}}</p>
                 </div>
 
 
@@ -68,36 +69,36 @@
                       <div class="col-md-3 col-sm-3 col-xs-12">
                         <h4 class="fs-9"> Created</h4>
                         <p class="fs-9">
-                          {{mySubscrriptionDetails.createdTimestamp | date:'dd/MM/yyyy'}}
+                           {{mySubscrriptionDetails$.created*1000 | date:'dd/MM/yyyy'}}
                         </p>
 
                       </div>
                       <div class="col-md-3 col-sm-3 col-xs-12">
                         <h4 class="fs-9"> Activated</h4>
-                        <p class="fs-9">{{mySubscrriptionDetails.activatedTimestamp | date:'dd/MM/yyyy'}} </p>
+                        <p class="fs-9">{{mySubscrriptionDetails$.current_period_start*1000 | date:'dd/MM/yyyy'}} </p>
 
                       </div>
                       <div class="col-md-3 col-sm-3 col-xs-12">
                         <h4 class="fs-9"> Recharge</h4>
-                        <p class="fs-9"> {{mySubscrriptionDetails.planFrequency.interval}} </p>
+                        <p class="fs-9"> {{mySubscrriptionDetails$.items.data[0].plan.nickname}} </p>
                       </div>
                       <div class="col-md-3 col-sm-3 col-xs-12">
                         <h4 class="fs-9"> Next Recharge</h4>
-                        <p class="fs-9"> {{mySubscrriptionDetails.nextPeriodStartDate | date:'dd/MM/yyyy'}} </p>
+                        <p class="fs-9"> {{mySubscrriptionDetails$.current_period_end*1000 | date:'dd/MM/yyyy'}} </p>
                       </div>
 
                     </div>
                     <div class="row">
                       <div class="col-md-3 col-sm-3 col-xs-12">
                         <h4 class="fs-9"> Expires</h4>
-                        <p class="fs-9"> {{mySubscrriptionDetails.openSubscriptionPeriodEndDate | date:'dd/MM/yyyy'}}
+                        <p class="fs-9"> {{mySubscrriptionDetails$.current_period_end*1000 | date:'dd/MM/yyyy'}}
                         </p>
 
                       </div>
                       <div class="col-md-3 col-sm-3 col-xs-12">
                         <h4 class="fs-9"> Auto Renewal</h4>
-                        <p class="fs-9" *ngIf="mySubscrriptionDetails.remainingInterval!=0"> Auto Renewal On  </p>
-                        <p class="fs-9" *ngIf="mySubscrriptionDetails.remainingInterval==0"> Auto Renewal Off  </p>
+                        <p class="fs-9" *ngIf="mySubscrriptionDetails$.billing !='charge_automatically'"> Auto Renewal Off  </p>
+                        <p class="fs-9" *ngIf="mySubscrriptionDetails$.billing =='charge_automatically'"> Auto Renewal On  </p>
 
                       </div>
 
@@ -105,21 +106,7 @@
 
                     </div>
 
-                    <div class="row">
-
-                      <div class="col-md-12 col-sm-12 col-xs-12">
-                        <div class="description">
-
-                          <h4 class="fs-9"> Description</h4>
-                          <p>{{mySubscrriptionDetails.planDescription}}</p>
-
-
-                        </div>
-                      </div>
-
-
-                    </div>
-
+                    
                   </form>
 
 
