@@ -187,8 +187,13 @@ export class DataService {
         err => {
           console.log(err)
         },() => {
+          var json = JSON.parse(JSON.stringify(this.status$));
+         
           this.spinner.hide();
-          this.router.navigate(['SuccessMessage']);
+          if(json.statusCode == 200){
+            this.router.navigate(['SuccessMessage']);
+          }
+          
         });
   }
 
@@ -255,6 +260,10 @@ getMySubscriptionPlanDetails(){
 
 getSingleSignOnKey(custId){
   return this.http.get(rootPath+'/getsignlesignonkey/'+custId);
+}
+
+getSavedCardDetails(custId){
+  return this.http.get(rootPath+'/checkcarddetails/'+custId);
 }
 
 }

@@ -31,6 +31,7 @@ export class PlanProductDetailsComponent implements OnInit {
   key$: Object;
   //t: number=0;
   private custId:String;
+  cardStatus: String;
 
   constructor(private data: DataService, private route: ActivatedRoute,public nav: HideMenusService, private spinner: NgxSpinnerService,private global:Globals) {
     this.custId=global.CUSTOMER_ID;
@@ -50,6 +51,8 @@ export class PlanProductDetailsComponent implements OnInit {
     //     this.spinner.hide();
     //   }, 4000);
     // }
+    this.spinner.show();
+    this.cardStatus=sessionStorage.getItem("isCardAdded");
     sessionStorage.setItem("redirectPage",window.location.href);
     this.nav.show();
     var subId;
@@ -66,7 +69,7 @@ export class PlanProductDetailsComponent implements OnInit {
       err => {
         console.log(err)
       }, () => {
-
+        this.spinner.hide();
 
         // if (this.planProducts$[0].orderToCashCycles.length == 1) {
 
@@ -168,54 +171,9 @@ export class PlanProductDetailsComponent implements OnInit {
 
 
 
-  yourfunc(addonvalue, event) {
-
-    if (event.target.checked) {
-      this.grandTotal = this.grandTotal + parseInt(addonvalue);
-    } else {
-      this.grandTotal = this.grandTotal - parseInt(addonvalue);
-    }
-
-    //this.test('s',this.grandTotal);
-
-  }
-
-  subscribe(s) {
-
-    var resp = this.data.createSub(s, "cus_EIVdTe9OLZr2Em");
-  //   sessionStorage.setItem("subId",s);
-  //   if(sessionStorage.getItem("isCardAdded")=="true"){
-  //     if (confirm("We will use your default card "+sessionStorage.getItem("cardNumner") +" for completing the payment. To add a new card for the payment go to the dashboard, click on Manage Card Details and make the card as Default")) {
-    
-  //   this.spinner.show();
-  //   setTimeout(() => {
-  //     /** spinner ends after 5 seconds */
-  //     this.spinner.hide();
-  //   }, 4000);
-  //   var status = this.data.createSub(s, this.custId);
-  //   var json = JSON.stringify(status);
-  // }}else{
-  //   if (confirm("No222 card is added yet. Please clik Ok for add a new card.")) {
-  //     this.spinner.show();
-  //     this.data.getSingleSignOnKey(this.custId).subscribe(
   
-  //       data => { this.key$ = data },
-  //       err => {
-  //         console.log(err)
-  //       }, () => {
-  //         window.location.href = 'https://zoftsolutions.mybillsystem.com/ManagedPortal/PaymentMethod?token=' + this.key$;
-  //       }
-  
-  //     );
-  //     setTimeout(() => {
-  //       /** spinner ends after 5 seconds */
-  //       this.spinner.hide();
-  //     }, 3500);
-  //   }
-    
-  // }
 
-  }
+  
 
 
 
@@ -228,32 +186,33 @@ export class PlanProductDetailsComponent implements OnInit {
 
 
   addtocart(planDetails) {
+
     if (typeof this.freId$ === "undefined") {
-      planDetails.selectedFreId = planDetails.planFrequencies[0].id;
+      planDetails.selectedFreId = planDetails.id;
     } else {
       planDetails.selectedFreId = this.freId$;
     }
 
 
-    this.data.getPlanProducts(planDetails.id).subscribe(
-      data => { this.tempPlanProducts$ = data },
-      err => {
-        console.log(err)
-      }, () => {
+    // this.data.getPlanProducts(planDetails.id).subscribe(
+    //   data => { this.tempPlanProducts$ = data },
+    //   err => {
+    //     console.log(err)
+    //   }, () => {
 
-        // this.test()
-      }
+    //     // this.test()
+    //   }
 
-    );
-    let total = 0;
-    for (let products of _.values(this.planProducts$)) {
-      for (let corderToCash of products.orderToCashCycles) {
-        if (corderToCash.planFrequencyId == planDetails.selectedFreId) {
-          total += corderToCash.pricingModel.quantityRanges[0].prices[0].amount;
-        }
-      }
+    // );
+    let total = planDetails.amount;
+    // for (let products of _.values(this.planProducts$)) {
+    //   for (let corderToCash of products.orderToCashCycles) {
+    //     if (corderToCash.planFrequencyId == planDetails.selectedFreId) {
+    //       total += corderToCash.pricingModel.quantityRanges[0].prices[0].amount;
+    //     }
+    //   }
 
-    }
+    // }
 
     planDetails.amount = total;
 
@@ -268,9 +227,8 @@ export class PlanProductDetailsComponent implements OnInit {
     sessionStorage.setItem("cartList", JSON.stringify(this.empList));
   }
 
-  getAmount(plnID) {
+  getPlanId(plnID) {
     this.freId$ = plnID;
-    this.getTotalAmount(plnID, "change")
   }
 
   producttype = true;
