@@ -27,7 +27,10 @@ export class LoginComponent implements OnInit {
 
     if (this.userName == 'admin' && this.password == 'admin') {
       this.cardDetails$ = this.data.checkCardDetails(this.custId).subscribe(
-        data => { this.cardDetails$ = data }
+        data => {  
+          var json=JSON.parse(JSON.stringify(data));
+          this.cardDetails$=json.data;
+        }
 
         ,
         err => {
@@ -36,11 +39,12 @@ export class LoginComponent implements OnInit {
           var json = JSON.parse(JSON.stringify(this.cardDetails$));
 
           if (json.length > 0) {
-            for (let i = 0; i < json.length; i++) {
-              if (json[i].isDefault == true) {
-                sessionStorage.setItem("cardNumner",json[i].maskedCardNumber);
-              } 
-            }
+           // for (let i = 0; i < json.length; i++) {
+             // if (json[i].isDefault == true) {
+                
+                sessionStorage.setItem("cardNumner",json[0].last4);
+             // } 
+            //}
 
             sessionStorage.setItem("isCardAdded", "true");
           } else {

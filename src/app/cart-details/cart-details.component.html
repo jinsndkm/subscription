@@ -6,7 +6,7 @@
       <img src="../assets/logo.png" />
 
     </div>
-
+ 
     <div class="col-md-12">
       <div class="greetings">
         <!-- <p>Welcome to Mary's care dashboard</p> -->
@@ -64,14 +64,14 @@
 
                       <tr *ngFor="let cartItem of cartItems;let i = index">
 
-                        <td>{{cartItem.name}}</td>
+                        <td>{{cartItem.nickname}}</td>
                         <td>{{cartItem.amount}}</td>
-                        <div *ngFor="let plan of cartItem.planFrequencies">
+                        <!-- <div *ngFor="let plan of cartItem.planFrequencies">
                           <div *ngIf="cartItem.selectedFreId == plan.id">
                             <td>{{plan.interval}}</td>
-                          </div>
-
-                        </div>
+                          </div> -->
+                          <td>{{cartItem.interval}}</td>
+                        <!-- </div> -->
                         <td><button class="btn btn-danger btn-cancel btm-mt" (click)="remove(cartItem)" type="button">Remove</button></td>
                       </tr>
 
@@ -93,6 +93,8 @@
                        <button class="up-link btn btn-success float-right btm-mt" (click)="subscribe(cartItems)">Checkout</button>
                       
                       </ng-template>
+                      <!-- <button class="up-link btn btn-success float-right btm-mt" (click)="subscribe(cartItems)">Checkout</button> -->
+
                       <a routerLink="addservice" class="up-link btn btn-success float-right btm-mt">Continue Shopping</a>
                       </div>
 
