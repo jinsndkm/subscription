@@ -53,6 +53,7 @@ export class SubscriptionComponent implements OnInit {
   //Method to delete an active subscription
   cancelSubscription(subId, planname) {
     if (confirm("Are you sure to cancel " + planname + "?")) {
+      this.spinner.show();
       this.items$ = this.data.cancelSubscription(subId).subscribe(
 
         data => { //this.mysubscriptions$ = data ;
@@ -60,8 +61,11 @@ export class SubscriptionComponent implements OnInit {
           // this.mysubscriptions$=json.data;
           if(json.status=='canceled'){
             alert("Subscription cancelled successfully")
+            this.spinner.hide();
+            window.location.reload();  
           }else{
             alert("Sorry!Try again")
+            this.spinner.hide();
           }
          
         },
@@ -71,6 +75,7 @@ export class SubscriptionComponent implements OnInit {
         }
   
       );;
+      
       // this.data.getMySubscription().subscribe(
       //   data => this.mysubscriptions$ = data
       // );
