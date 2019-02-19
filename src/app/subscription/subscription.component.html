@@ -94,8 +94,8 @@
                       <div class="col-md-3">
           
                         <button type="button" class="btn btn-danger btn-cancel btm-mt" (click)="cancelSubscription(mysubscriptions.id,mysubscriptions.plan.nickname)">Cancel</button>
-                        <div *ngIf="mysubscriptions.plan.active==true;then content"></div>    
-                        <ng-template #content> <a [routerLink]="['upgradeSubscription']" [queryParams]="{subId: mysubscriptions.plan.id}" class="btn-upgrade btn btn-info btm-mt btn-link" > Upgrade </a></ng-template>
+                        <!-- <div *ngIf="mysubscriptions.plan.active==true;then content"></div>    
+                        <ng-template #content> <a [routerLink]="['upgradeSubscription']" [queryParams]="{subId: mysubscriptions.plan.id}" class="btn-upgrade btn btn-info btm-mt btn-link" > Upgrade </a></ng-template> -->
                        
                        
 
