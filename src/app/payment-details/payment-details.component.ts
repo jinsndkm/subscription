@@ -18,8 +18,9 @@ export class PaymentDetailsComponent implements OnInit {
   private custId:String;
   savedCardDetails$: Object;
   planid:String;
+  cartAdded:boolean;
   status$: Object;
-
+  cartItems: Array<any> = [];
   cardStatus: String;
 
   constructor(private http: HttpClient,private data: DataService, private route: ActivatedRoute,public nav: HideMenusService, private spinner: NgxSpinnerService,private global:Globals) {
@@ -35,7 +36,14 @@ this.cardStatus=sessionStorage.getItem("isCardAdded");
    
     this.route.params.subscribe(params => {
       console.log(params.id);
-      this.planid = params.id;
+       if (params.id == 'cart_plan') {
+        console.log("cart>");
+        this.cartAdded=true;
+        this.cartItems = JSON.parse(sessionStorage.getItem('cartList'));
+      } else {
+        this.planid = params.id;
+      }
+      
     })
     
     this.data.getSavedCardDetails(this.custId).subscribe(
@@ -57,7 +65,16 @@ this.cardStatus=sessionStorage.getItem("isCardAdded");
 
   subscribe() {
 
-    var resp = this.data.createSub(this.planid, this.custId);
+    if (this.cartAdded) {
+      console.log("cart>>");
+      this.cartItems.forEach(element => {
+        alert(">>"+element.selectedFreId+">>"+this.custId)
+        var status = this.data.createSub(element.selectedFreId, this.custId);
+      });
+    } else {
+      var resp = this.data.createSub(this.planid, this.custId);
+    }
+    
 
   }
 

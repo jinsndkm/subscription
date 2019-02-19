@@ -88,14 +88,31 @@
 
                   <div class="row">
                     <div class="col-md-12">
+
+                        <div  *ngIf="cardStatus == 'true' ">
+                      
                       <div *ngIf="grandTotal!=0;then content"></div>   
                       <ng-template #content>  
-                       <button class="up-link btn btn-success float-right btm-mt" (click)="subscribe(cartItems)">Checkout</button>
-                      
+                          <a routerLink="/addservice/carddetails/cart_plan"> 
+                       <button class="up-link btn btn-success float-right btm-mt">Checkout true</button>
+                      </a>
                       </ng-template>
-                      <!-- <button class="up-link btn btn-success float-right btm-mt" (click)="subscribe(cartItems)">Checkout</button> -->
 
                       <a routerLink="addservice" class="up-link btn btn-success float-right btm-mt">Continue Shopping</a>
+
+                    </div>
+                    <div  *ngIf="cardStatus == 'false' ">
+                      
+                        <div *ngIf="grandTotal!=0;then content"></div>   
+                        <ng-template #content> 
+                            <a routerLink="/addservice/carddetails/cart_plan"> 
+                         <button class="up-link btn btn-success float-right btm-mt">Checkout false</button>
+                        </a>
+                        </ng-template>
+  
+                        <a routerLink="addservice" class="up-link btn btn-success float-right btm-mt">Continue Shopping</a>
+  
+                      </div>
                       </div>
 
                     </div>

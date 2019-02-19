@@ -49,7 +49,7 @@ export class PlanProductDetailsComponent implements OnInit {
     //   setTimeout(() => {
     //     /** spinner ends after 5 seconds */
     //     this.spinner.hide();
-    //   }, 4000);
+    //   }, 4000);faddcarddetails
     // }
     this.spinner.show();
     this.cardStatus=sessionStorage.getItem("isCardAdded");
@@ -57,8 +57,13 @@ export class PlanProductDetailsComponent implements OnInit {
     this.nav.show();
     var subId;
     this.route.params.subscribe(params => {
+      // if (params.id=0) {
+      //   console.log("cart");
+      // } else {
+        subId = params.id;
+      // }
       console.log(params.id);
-      subId = params.id;
+      
     })
     this.data.getPlanProducts(subId).subscribe(
       data => {

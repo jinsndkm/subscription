@@ -16,6 +16,7 @@ export class CartDetailsComponent implements OnInit {
   grandTotal: number = 0;
   key$: Object;
 private custId:String;
+cardStatus: String;
   constructor(private data: DataService, public nav: HideMenusService, private spinner: NgxSpinnerService,private global:Globals) { 
     this.custId=global.CUSTOMER_ID;
   }
@@ -25,7 +26,7 @@ private custId:String;
     sessionStorage.setItem("redirectPage",window.location.href);
     this.nav.show();
     this.cartItems = JSON.parse(sessionStorage.getItem('cartList'));
-
+    this.cardStatus=sessionStorage.getItem("isCardAdded");
     this.cartItems.forEach(element => {
       this.grandTotal += element.amount;
     });
@@ -65,7 +66,6 @@ private custId:String;
         this.spinner.hide();
       }, 4000);  
       checkOutItems.forEach(element => {
-        alert(">>"+element.selectedFreId+">>"+this.custId)
         var status = this.data.createSub(element.selectedFreId, this.custId);
       });
       sessionStorage.removeItem('cartList');
