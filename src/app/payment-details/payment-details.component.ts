@@ -68,7 +68,6 @@ this.cardStatus=sessionStorage.getItem("isCardAdded");
     if (this.cartAdded) {
       console.log("cart>>");
       this.cartItems.forEach(element => {
-        alert(">>"+element.selectedFreId+">>"+this.custId)
         var status = this.data.createSub(element.selectedFreId, this.custId);
       });
     } else {
