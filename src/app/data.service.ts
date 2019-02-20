@@ -151,38 +151,6 @@ export class DataService {
       .subscribe(data => {
         this.status$ = data;
         var json = JSON.parse(JSON.stringify(this.status$));
-        
-        
-        // var json = JSON.parse(JSON.stringify(this.status$));
-
-        // var subId = json.id;
-
-        // //alert("DDD::>"+this.status$.id);
-        // //let planID= this.status$.id;
-        // const activationBody = { "subscriptionId": subId };
-        // //const activationBody = { "subscriptionId": 12345 };
-        // const headers = new HttpHeaders()
-        //   .set('Authorization', 'Basic MDpEZk9jcExWQVFFczk1U1hPSWhER0J0RzFXOFJCaGs3UVFsU2xOQ0JJRUJ4Y1NSSG9JQXAzbTJVdGFWNVRZUlVN')
-        //   .set('Content-Type', 'application/json')
-        //   .set('Access-Control-Allow-Origin', '*');
-
-        // return this.http.post(rootPath + '/subscription/activate', activationBody, {
-        //   headers: headers
-        // })
-        //   .subscribe(data => {
-        //     this.status$ = data
-        //     var json = JSON.parse(JSON.stringify(this.status$))
-        //   },
-        //   err => {
-        //     console.log(err)
-        //   },() => {
-        //     this.router.navigate(['SuccessMessage']);
-        //   }
-        // );
-
-
-
-
       },
         err => {
           console.log(err)
@@ -191,7 +159,18 @@ export class DataService {
          
           this.spinner.hide();
           if(json.statusCode == 200){
-            this.router.navigate(['SuccessMessage']);
+
+             this.http.get(rootPath + '/writetocsv/' + this.custId).subscribe(data => {
+              this.status$ = data;
+              var json = JSON.parse(JSON.stringify(this.status$));
+            },
+              err => {
+                console.log(err)
+              },() => {
+                this.router.navigate(['SuccessMessage']);
+                
+              });
+            
           }
           
         });

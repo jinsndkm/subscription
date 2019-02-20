@@ -5,6 +5,7 @@ import { HideMenusService } from '../hide-menus.service';
 import {enableProdMode} from '@angular/core';
 import * as $ from "jquery";
 import * as _ from "lodash"
+import { NgxSpinnerService } from 'ngx-spinner';
 
 enableProdMode();
 
@@ -16,13 +17,14 @@ enableProdMode();
 export class MyserviceComponent implements OnInit {
 
   servicesList$: Object;
+  mysubscriptions$: Object;
 
   private modals: any[] = [];
 plans:any = [];
-  constructor(private data: DataService, public nav: HideMenusService) { }
+  constructor(private data: DataService, public nav: HideMenusService, private spinner: NgxSpinnerService) { }
 
   ngOnInit() {
-    
+    this.spinner.show();
     //this.nav.show();
     //sessionStorage.setItem("Plans",this.plans);
     this.data.getAllFusebillServices().subscribe(
@@ -34,13 +36,26 @@ plans:any = [];
       err => {
         console.log(err)
       }, () => {
-
-
-
-
+        this.spinner.hide();
       }
       
     );
+
+    this.data.getMySubscription().subscribe(
+
+      data => { //this.mysubscriptions$ = data ;
+        var json = JSON.parse(JSON.stringify(data));
+        this.mysubscriptions$=json.data;
+        
+      },
+      err => {
+        console.log(err)
+      }, () => {
+      }
+
+    );
+
+
     
 
 
