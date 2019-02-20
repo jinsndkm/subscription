@@ -47,6 +47,8 @@ import { PaymentDetailsComponent } from './payment-details/payment-details.compo
 
 // search module
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { ManageCardsComponent } from './manage-cards/manage-cards.component';
+import { ManageNewCardComponent } from './manage-new-card/manage-new-card.component';
 
 
 
@@ -78,7 +80,9 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     RedirectionComponent,
     TruncatePipe,
     StripeAddCardComponent,
-    PaymentDetailsComponent
+    PaymentDetailsComponent,
+    ManageCardsComponent,
+    ManageNewCardComponent
   ],
   imports: [
     BrowserModule,

@@ -1,7 +1,17 @@
 <form novalidate (ngSubmit)="buy()" [formGroup]="stripeTest">
   <!-- <input type="text" formControlName="name" placeholder="Jane Doe"> -->
-  <div id="card-element" class="field"></div>
-  <button type="submit">
-    BUY
-  </button>
+
+
+  <div class="row">
+<div class="col-md-12">
+  <div class="card-section">   
+    <div id="card-element" class="field"></div>
+    <button type="submit" class="btn btn-success  btm-mt float-right">
+        Proceed to pay
+      </button>
+</div> </div>
+
+  </div>
+
+
 </form>

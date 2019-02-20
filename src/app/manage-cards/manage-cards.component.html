@@ -1,0 +1,170 @@
+
+
+
+<div class="section">  
+
+    <div class="row">
+   
+       <div class="col-md-12">
+   
+         <img src="../assets/logo.png" />
+   
+       </div>
+   
+      
+   
+     </div>
+   
+   <div class="row">
+   
+     <div class="col-md-12">
+     <div class="panel-section">
+   
+   <div class="card common-card">
+     <div class="card-header common-panel-head">
+       <!-- <div class="row">
+                <div class="col-md-2">
+   
+   
+                </div>
+                <div class="col-md-10">
+                  <h4>SUBSCRIPTION </h4>
+   
+                  <h3>My Subscriptions</h3>
+   
+                 
+                </div>
+   
+   
+              </div> -->
+       <div class="head-score">
+   
+         <i class="fas fa-align-justify l-icon"></i>
+       </div>
+       <div class="head-overview">
+         <p class="short-head">PRODUCT</p>
+         <p class="head"> </p>
+      
+    
+       </div>
+       <div class="head-overview">  
+           <a routerLink="/myCart">
+             <!-- hiiii</a> -->
+    <!-- <a href="#">   -->
+       <!-- <a routerLink="mysubscription">   -->
+           <p class="count"> <i class="fas fa-shopping-cart"></i> <span>  {{cartItems.length}}  </span>    </p>
+         </a>
+         </div>
+   
+   
+     </div>
+   
+   </div>
+   
+     </div>
+   
+   
+   
+     </div>
+   
+   
+   
+   </div>
+   
+   
+   
+     <div class="service-sec">
+  
+  
+  
+       <div class="row">
+         <div class="col-md-12">
+   
+           <!-- Button to Open the Modal -->
+   
+      
+   
+       
+   
+           <div class="form-check-inline f-18 mrg-btm-1">
+             <label class="form-check-label servicename">
+              
+       
+             </label>
+           </div>
+         </div>
+       </div>
+  
+  
+       <div class="row">
+  
+  <div class="col-md-6">
+  
+      <a routerLink="/addnewcardstripe"> <button class="active-btn btn btn-sucess new-card-btn">
+          Add new card  <i class="fas fa-plus"></i> </button></a>
+  
+  </div>
+  
+       </div>
+       
+       <div *ngFor="let card of savedCardDetails$;let i=index" >
+        
+     
+       <div class="row">
+       <div class="col-md-6 col-sm-6 col-xs-12">
+      <div class="cardsection"> 
+  
+  
+    
+       <div class="form-group row addonrow">
+      
+       
+         <div class="col-md-11"> 
+           <div class="row"> 
+         <div class="col-md-6 col-sm-6">
+   
+            <!-- <div class="col-md-12"  *ngIf="products.productType== 'OneTimeCharge'"> -->
+           <label class="f-1em">
+            
+             
+          <span class="min-w"> {{card.brand}}   </span>
+           </label>
+          
+         </div>
+         <div class="col-md-6 col-sm-6">
+            <p class="ex-date">  Exp {{card.exp_year}} / {{card.exp_month}}  </p>
+          </div>
+        </div>     <div class="row"> 
+         <div class="col-md-6 col-sm-6">
+            <!-- <span class="addon-price" > <i class="fas fa-dollar-sign dollor-icon"></i> {{amount}} </span> -->
+            
+           <span class="addon-price" > **** {{card.last4}} </span>
+        
+          </div>
+  
+          <div class="col-md-6">
+  
+              <p class="country">  {{card.country}} </p>
+  
+          </div>
+          </div>
+        </div>
+       </div>
+      </div>
+      
+    </div>
+    <button class="btn btn-danger btn-cancel btm-mt" (click)="deletecard(card.id)">Remove </button>
+    </div>
+    
+    
+           
+   </div>
+   
+      
+       
+       
+     </div>    
+     
+           
+   
+   </div>
