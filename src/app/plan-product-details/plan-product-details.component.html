@@ -118,32 +118,7 @@
            
         <span class="min-w"> Amount  </span>
          </label>
-
-         <!-- </div> -->
- 
- 
-         <!-- <div class="col-md-12"  *ngIf="products.productType== 'RecurringService' && products.isIncludedByDefault == false">
-             <label class="f-1em">
-                 <input type="checkbox" class="f" #titleInput1 value="{{products.orderToCashCycles[0].pricingModel.quantityRanges[0].prices[0].amount}}" style="margin-right: 7px;" (click)="yourfunc(titleInput1.value,$event)" >
-                 
-               <span class="min-w"> {{products.productName}} </span>
-             </label>
-             </div>
-             <div class="col-md-12"  *ngIf="products.productType== 'RecurringService' && products.isIncludedByDefault == true">
-                 <label class="f-1em">
-                   <span class="f" value="" style="margin-right: 22px;" ></span>
-                   
-                   <span class="min-w"> {{products.productName}} </span>
-                 </label>
-                 </div> -->
-       </div>
-       <div class="col-md-3 col-sm-3">
-         <!--  <input type="text" class="form-control-plaintext form-control" id="staticEmail"  placeholder=""> -->
-         <!-- <span class="addon-price" > <i class="fas fa-dollar-sign dollor-icon"></i> {{products.orderToCashCycles[0].pricingModel.quantityRanges[0].prices[0].amount}} </span> -->
-         <span *ngIf="products.orderToCashCycles.length==1" id="test4{{i}}" class="addon-price" >${{products.orderToCashCycles[0].pricingModel.quantityRanges[0].prices[0].amount}}  </span>
-         <span *ngIf="products.orderToCashCycles.length>1" id="test4{{i}}" class="addon-price" >${{products.orderToCashCycles[1].pricingModel.quantityRanges[0].prices[0].amount}}  </span>
-
-
+        
        </div>
        <div class="col-md-3 col-sm-3">
           <!-- <span class="addon-price" > <i class="fas fa-dollar-sign dollor-icon"></i> {{amount}} </span> -->
@@ -183,7 +158,7 @@
                   </div>
                   <div  *ngIf="cardStatus == 'false' ">
                   
-                   <button class="btn btn-success btm-mt float-right" (click)="addtocart(products)">Add to Cart</button>
+                   <button class="btn btn-success btm-mt float-right" (click)="addtocart(planDetails$)">Add to Cart</button>
                    
                    <a routerLink="/addservice/addcarddetails/{{planfreqID.value}}"> <button class="btn btn-success  btm-mt float-right">
                     Subscribe</button></a>
