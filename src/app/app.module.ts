@@ -37,10 +37,17 @@ import { RedirectionComponent } from './redirection/redirection.component';
 import {Globals} from './globals/global'
 
 import { TruncatePipe } from './limit-length';
+
+import { StripeAddCardComponent } from './stripe-add-card/stripe-add-card.component';
+
+import { NgxStripeModule } from 'ngx-stripe';
+
+
 import { PaymentDetailsComponent } from './payment-details/payment-details.component';
 
 // search module
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+
 
 
 @NgModule({
@@ -70,8 +77,8 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     FusebillAddCardDetailsComponent,
     RedirectionComponent,
     TruncatePipe,
+    StripeAddCardComponent,
     PaymentDetailsComponent
-
   ],
   imports: [
     BrowserModule,
@@ -80,6 +87,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     FormsModule   ,
     NgxSpinnerModule,
     FilterPipeModule,
+    NgxStripeModule.forRoot('pk_test_Ya4lCs0DQCh9UAaWuz85LMCu'),
     NgxPaginationModule,
     ReactiveFormsModule,
     Ng2SearchPipeModule

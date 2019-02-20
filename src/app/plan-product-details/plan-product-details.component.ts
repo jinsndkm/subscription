@@ -30,17 +30,72 @@ export class PlanProductDetailsComponent implements OnInit {
 
   key$: Object;
   //t: number=0;
+
   private custId:String;
   cardStatus: String;
 
-  constructor(private data: DataService, private route: ActivatedRoute,public nav: HideMenusService, private spinner: NgxSpinnerService,private global:Globals) {
-    this.custId=global.CUSTOMER_ID;
-   }
+  constructor(private data: DataService, private route: ActivatedRoute, public nav: HideMenusService, private spinner: NgxSpinnerService, private global: Globals) {
+    this.custId = global.CUSTOMER_ID;
+  }
 
   //t: number=0;
 
 
   ngOnInit() {
+
+
+    
+
+    if (sessionStorage.getItem("subId") != null && sessionStorage.getItem("subId") != 'null') {
+
+      if (sessionStorage.getItem("isCardAdded") == "true") {
+       
+
+        if (confirm("We will use your default card " + sessionStorage.getItem("cardNumner") + " for completing the payment. To add a new card for the payment go to the dashboard, click on Manage Card Details and make the card as Default")) {
+
+          this.spinner.show();
+          var status = this.data.createSub(sessionStorage.getItem("subId"), this.custId);
+          var json = JSON.stringify(status);
+
+          sessionStorage.setItem("redirectPage", window.location.href);
+          this.nav.show();
+
+          setTimeout(() => {
+            /** spinner ends after 5 seconds */
+            this.spinner.hide();
+          }, 4000);
+        } else {
+          
+          sessionStorage.setItem("subId", 'null');
+        }
+      } else {
+        
+        if (confirm("You need at least one default payment method before subscribing a service. Please click ok to add a new payment method.")) {
+          this.spinner.show();
+          this.data.getSingleSignOnKey(this.custId).subscribe(
+
+            data => { this.key$ = data },
+            err => {
+              console.log(err)
+            }, () => {
+              window.location.href = 'https://zoftsolutions.mybillsystem.com/ManagedPortal/PaymentMethod?token=' + this.key$;
+            }
+
+          );
+          setTimeout(() => {
+            /** spinner ends after 5 seconds */
+            this.spinner.hide();
+          }, 3500);
+        } else {
+          
+          sessionStorage.setItem("subId", 'null');
+        }
+
+      }
+
+    }
+
+
     // if(sessionStorage.getItem("subId")!=null){
     //   this.spinner.show();
     //   var status = this.data.createSub(sessionStorage.getItem("subId"), this.custId);
@@ -55,6 +110,7 @@ export class PlanProductDetailsComponent implements OnInit {
     this.cardStatus=sessionStorage.getItem("isCardAdded");
     sessionStorage.setItem("redirectPage",window.location.href);
     this.nav.show();
+
     var subId;
     this.route.params.subscribe(params => {
       // if (params.id=0) {
@@ -78,10 +134,19 @@ export class PlanProductDetailsComponent implements OnInit {
 
         // if (this.planProducts$[0].orderToCashCycles.length == 1) {
 
+
+        if (this.planProducts$[0].orderToCashCycles.length == 1) {
+
+          this.getTotalAmount(this.planProducts$[0].orderToCashCycles[0].planFrequencyId, "init")
+        } else {
+          this.getTotalAmount(this.planProducts$[0].orderToCashCycles[1].planFrequencyId, "init")
+        }
+
         //   this.getTotalAmount(this.planProducts$[0].orderToCashCycles[0].planFrequencyId, "init")
         // } else {
         //   this.getTotalAmount(this.planProducts$[0].orderToCashCycles[0].planFrequencyId, "init")
         // }
+
 
 
 
@@ -119,17 +184,20 @@ export class PlanProductDetailsComponent implements OnInit {
 
     let sum = 0;
     let count = 0;
-    for (let j = 0; j < JSON.stringify(this.planProducts$).length; j++) {
+    // alert(JSON.stringify(this.planProducts$).length)
+    var json = JSON.parse(JSON.stringify(this.planProducts$));
+    for (let j = 0; j < json.length; j++) {
 
 
       if (from == "change") {
         for (let i = 0; i < this.planProducts$[j].orderToCashCycles.length; i++) {
+
           if (this.planProducts$[j].orderToCashCycles[i].planFrequencyId == plnID) {
 
             sum = sum + this.planProducts$[j].orderToCashCycles[i].pricingModel.quantityRanges[0].prices[0].amount;
             this.grandTotal = sum;
 
-            document.getElementById("test4" +j).innerHTML = "$" + this.planProducts$[j].orderToCashCycles[i].pricingModel.quantityRanges[0].prices[0].amount;
+            document.getElementById("test4" + j).innerHTML = "$" + this.planProducts$[j].orderToCashCycles[i].pricingModel.quantityRanges[0].prices[0].amount;
 
           }
 
@@ -137,16 +205,9 @@ export class PlanProductDetailsComponent implements OnInit {
 
 
         }
+
       } else {
         for (let i = 0; i < this.planProducts$[j].orderToCashCycles.length; i++) {
-
-          //alert(this.planProducts$[j].orderToCashCycles[i].pricingModel.quantityRanges[0].prices[0].amount);
-          // if(products.productType == 'RecurringService' && products.isIncludedByDefault == false){
-
-          // }else{
-          // sum+=products.orderToCashCycles[0].pricingModel.quantityRanges[0].prices[0].amount;
-          // }
-          //alert(this.planProducts$[j].orderToCashCycles[i].planFrequencyId)
 
 
           if (this.planProducts$[j].orderToCashCycles[i].planFrequencyId == plnID) {
@@ -154,7 +215,7 @@ export class PlanProductDetailsComponent implements OnInit {
             sum = sum + this.planProducts$[j].orderToCashCycles[i].pricingModel.quantityRanges[0].prices[0].amount;
             this.grandTotal = sum;
 
-            document.getElementById("test4"+j).innerHTML = "$"+this.planProducts$[j].orderToCashCycles[i].pricingModel.quantityRanges[0].prices[0].amount;
+            // document.getElementById("test4" + i).innerHTML = "$" + this.planProducts$[j].orderToCashCycles[i].pricingModel.quantityRanges[0].prices[0].amount;
 
 
           }
@@ -167,7 +228,6 @@ export class PlanProductDetailsComponent implements OnInit {
         }
 
       }
-      count++;
     }
 
     return this.grandTotal;
@@ -176,7 +236,54 @@ export class PlanProductDetailsComponent implements OnInit {
 
 
 
-  
+  yourfunc(addonvalue, event) {
+
+    if (event.target.checked) {
+      this.grandTotal = this.grandTotal + parseInt(addonvalue);
+    } else {
+      this.grandTotal = this.grandTotal - parseInt(addonvalue);
+    }
+
+    //this.test('s',this.grandTotal);
+
+  }
+
+  subscribe(s) {
+    sessionStorage.setItem("subId", s);
+    if (sessionStorage.getItem("isCardAdded") == "true") {
+      if (confirm("We will use your default card " + sessionStorage.getItem("cardNumner") + " for completing the payment. To add a new card for the payment go to the dashboard, click on Manage Card Details and make the card as Default")) {
+
+        this.spinner.show();
+
+        var status = this.data.createSub(s, this.custId);
+        var json = JSON.stringify(status);
+
+      }else{
+        sessionStorage.setItem("subId", 'null');
+      }
+    } else {
+      if (confirm("You need at least one default payment method before subscribing a service. Please click ok to add a new payment method.")) {
+        this.spinner.show();
+        this.data.getSingleSignOnKey(this.custId).subscribe(
+
+          data => { this.key$ = data },
+          err => {
+            console.log(err)
+          }, () => {
+            window.location.href = 'https://zoftsolutions.mybillsystem.com/ManagedPortal/PaymentMethod?token=' + this.key$;
+          }
+
+        );
+        setTimeout(() => {
+          /** spinner ends after 5 seconds */
+          this.spinner.hide();
+        }, 3500);
+      }else{
+        sessionStorage.setItem("subId", 'null');
+      }
+
+    }
+
 
   
 
