@@ -37,7 +37,9 @@ import { RedirectionComponent } from './redirection/redirection.component';
 import {Globals} from './globals/global'
 
 import { TruncatePipe } from './limit-length';
+import { StripeAddCardComponent } from './stripe-add-card/stripe-add-card.component';
 
+import { NgxStripeModule } from 'ngx-stripe';
 
 
 
@@ -71,7 +73,8 @@ import { TruncatePipe } from './limit-length';
     CartDetailsComponent,
     FusebillAddCardDetailsComponent,
     RedirectionComponent,
-    TruncatePipe
+    TruncatePipe,
+    StripeAddCardComponent
 
   ],
   imports: [
@@ -81,6 +84,7 @@ import { TruncatePipe } from './limit-length';
     FormsModule   ,
     NgxSpinnerModule,
     FilterPipeModule,
+    NgxStripeModule.forRoot('pk_test_Ya4lCs0DQCh9UAaWuz85LMCu'),
     NgxPaginationModule,
     ReactiveFormsModule
   ],

@@ -9,7 +9,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 
 
 // import { stat } from 'fs';
-
+var querystring = require('querystring');
 
 var rootPath = "http://localhost:3000";
 
@@ -27,10 +27,15 @@ const httpOptions = {
 
 export class DataService {
   status$: Object;
-  private custId:String;
 
-  constructor(private http: HttpClient, private router: Router,private global:Globals,private spinner: NgxSpinnerService) {
-    this.custId=global.CUSTOMER_ID;
+  cardBody$: Object;
+
+  cardDetails$: Object;
+
+  private custId: String;
+
+  constructor(private http: HttpClient, private router: Router, private global: Globals, private spinner: NgxSpinnerService) {
+    this.custId = global.CUSTOMER_ID;
   }
 
   getUsers() {
@@ -113,7 +118,7 @@ export class DataService {
         if (json.HttpStatusCode == 400) {
           alert("Something Went wrong! Please try again")
           this.router.navigate(['home/mysubscription']);
-         // return planBody;
+          // return planBody;
 
         } else {
           alert("Plan upgraded successfully")
@@ -174,20 +179,20 @@ export class DataService {
             this.status$ = data
             var json = JSON.parse(JSON.stringify(this.status$))
           },
-          err => {
-            console.log(err)
-          },() => {
-            this.spinner.hide();
-            this.router.navigate(['SuccessMessage']);
-          }
-        );
+            err => {
+              console.log(err)
+            }, () => {
+              this.spinner.hide();
+              this.router.navigate(['SuccessMessage']);
+            }
+          );
 
 
 
 
       });
   }
-  
+
   enableAutorenewal(subscriptionId, status) {
     return this.http.get(rootPath + '/mysubscription/autorenewal/' + subscriptionId + '/' + status);
   }
@@ -200,17 +205,69 @@ export class DataService {
 
 
 
-checkCardDetails(custId){
-  console.log('CustomerID '+custId);
-  return this.http.get(rootPath+'/checkcarddetails/'+custId);
-}
+  checkCardDetails(custId) {
+    console.log('CustomerID ' + custId);
+    return this.http.get(rootPath + '/checkcarddetails/' + custId);
+  }
 
-getMySubscriptionPlanDetails(){
-  return this.http.get(rootPath+'/checkcarddetails/');
-}
+  getMySubscriptionPlanDetails() {
+    return this.http.get(rootPath + '/checkcarddetails/');
+  }
 
-getSingleSignOnKey(custId){
-  return this.http.get(rootPath+'/getsignlesignonkey/'+custId);
-}
+  getSingleSignOnKey(custId) {
+    return this.http.get(rootPath + '/getsignlesignonkey/' + custId);
+  }
+  addCardDetails(token) {
 
+    // form data
+    var cardDetailsBody = querystring.stringify({
+      "CustomerID": this.custId, "token": token
+    });
+
+    //const cardDetailsBody = { "CustomerID": this.custId, "token": token };
+    const headers = new HttpHeaders()
+      .set('Authorization', 'Bearer sk_test_7r4dL5ykom8nvTTA93cVLcve')
+      .set('Content-Type', 'application/x-www-form-urlencoded')
+      .set('Access-Control-Allow-Origin', '*');
+
+    return this.http.post(rootPath + '/addnewcardtostripe', cardDetailsBody, {
+      headers: headers
+    })
+      .subscribe(data => {
+        // this.cardDetails$ = data;
+        var json = JSON.parse(JSON.stringify(data));
+
+        this.cardDetails$ = json;
+
+        //var json = JSON.parse(JSON.stringify(this.cardDetails$));
+      },
+        err => {
+          console.log(err)
+        }, () => {
+
+          var json = JSON.parse(JSON.stringify(this.cardDetails$));
+          var defaultCardBody = querystring.stringify({
+            "customer": this.custId, "card": json.id
+          });
+
+          //const cardDetailsBody = { "CustomerID": this.custId, "token": token };
+          const headers = new HttpHeaders()
+            .set('Authorization', 'Bearer sk_test_7r4dL5ykom8nvTTA93cVLcve')
+            .set('Content-Type', 'application/x-www-form-urlencoded')
+            .set('Access-Control-Allow-Origin', '*');
+
+          return this.http.post(rootPath + '/addservice/carddetails/makedefault', defaultCardBody, {
+            headers: headers
+          })
+            .subscribe(data => {
+              this.cardDetails$ = data;
+
+              var json = JSON.parse(JSON.stringify(this.cardDetails$));
+            })
+
+
+
+        });
+
+  }
 }
