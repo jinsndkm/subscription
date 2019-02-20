@@ -35,7 +35,6 @@ export class PaymentDetailsComponent implements OnInit {
 this.cardStatus=sessionStorage.getItem("isCardAdded");
    
     this.route.params.subscribe(params => {
-      console.log(params.id);
        if (params.id == 'cart_plan') {
         console.log("cart>");
         this.cartAdded=true;
@@ -55,6 +54,7 @@ this.cardStatus=sessionStorage.getItem("isCardAdded");
     },
       err => {
         console.log(err)
+        
       }, () => {
         this.spinner.hide();
 
@@ -78,7 +78,6 @@ this.cardStatus=sessionStorage.getItem("isCardAdded");
   }
 
   makeDefault(id){
-    this.spinner.show();
     const subscriptionBody = { "customer": this.custId, "card": id };
     const headers = new HttpHeaders()
       .set('Authorization', 'Basic MDpRU2tCZlRkVGVVVGVYWTRyNllmZEhITlRKMEhmWHphdXZ5cEFmNFpYOEMwTnEwUm5sZHRlRXpWS2ttU3Z2dVdH')
@@ -95,7 +94,6 @@ this.cardStatus=sessionStorage.getItem("isCardAdded");
         err => {
           console.log(err)
         },() => {
-         
           
         });
   }
