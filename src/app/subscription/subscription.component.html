@@ -43,7 +43,7 @@
                 <!--search-section-->
                 <div class="col-md-12">
                   <form class="form-inline pull-right" style="float: right;">
-                    <input class="form-control mr-sm-2" [(ngModel)]="userFilter.planName" name="dd" type="search"
+                    <input class="form-control mr-sm-2" [(ngModel)]="searchText" name="dd" type="search"
                       placeholder="Search  by plan" aria-label="Search">
 
                   </form>
@@ -54,7 +54,7 @@
             <form>
 
               <ul class="lists">
-                <li *ngFor="let mysubscriptions of mysubscriptions$ | filterBy: userFilter | paginate: { itemsPerPage: 5, currentPage: p }">
+                <li *ngFor="let mysubscriptions of mysubscriptions$ | filter:searchText | paginate: { itemsPerPage: 5, currentPage: p }">
 
 
                   <div class="subscription">

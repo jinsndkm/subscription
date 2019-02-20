@@ -39,11 +39,8 @@ import {Globals} from './globals/global'
 import { TruncatePipe } from './limit-length';
 import { PaymentDetailsComponent } from './payment-details/payment-details.component';
 
-
-
-
-
-
+// search module
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 
 @NgModule({
@@ -84,7 +81,8 @@ import { PaymentDetailsComponent } from './payment-details/payment-details.compo
     NgxSpinnerModule,
     FilterPipeModule,
     NgxPaginationModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    Ng2SearchPipeModule
   ],
   providers: [
     Globals

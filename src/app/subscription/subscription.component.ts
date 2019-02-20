@@ -25,7 +25,8 @@ export class SubscriptionComponent implements OnInit {
 
   users: any[] = [];
   userFilter: any = {};
-
+  searchText;
+  
   constructor(private data: DataService, public nav: HideMenusService, private spinner: NgxSpinnerService, private filterPipe: FilterPipe) { }
 
 
