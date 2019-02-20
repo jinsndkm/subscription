@@ -27,7 +27,7 @@ export class PaymentDetailsComponent implements OnInit {
    }
 
   ngOnInit() {
-    this.spinner.show();
+   
     
     this.nav.show();
 
@@ -37,7 +37,7 @@ this.cardStatus=sessionStorage.getItem("isCardAdded");
       console.log(params.id);
       this.planid = params.id;
     })
-    
+    this.spinner.show();
     this.data.getSavedCardDetails(this.custId).subscribe(
       data => {
         var json=JSON.parse(JSON.stringify(data));
