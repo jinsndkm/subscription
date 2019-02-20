@@ -25,7 +25,7 @@
 
         <div class="card common-card">
           <div class="card-header common-panel-head">
-           
+
 
 
             <div class="head-score">
@@ -51,40 +51,89 @@
 
                 <div class="row">
                   <div class="sercice-sec">
-                    
+
                     <div *ngFor="let service of finalServicesList$" class="col-lg-4 col-md-4 col-sm-4 col-xs-6 align">
-                        
-                        <!-- <div class="" *ngIf="mysubscriptions$.length == 0"> -->
-                         
-                        <div>
+
+                      <div *ngIf="service.metadata.addon == 'false'">
+                        <div class="card card2">
+                          <h4>
+                            <a routerLink="/addservice/viewplanproducts/{{service.id}}">{{service.name}} </a>
+                          </h4>
+                          <i class="fas fa-briefcase-medical med"></i>
+
+                          <p class="p1"> This is the same logic that we formerly had in our component. However, notice that the methods 
+                              of this service return Observable objects. In our AppComponent,
+                               we will subscribe to the onNext, onError, and onComplete callbacks.</p>
+  
+                          <a routerLink="/addservice/viewplanproducts/{{service.id}}">
+                            <button class="active-btn btn btn-sucess">
+                              Subscribe </button>
+                          </a>
+
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+
+              </form>
+
+            </div>
+
+          </div>
+
+
+
+
+          <div class="card-body common-panel-body">
+              <div class="addservice">
+  
+  
+                <form>
+  
+                  <h4 class="head1">Bayshore Add-Ons
+                  </h4>
+  
+                  <div class="row">
+                    <div class="sercice-sec">
+  
+                      <div *ngFor="let service of finalServicesList$" class="col-lg-4 col-md-4 col-sm-4 col-xs-6 align">
+  
+                        <div  *ngIf="service.metadata.addon == 'true'">
                           <div class="card card2">
                             <h4>
                               <a routerLink="/addservice/viewplanproducts/{{service.id}}">{{service.name}} </a>
                             </h4>
                             <i class="fas fa-briefcase-medical med"></i>
 
-                            <a routerLink="/addservice/viewplanproducts/{{service.id}}"> <button class="active-btn btn btn-sucess">
-                                Subscribe </button></a>
 
-
-                            <!-- <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.  </p>
-                        -->
+                            <p class="p1"> This is the same logic that we formerly had in our component. However, notice that the methods 
+                              of this service return Observable objects. In our AppComponent,
+                               we will subscribe to the onNext, onError, and onComplete callbacks.</p>
+  
+                            <a routerLink="/addservice/viewplanproducts/{{service.id}}">
+                              <button class="active-btn btn btn-sucess">
+                                Subscribe </button>
+                            </a>
+  
                           </div>
                         </div>
-                
+  
+                      </div>
                     </div>
                   </div>
-                </div>
-
-
-
-
-              </form>
-
-
+  
+                </form>
+  
+              </div>
+  
             </div>
 
-          </div>
+
+
+
+
         </div>
 
       </div>
