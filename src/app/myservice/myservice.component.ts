@@ -27,10 +27,8 @@ export class MyserviceComponent implements OnInit {
 
   ngOnInit() {
     this.spinner.show();
-    //this.nav.show();
-    //sessionStorage.setItem("Plans",this.plans);
+    this.nav.show();
     this.data.getAllFusebillServices().subscribe(
-      //data => this.servicesList$ = data
       data => {
         var serviceJson = JSON.parse(JSON.stringify(data));
         this.servicesList$ = serviceJson.data;
@@ -38,7 +36,7 @@ export class MyserviceComponent implements OnInit {
 
         this.data.getMySubscription().subscribe(
 
-          data => { //this.mysubscriptions$ = data ;
+          data => { 
             var json = JSON.parse(JSON.stringify(data));
             this.mysubscriptions$ = json.data;
             // Checking service is already subscribed or not
@@ -62,8 +60,6 @@ export class MyserviceComponent implements OnInit {
           }
 
         );
-
-
       },
       err => {
         console.log(err)
@@ -72,12 +68,6 @@ export class MyserviceComponent implements OnInit {
       }
 
     );
-
-
-
-
-
-
     userName: String;
 
   }
