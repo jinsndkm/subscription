@@ -383,8 +383,74 @@ var postData = querystring.stringify({
 
   }
 
+
+  addNewCard(token) {
+
+
+
+    // form data
+    var cardDetailsBody = querystring.stringify({
+      "CustomerID": this.custId, "token": token
+    });
+
+    //const cardDetailsBody = { "CustomerID": this.custId, "token": token };
+    const headers = new HttpHeaders()
+      .set('Authorization', 'Bearer sk_test_7r4dL5ykom8nvTTA93cVLcve')
+      .set('Content-Type', 'application/x-www-form-urlencoded')
+      .set('Access-Control-Allow-Origin', '*');
+
+
+    return this.http.post(rootPath + '/addnewcardtostripe', cardDetailsBody, {
+      headers: headers
+    })
+      .subscribe(data => {
+        // this.cardDetails$ = data;
+        var json = JSON.parse(JSON.stringify(data));
+
+        this.cardDetails$ = json;
+
+        //var json = JSON.parse(JSON.stringify(this.cardDetails$));
+      },
+        err => {
+          console.log(err)
+        }, () => {
+
+          var json = JSON.parse(JSON.stringify(this.cardDetails$));
+          var defaultCardBody = querystring.stringify({
+            "customer": this.custId, "card": json.id
+          });
+
+          //const cardDetailsBody = { "CustomerID": this.custId, "token": token };
+          const headers = new HttpHeaders()
+            .set('Authorization', 'Bearer sk_test_7r4dL5ykom8nvTTA93cVLcve')
+            .set('Content-Type', 'application/x-www-form-urlencoded')
+            .set('Access-Control-Allow-Origin', '*');
+
+          return this.http.post(rootPath + '/addservice/carddetails/makedefault', defaultCardBody, {
+            headers: headers
+          })
+            .subscribe(data => {
+              this.cardDetails$ = data;
+            },
+            err => {
+              console.log(err)
+            }, () => {
+              this.spinner.hide();
+              window.location.href="home/managecards";
+            })
+
+
+
+        });
+
+  }
+
 getSavedCardDetails(custId){
   return this.http.get(rootPath+'/checkcarddetails/'+custId);
+}
+deleteCard(cardID){
+  
+  return this.http.delete(rootPath+'/deletecard/'+cardID);
 }
 
 }

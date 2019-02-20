@@ -1,0 +1,119 @@
+
+.section
+{
+
+
+    p.description
+    {
+        background: #f9f9f9;
+        padding: 1%;
+        border-radius: 5px;
+        font-size: 15px;
+    }
+    .greetings
+
+    {
+        margin-top: 40px;
+    } 
+    .panel-section
+    {
+        margin-top: 2%;
+        
+ 
+    
+
+
+        box-shadow: 1px 2px 3px #f3f2f2;
+        margin-bottom: 10px;
+        padding-bottom: 5px;
+        .warning
+        {
+            color: #ffc107;
+            font-size: 0.82em;
+        }
+        .active
+        {
+            color:#12ab12;
+            font-size: 0.82em;
+        }
+        .draft 
+        {
+            color: #6f6f6f;
+            font-size: 0.82em;
+        }
+        label
+        {
+            font-family: "OpenSans", sans-serif;
+            font-size: .925em;
+            font-weight: 400;
+            color: #1A2C3F;
+            line-height: 1;
+        }
+
+
+
+    }
+
+
+    .service-sec
+    {
+    
+    
+       
+        .dollor-icon
+        {
+    
+            color: #6b6a6a !important;
+        }
+
+        .cardsection
+        {
+            box-shadow: 1px 2px 1px 1px #e4e4e4;
+            padding: 2%;
+            margin-bottom: 8px;
+            border-radius: 4px;
+            background: #ececec;
+
+            .form-group
+            {
+                margin-bottom: 0px;
+
+                label
+                {
+                    margin-bottom: 0px;
+                    color: #2e81a2;
+                    font-size: 13px;
+                }
+                .ex-date
+                {
+                    text-align: right;
+                    margin-bottom: 0px;
+                    font-size: 13px;
+                    color: #00405a;
+                }
+                .country
+                {
+                    text-align: right;
+                    margin-bottom: 0px;
+                    
+                }
+                .checkbox
+                {
+                  
+                    margin-top: 18px;
+                }
+            }
+        }
+
+    }
+    .new-card-btn
+    {
+        color: #636966;
+        float: right;
+        /* font-weight: bold; */
+        font-size: 13px;
+        margin-bottom: 10px;
+        background: #ececec;
+    }
+
+}

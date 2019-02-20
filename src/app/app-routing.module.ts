@@ -25,6 +25,8 @@ import { RedirectionComponent } from './redirection/redirection.component';
 import { StripeAddCardComponent } from './stripe-add-card/stripe-add-card.component';
 
 import { PaymentDetailsComponent } from './payment-details/payment-details.component';
+import { ManageCardsComponent } from './manage-cards/manage-cards.component';
+import { ManageNewCardComponent } from './manage-new-card/manage-new-card.component';
 
 
 
@@ -102,7 +104,15 @@ const routes: Routes = [
   ,{
     path:'addservice/carddetails/:id',
     component:PaymentDetailsComponent
+  },{
+    path:'home/managecards',
+    component:ManageCardsComponent
+  },{
+    path:'addnewcardstripe',
+    component:ManageNewCardComponent
   }
+
+  
 
 ];
 
