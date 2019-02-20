@@ -25,7 +25,8 @@ export class SubscriptionComponent implements OnInit {
 
   users: any[] = [];
   userFilter: any = {};
-
+  searchText;
+  
   constructor(private data: DataService, public nav: HideMenusService, private spinner: NgxSpinnerService, private filterPipe: FilterPipe) { }
 
 
@@ -35,7 +36,10 @@ export class SubscriptionComponent implements OnInit {
     this.nav.show();
     this.data.getMySubscription().subscribe(
 
-      data => { this.mysubscriptions$ = data },
+      data => { //this.mysubscriptions$ = data ;
+        var json = JSON.parse(JSON.stringify(data));
+        this.mysubscriptions$=json.data;
+      },
       err => {
         console.log(err)
       }, () => {
@@ -51,24 +55,42 @@ export class SubscriptionComponent implements OnInit {
   //Method to delete an active subscription
   cancelSubscription(subId, planname) {
     if (confirm("Are you sure to cancel " + planname + "?")) {
-      this.items$ = this.data.cancelSubscription(subId);
-      this.data.getMySubscription().subscribe(
-        data => this.mysubscriptions$ = data
-      );
+      this.spinner.show();
+      this.items$ = this.data.cancelSubscription(subId).subscribe(
+
+        data => { //this.mysubscriptions$ = data ;
+          var json = JSON.parse(JSON.stringify(data));
+          // this.mysubscriptions$=json.data;
+          if(json.status=='canceled'){
+            alert("Subscription cancelled successfully")
+            this.spinner.hide();
+            window.location.reload();  
+          }else{
+            alert("Sorry!Try again")
+            this.spinner.hide();
+          }
+         
+        },
+        err => {
+          console.log(err)
+        }, () => {
+        }
+  
+      );;
+      
+      // this.data.getMySubscription().subscribe(
+      //   data => this.mysubscriptions$ = data
+      // );
     }
     
   }
 
   autorenewalFunction(subscriptionId: String, e) {
     if (e.target.checked == true) {
-      this.data.disableAutorenewal(subscriptionId, "true").subscribe(
-        data => this.autorenewal$ = data
-      );
+      this.data.disableAutorenewal(subscriptionId);
       alert("Auto renewal is on")
     } else if (e.target.checked == false) {
-      this.data.enableAutorenewal(subscriptionId, "false").subscribe(
-        data => this.autorenewal$ = data
-      );
+      this.data.enableAutorenewal(subscriptionId);
       alert("Auto renewal is off")
     }
 
