@@ -46,3 +46,11 @@ form.checkout {
   .StripeElement--webkit-autofill {
     background-color: #fefde5 !important;
   }
+  .card-section
+  {
+    background: #f1f1f1;
+    border: 1px solid #eae7e7;
+    padding: 4%;
+    /* border-radius: 10px; */
+    box-shadow: 1px 2px 3px #e6e6e6;
+  }

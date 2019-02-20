@@ -94,6 +94,18 @@
          </div>
        </div>
      </div>
+
+
+     <div class="row">
+
+<div class="col-md-6">
+
+    <a routerLink="/addcardstripe"> <button class="active-btn btn btn-sucess new-card-btn">
+        Add new card  <i class="fas fa-plus"></i> </button></a>
+
+</div>
+
+     </div>
      
      <div *ngFor="let card of savedCardDetails$;let i=index" >
       
@@ -157,8 +169,7 @@
      <div class="form-group row">
        <div class="col-md-6">
           
-        <a routerLink="/addcardstripe"> <button class="active-btn btn btn-sucess">
-          Add new card </button></a>
+  
            <button class="btn btn-success  btm-mt float-right" (click)="subscribe()">Proceed to pay</button>
            
        </div>

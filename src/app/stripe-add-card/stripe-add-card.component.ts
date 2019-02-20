@@ -28,6 +28,7 @@ export class StripeAddCardComponent implements OnInit {
     private stripeService: StripeService, private spinner: NgxSpinnerService) { }
 
   ngOnInit() {
+    window.scrollTo(0, 0)
     this.stripeTest = this.fb.group({
       name: ['', [Validators.required]]
     });
