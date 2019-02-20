@@ -25,21 +25,7 @@
 
         <div class="card common-card">
           <div class="card-header common-panel-head">
-            <!-- <div class="row">
-                         <div class="col-md-2">
-    
-    
-                         </div>
-                         <div class="col-md-10">
-                           <h4>SUBSCRIPTION </h4>
-    
-                           <h3>My Subscriptions</h3>
-    
-                          
-                         </div>
-    
-    
-                       </div> -->
+           
 
 
             <div class="head-score">
@@ -66,9 +52,9 @@
                 <div class="row">
                   <div class="sercice-sec">
                     
-                    <div *ngFor="let service of servicesList$" class="col-lg-4 col-md-4 col-sm-4 col-xs-6 align">
+                    <div *ngFor="let service of finalServicesList$" class="col-lg-4 col-md-4 col-sm-4 col-xs-6 align">
                         
-                        <div class="" *ngIf="mysubscriptions$.length == 0">
+                        <!-- <div class="" *ngIf="mysubscriptions$.length == 0"> -->
                          
                         <div>
                           <div class="card card2">
@@ -77,29 +63,6 @@
                             </h4>
                             <i class="fas fa-briefcase-medical med"></i>
 
-                            <!-- <p class="p1"> {{service.statement_descriptor }}</p> -->
-
-                            <!-- <p class="p2" ng-init="moreShown = false">
-                              {{service.longdescription  |limitTo: 150}}
-                              
-                                  <a ng-if="service.longdescription.length > 1050"
-                                     href = "/addservice/viewplanproducts/{{service.id}}"  ng-click="service.longdescription.length; moreShown = true">  More
-                                  </a>
-
-                            </p> -->
-
-                            <!-- <div class="p2" ng-init="limit = 150, moreShown = false">
-                                {{service.longdescription | limitTo: 150}}
-                                <a *ngIf="service.longdescription?.length > 150"
-                                   href  = "/addservice/viewplanproducts/{{service.id}}" ng-click="150=service.longdescription.length; moreShown = true">  More
-                                </a>
-                                
-                            </div> -->
-
-
-
-
-
                             <a routerLink="/addservice/viewplanproducts/{{service.id}}"> <button class="active-btn btn btn-sucess">
                                 Subscribe </button></a>
 
@@ -108,102 +71,10 @@
                         -->
                           </div>
                         </div>
-                      
-                    </div>
-                    <div class="" *ngIf="mysubscriptions$.length != 0">
-                      
-                        <div *ngFor="let mysubscriptions of mysubscriptions$;let i=index" >
-                        
-                      <div class="" *ngIf="service.id != mysubscriptions.items.data[0].plan.product">
-                        <div>
-                          <div class="card card2">
-                            <h4>
-                              <a routerLink="/addservice/viewplanproducts/{{service.id}}">{{service.name}}</a>
-                            </h4>
-                            <i class="fas fa-briefcase-medical med"></i>
-
-                            <!-- <p class="p1"> {{service.statement_descriptor }}</p> -->
-
-                            <!-- <p class="p2" ng-init="moreShown = false">
-                              {{service.longdescription  |limitTo: 150}}
-                              
-                                  <a ng-if="service.longdescription.length > 1050"
-                                     href = "/addservice/viewplanproducts/{{service.id}}"  ng-click="service.longdescription.length; moreShown = true">  More
-                                  </a>
-
-                            </p> -->
-
-                            <!-- <div class="p2" ng-init="limit = 150, moreShown = false">
-                                {{service.longdescription | limitTo: 150}}
-                                <a *ngIf="service.longdescription?.length > 150"
-                                   href  = "/addservice/viewplanproducts/{{service.id}}" ng-click="150=service.longdescription.length; moreShown = true">  More
-                                </a>
-                                
-                            </div> -->
-
-
-
-
-
-                            <a routerLink="/addservice/viewplanproducts/{{service.id}}"> <button class="active-btn btn btn-sucess">
-                                Subscribe </button></a>
-
-
-                            <!-- <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.  </p>
-                        -->
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    </div>
+                
                     </div>
                   </div>
                 </div>
-
-
-                <!-- <h4 class="head1">Our Digital Add Ons22:</h4>
-
-                <div class="row">
-                  <div class="addonsection">
-
-
-
-
-                    <div *ngFor="let service of servicesList$" class="col-md-12 align margin">
-                      <div class="row">
-
-
-                        <div class="col-md-9">
-                          <div class="" *ngIf="service.code.startsWith('addon')">
-                            <div class="col-md-1">
-                              <i class="fas fa-medkit helth-icon"></i>
-
-                            </div>
-                            <div>
-                              <div class="">
-                                <h4 class="addon-name">
-                                  <a routerLink="/addservice/viewplanproducts/{{service.id}}">{{service.name}}</a>
-                                </h4>
-
-                                <p class="add-price"> {{service.description}}</p>
-                                <p class="add-details"> {{service.longdescription}}</p>
-
-                                <a routerLink="/addservice/viewplanproducts/{{service.id}}"> <button class="btn btn-success btn-sm">
-                                    Subscribe</button> </a>
-                              </div>
-                            </div>
-
-                          </div>
-
-                        </div>
-                      </div>
-
-
-                    </div>
-                  </div>
-                </div> -->
-
-
 
 
 
