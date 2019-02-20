@@ -60,6 +60,7 @@ export class PlanProductDetailsComponent implements OnInit {
       console.log(params.id);
       subId = params.id;
     })
+    
     this.data.getPlanProducts(subId).subscribe(
       data => {
         var json=JSON.parse(JSON.stringify(data));

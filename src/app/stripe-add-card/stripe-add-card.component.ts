@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 
 import { StripeService, Elements, Element as StripeElement, ElementsOptions } from "ngx-stripe";
+import { NgxSpinnerService } from 'ngx-spinner';
 import { DataService } from '../data.service';
 
 @Component({
@@ -24,7 +25,7 @@ export class StripeAddCardComponent implements OnInit {
 
   constructor(private data: DataService,
     private fb: FormBuilder,
-    private stripeService: StripeService) { }
+    private stripeService: StripeService, private spinner: NgxSpinnerService) { }
 
   ngOnInit() {
     this.stripeTest = this.fb.group({
@@ -56,6 +57,7 @@ export class StripeAddCardComponent implements OnInit {
   }
 
   buy() {
+    this.spinner.show();
     const name = this.stripeTest.get('name').value;
     this.stripeService
       .createToken(this.card, { name })
@@ -68,7 +70,7 @@ export class StripeAddCardComponent implements OnInit {
         } else if (result.error) {
           // Error creating the token
           console.log(result.error.message);
-          alert(result.error.message)
+          
         }
       });
   }

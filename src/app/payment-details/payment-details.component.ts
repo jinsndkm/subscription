@@ -33,7 +33,7 @@ export class PaymentDetailsComponent implements OnInit {
     this.nav.show();
 
 this.cardStatus=sessionStorage.getItem("isCardAdded");
-   
+var planDetailsID;
     this.route.params.subscribe(params => {
        if (params.id == 'cart_plan') {
         console.log("cart>");
@@ -41,7 +41,10 @@ this.cardStatus=sessionStorage.getItem("isCardAdded");
         this.cartItems = JSON.parse(sessionStorage.getItem('cartList'));
       } else {
         this.planid = params.id;
+        planDetailsID=params.id;
       }
+      sessionStorage.setItem("planDetailsID",planDetailsID);
+   
       
     })
     this.spinner.show();
