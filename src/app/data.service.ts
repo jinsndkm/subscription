@@ -6,6 +6,7 @@ import { Alert } from '../../node_modules/@types/selenium-webdriver';
 import * as _ from "lodash"
 import { Globals } from './globals/global';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { isUndefined } from 'util';
 
 
 // import { stat } from 'fs';
@@ -34,6 +35,7 @@ export class DataService {
 
   private custId: String;
 
+  cartItems: Array<any> = [];
   constructor(private http: HttpClient, private router: Router, private global: Globals, private spinner: NgxSpinnerService) {
     this.custId = global.CUSTOMER_ID;
 
@@ -91,7 +93,7 @@ export class DataService {
     // //   .set('Access-Control-Allow-Origin', '*');
 
     // return this.http.delete(rootPath + '/subscription/cancel', {
-     
+
     // })
     //   .subscribe(data => {
     //     data => statusCode = data
@@ -102,8 +104,8 @@ export class DataService {
     //       alert("Subscription cancelled successfully")
     //     }
     //   });
-     // return this.http.get(rootPath + '/subscription/cancel/' + subscriptionId);
-     return this.http.get(rootPath + '/subscription/cancel/' + subscriptionId);
+    // return this.http.get(rootPath + '/subscription/cancel/' + subscriptionId);
+    return this.http.get(rootPath + '/subscription/cancel/' + subscriptionId);
 
   }
 
@@ -202,78 +204,78 @@ export class DataService {
         //   .subscribe(data => {
         //     this.status$ = data
         //     var json = JSON.parse(JSON.stringify(this.status$))
-          },
-            err => {
-              console.log(err)
-            }, () => {
-              this.spinner.hide();
-              this.router.navigate(['SuccessMessage']);
-            }
-          );
-
-
-
-
-    
-  }
-
- 
-  
-  enableAutorenewal(subscriptionId) {
-    
-    
-    var querystring = require('querystring');
- 
-// form data
-var postData = querystring.stringify({
-  "subscriptionId": subscriptionId 
-});
-    //const activationBody = { "subscriptionId": 12345 };
-    const headers = new HttpHeaders()
-      .set('Authorization', 'Bearer sk_live_WcIoDcfVidYWkaNoELBX2NIX')
-      .set('Content-Type', 'application/x-www-form-urlencoded')
-      .set('Access-Control-Allow-Origin', '*');
-    return this.http.post(rootPath + '/mysubscription/autorenewal/disable',postData, {
-      headers: headers
-    })
-      .subscribe(data => {
-        this.status$ = data
-        var json = JSON.parse(JSON.stringify(this.status$))
       },
-      err => {
-        console.log(err)
-      },() => {
-        this.router.navigate(['SuccessMessage']);
-      }
-    );
+        err => {
+          console.log(err)
+        }, () => {
+          this.spinner.hide();
+          this.router.navigate(['SuccessMessage']);
+        }
+      );
+
+
+
+
 
   }
 
-  disableAutorenewal(subscriptionId) {
+
+
+  enableAutorenewal(subscriptionId) {
+
+
     var querystring = require('querystring');
- 
+
     // form data
     var postData = querystring.stringify({
-      "subscriptionId": subscriptionId 
+      "subscriptionId": subscriptionId
     });
     //const activationBody = { "subscriptionId": 12345 };
     const headers = new HttpHeaders()
       .set('Authorization', 'Bearer sk_live_WcIoDcfVidYWkaNoELBX2NIX')
       .set('Content-Type', 'application/x-www-form-urlencoded')
       .set('Access-Control-Allow-Origin', '*');
-    return this.http.post(rootPath + '/mysubscription/autorenewal/',postData, {
+    return this.http.post(rootPath + '/mysubscription/autorenewal/disable', postData, {
       headers: headers
     })
       .subscribe(data => {
         this.status$ = data
         var json = JSON.parse(JSON.stringify(this.status$))
       },
-      err => {
-        console.log(err)
-      },() => {
-        this.router.navigate(['SuccessMessage']);
-      }
-    );
+        err => {
+          console.log(err)
+        }, () => {
+          this.router.navigate(['SuccessMessage']);
+        }
+      );
+
+  }
+
+  disableAutorenewal(subscriptionId) {
+    var querystring = require('querystring');
+
+    // form data
+    var postData = querystring.stringify({
+      "subscriptionId": subscriptionId
+    });
+    //const activationBody = { "subscriptionId": 12345 };
+    const headers = new HttpHeaders()
+      .set('Authorization', 'Bearer sk_live_WcIoDcfVidYWkaNoELBX2NIX')
+      .set('Content-Type', 'application/x-www-form-urlencoded')
+      .set('Access-Control-Allow-Origin', '*');
+    return this.http.post(rootPath + '/mysubscription/autorenewal/', postData, {
+      headers: headers
+    })
+      .subscribe(data => {
+        this.status$ = data
+        var json = JSON.parse(JSON.stringify(this.status$))
+      },
+        err => {
+          console.log(err)
+        }, () => {
+          this.router.navigate(['SuccessMessage']);
+        }
+      );
 
 
 
@@ -340,42 +342,52 @@ var postData = querystring.stringify({
             .subscribe(data => {
               this.cardDetails$ = data;
             },
-            err => {
-              console.log(err)
-            }, () => {
-              var planID = sessionStorage.getItem("planDetailsID");
-             
+              err => {
+                console.log(err)
+              }, () => {
+                const planID = sessionStorage.getItem("planDetailsID");
+                alert(planID);
 
-              this.cardDetails$ = this.checkCardDetails(this.custId).subscribe(
-                data => {  
-                  var json=JSON.parse(JSON.stringify(data));
-                  this.cardDetails$=json.data;
-                }
-        
-                ,
-                err => {
-                  console.log(err)
-                }, () => {
-                  var json = JSON.parse(JSON.stringify(this.cardDetails$));
-                  if (json.length > 0) {
-                   // for (let i = 0; i < json.length; i++) {
-                     // if (json[i].isDefault == true) {
-                        
-                        sessionStorage.setItem("cardNumner",json[0].last4);
-                     // } 
-                    //}
-        
-                    sessionStorage.setItem("isCardAdded", "true");
-                  } else {
-                    sessionStorage.setItem("isCardAdded", "false");
+                this.cardDetails$ = this.checkCardDetails(this.custId).subscribe(
+                  data => {
+                    var json = JSON.parse(JSON.stringify(data));
+                    this.cardDetails$ = json.data;
                   }
+
+                  ,
+                  err => {
+                    console.log(err)
+                  }, () => {
+                    var json = JSON.parse(JSON.stringify(this.cardDetails$));
+                    if (json.length > 0) {
+                      // for (let i = 0; i < json.length; i++) {
+                      // if (json[i].isDefault == true) {
+
+                      sessionStorage.setItem("cardNumner", json[0].last4);
+                      // } 
+                      //}
+
+                      sessionStorage.setItem("isCardAdded", "true");
+                    } else {
+                      sessionStorage.setItem("isCardAdded", "false");
+                    }
+                  }
+                );
+                 
+                if(planID=="undefined"){
+                  // CART MANAGEMENT
+                  this.cartItems = JSON.parse(sessionStorage.getItem('cartList'));
+                  this.cartItems.forEach(element => {
+                    var status = this.createSub(element.selectedFreId, this.custId);
+                  });
+                  sessionStorage.removeItem('cartList'); 
+                  // CART MANAGEMENT
+                }else{
+                  var resp = this.createSub(planID, this.custId);
+                  sessionStorage.removeItem('planDetailsID');
                 }
-              );
-
-
-              var resp = this.createSub(planID, this.custId);
-             // var json = JSON.parse(JSON.stringify(this.cardDetails$));
-            })
+                // var json = JSON.parse(JSON.stringify(this.cardDetails$));
+              })
 
 
 
@@ -383,8 +395,8 @@ var postData = querystring.stringify({
 
   }
 
-getSavedCardDetails(custId){
-  return this.http.get(rootPath+'/checkcarddetails/'+custId);
-}
+  getSavedCardDetails(custId) {
+    return this.http.get(rootPath + '/checkcarddetails/' + custId);
+  }
 
 }
