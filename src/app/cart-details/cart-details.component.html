@@ -66,12 +66,16 @@
 
 
 
+
                            <ng-container  *ngFor="let cartItem of cartItems;let i = index"> 
                                 <ng-container *ngFor="let product of servicesList$;let i = index">  
                       <tr *ngIf="product.id == cartItem.product">
 
                         <td>{{product.name}}</td>
                         <td>{{cartItem.amount/100}}</td>
+                       
+                        <td>{{cartItem.grandTotal}}</td>
+
                         <!-- <div *ngFor="let plan of cartItem.planFrequencies">
                           <div *ngIf="cartItem.selectedFreId == plan.id">
                             <td>{{plan.interval}}</td>
@@ -85,7 +89,7 @@
                       <tr class="total">
 
                         <td>Total</td>
-                        <td colspan="3">${{grandTotal/100}}</td>
+                        <td colspan="3">${{grandTotal}}</td>
                       </tr>
 
                     </tbody>
@@ -98,10 +102,10 @@
 
                         <div  *ngIf="cardStatus == 'true' ">
                       
-                      <div *ngIf="grandTotal!=0;then content"></div>   
+                      <div *ngIf="cartItems.length!=0;then content"></div>   
                       <ng-template #content>  
                           <a routerLink="/addservice/carddetails/cart_plan"> 
-                       <button class="up-link btn btn-success float-right btm-mt">Checkout true</button>
+                       <button class="up-link btn btn-success float-right btm-mt">Checkout</button>
                       </a>
                       </ng-template>
 
@@ -110,10 +114,10 @@
                     </div>
                     <div  *ngIf="cardStatus == 'false' ">
                       
-                        <div *ngIf="grandTotal!=0;then content"></div>   
+                        <div *ngIf="cartItems.length!=0;then content"></div>   
                         <ng-template #content> 
                             <a routerLink="/addservice/addcarddetails/cart_plan"> 
-                         <button class="up-link btn btn-success float-right btm-mt">Checkout false</button>
+                         <button class="up-link btn btn-success float-right btm-mt">Checkout</button>
                         </a>
                         </ng-template>
   
