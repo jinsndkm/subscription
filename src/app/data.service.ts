@@ -12,7 +12,7 @@ import { isUndefined } from 'util';
 // import { stat } from 'fs';
 var querystring = require('querystring');
 
-var rootPath = "http://localhost:3000";
+var rootPath = "http://localhost:2000";
 
 
 const httpOptions = {
@@ -197,6 +197,7 @@ export class DataService {
       },
         err => {
           console.log(err)
+
         }, () => {
 
         //   alert("inside get plan details ::>> " + sessionStorage.getItem("product_id"));
@@ -233,17 +234,29 @@ export class DataService {
         //     }
         // });
 
+
+        },() => {
+          var json = JSON.parse(JSON.stringify(this.status$));
+         
+
           this.spinner.hide();
-          this.router.navigate(['SuccessMessage']);
-        }
-      );
+          if(json.statusCode == 200){
 
-
-
-
-
+             this.http.get(rootPath + '/writetocsv/' + this.custId).subscribe(data => {
+              this.status$ = data;
+              var json = JSON.parse(JSON.stringify(this.status$));
+            },
+              err => {
+                console.log(err)
+              },() => {
+                this.router.navigate(['SuccessMessage']);
+                
+              });
+            
+          }
+          
+        });
   }
-
 
 
   enableAutorenewal(subscriptionId) {
