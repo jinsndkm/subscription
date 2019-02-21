@@ -32,6 +32,7 @@ export class PlanProductDetailsComponent implements OnInit {
   //t: number=0;
   private custId:String;
   cardStatus: String;
+   productName:String;
 
   constructor(private data: DataService, private route: ActivatedRoute,public nav: HideMenusService, private spinner: NgxSpinnerService,private global:Globals) {
     this.custId=global.CUSTOMER_ID;
@@ -56,9 +57,11 @@ export class PlanProductDetailsComponent implements OnInit {
     sessionStorage.setItem("redirectPage",window.location.href);
     this.nav.show();
     var subId;
+    
     this.route.params.subscribe(params => {
       console.log(params.id);
       subId = params.id;
+      this.productName=params.name;
     })
     
     this.data.getPlanProducts(subId).subscribe(
@@ -187,7 +190,7 @@ export class PlanProductDetailsComponent implements OnInit {
 
 
   addtocart(planDetails) {
-
+    window.scrollTo(0, 0)
     if (typeof this.freId$ === "undefined") {
       planDetails.selectedFreId = planDetails.id;
     } else {

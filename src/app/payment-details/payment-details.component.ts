@@ -31,7 +31,7 @@ export class PaymentDetailsComponent implements OnInit {
    
     
     this.nav.show();
-
+    window.scrollTo(0, 0)
 this.cardStatus=sessionStorage.getItem("isCardAdded");
 var planDetailsID;
     this.route.params.subscribe(params => {
@@ -67,7 +67,7 @@ var planDetailsID;
   }
 
   subscribe() {
-
+    window.scrollTo(0, 0)
     if (this.cartAdded) {
       console.log("cart>>");
       this.cartItems.forEach(element => {

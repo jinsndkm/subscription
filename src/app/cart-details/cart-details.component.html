@@ -62,7 +62,13 @@
 
                     <tbody>
 
-                      <tr *ngFor="let cartItem of cartItems;let i = index">
+                     
+
+
+
+                           <ng-container  *ngFor="let cartItem of cartItems;let i = index"> 
+                                <ng-container *ngFor="let product of servicesList$;let i = index">  
+                      <tr *ngIf="product.id == cartItem.product">
 
                         <td>{{cartItem.nickname}}</td>
                         <td>{{cartItem.amount/100}}</td>
@@ -74,7 +80,8 @@
                         <!-- </div> -->
                         <td><button class="btn btn-danger btn-cancel btm-mt" (click)="remove(cartItem)" type="button">Remove</button></td>
                       </tr>
-
+                    </ng-container> 
+                           </ng-container>
                       <tr class="total">
 
                         <td>Total</td>

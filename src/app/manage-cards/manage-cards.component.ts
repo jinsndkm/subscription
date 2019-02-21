@@ -45,6 +45,7 @@ export class ManageCardsComponent implements OnInit {
 
   deletecard(cardID){
     this.spinner.show();
+    window.scrollTo(0, 0)
     this.data.deleteCard(cardID).subscribe(
       data => {
        

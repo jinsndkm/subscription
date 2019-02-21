@@ -43,7 +43,7 @@
      </div>
      <div class="head-overview">
        <p class="short-head">PRODUCT</p>
-       <p class="head"> </p>
+       <p class="head"> {{productName}}</p>
     
   
      </div>
@@ -123,7 +123,7 @@
        <div class="col-md-3 col-sm-3">
           <!-- <span class="addon-price" > <i class="fas fa-dollar-sign dollor-icon"></i> {{amount}} </span> -->
           
-         <span class="addon-price" > <i class="fas fa-dollar-sign dollor-icon"></i> {{products.amount}} </span>
+         <span class="addon-price" > <i class="fas fa-dollar-sign dollor-icon"></i> {{products.amount/100}} </span>
       
         </div>
      </div>
@@ -136,7 +136,7 @@
         <div class="col-md-3 col-sm-3">
           <!--  <input type="text" class="form-control-plaintext form-control" id="staticEmail"  placeholder=""> -->
        
-         <span class="addon-price" id="testID">  <i class="fas fa-dollar-sign dollor-icon"></i>  {{products.amount}}</span>
+         <span class="addon-price" id="testID">  <i class="fas fa-dollar-sign dollor-icon"></i>  {{products.amount/100}}</span>
         </div>
       </div> 
 
