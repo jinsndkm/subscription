@@ -70,7 +70,7 @@
                                 <ng-container *ngFor="let product of servicesList$;let i = index">  
                       <tr *ngIf="product.id == cartItem.product">
 
-                        <td>{{cartItem.nickname}}</td>
+                        <td>{{product.name}}</td>
                         <td>{{cartItem.amount/100}}</td>
                         <!-- <div *ngFor="let plan of cartItem.planFrequencies">
                           <div *ngIf="cartItem.selectedFreId == plan.id">
