@@ -75,6 +75,7 @@ var planDetailsID;
       });
     } else {
       var resp = this.data.createSub(this.planid, this.custId);
+      alert(JSON.stringify(resp))
     }
     
 

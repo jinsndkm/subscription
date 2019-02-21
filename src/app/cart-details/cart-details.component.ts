@@ -28,7 +28,7 @@ cardStatus: String;
     this.cartItems = JSON.parse(sessionStorage.getItem('cartList'));
     this.cardStatus=sessionStorage.getItem("isCardAdded");
     this.cartItems.forEach(element => {
-      this.grandTotal += element.amount;
+      this.grandTotal += element.grandTotal;
     });
 
     // if(sessionStorage.getItem("fusebillRedirect")=="true" && this.cartItems.length>1){
@@ -54,7 +54,7 @@ cardStatus: String;
     this.grandTotal=0;
    
     this.cartItems.forEach(element => {
-      this.grandTotal += element.amount;
+      this.grandTotal += element.grandTotal;
     });
   }
   subscribe(checkOutItems) {
