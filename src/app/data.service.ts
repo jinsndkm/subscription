@@ -35,6 +35,10 @@ export class DataService {
 
   private custId: String;
 
+  productDetails$: Object;
+
+  invoiceBody$: Object;
+
   cartItems: Array<any> = [];
   constructor(private http: HttpClient, private router: Router, private global: Globals, private spinner: NgxSpinnerService) {
     this.custId = global.CUSTOMER_ID;
@@ -170,6 +174,11 @@ export class DataService {
     console.log('getPlanProducts ' + subId);
     return this.http.get(rootPath + '/plandetails/' + subId);
   }
+  getProductDetails(subId) {
+
+    console.log('getPlanProducts ' + subId);
+    return this.http.get(rootPath + '/productdetails/' + subId);
+  }
 
   createSub(planFreID, customerID) {
     this.spinner.show();
@@ -185,29 +194,45 @@ export class DataService {
       .subscribe(data => {
         this.status$ = data;
         var json = JSON.parse(JSON.stringify(this.status$));
-
-
-        // var subId = json.id;
-
-        // //alert("DDD::>"+this.status$.id);
-        // //let planID= this.status$.id;
-        // const activationBody = { "subscriptionId": subId };
-        // //const activationBody = { "subscriptionId": 12345 };
-        // const headers = new HttpHeaders()
-        //   .set('Authorization', 'Basic MDpEZk9jcExWQVFFczk1U1hPSWhER0J0RzFXOFJCaGs3UVFsU2xOQ0JJRUJ4Y1NSSG9JQXAzbTJVdGFWNVRZUlVN')
-        //   .set('Content-Type', 'application/json')
-        //   .set('Access-Control-Allow-Origin', '*');
-
-        // return this.http.post(rootPath + '/subscription/activate', activationBody, {
-        //   headers: headers
-        // })
-        //   .subscribe(data => {
-        //     this.status$ = data
-        //     var json = JSON.parse(JSON.stringify(this.status$))
       },
         err => {
           console.log(err)
         }, () => {
+
+        //   alert("inside get plan details ::>> " + sessionStorage.getItem("product_id"));
+
+        //   this.http.get(rootPath + '/getplandetails/' + sessionStorage.getItem("product_id")).subscribe(data => {
+        //     this.productDetails$ = data;
+        //   }, err => {
+        //     console.log(err)
+        //   }, () => {
+        //     alert();
+        //     var json = JSON.parse(JSON.stringify(this.productDetails$));
+        //     var setupCharge = json.metadata.setup;
+        //     alert(setupCharge)
+        //     if (setupCharge > 0) {
+        //       const createInvoiceBody = { "customer": customerID, "amount": setupCharge };
+        //       const headers = new HttpHeaders()
+        //         .set('Authorization', 'Basic MDpRU2tCZlRkVGVVVGVYWTRyNllmZEhITlRKMEhmWHphdXZ5cEFmNFpYOEMwTnEwUm5sZHRlRXpWS2ttU3Z2dVdH')
+        //         .set('Content-Type', 'application/json')
+        //         .set('Access-Control-Allow-Origin', '*');
+
+        //       return this.http.post(rootPath + '/createInvoice', createInvoiceBody, {
+        //         headers: headers
+        //       })
+        //         .subscribe(data => {
+        //           this.invoiceBody$ = data;
+                  
+        //         },err=>{
+        //           console.log(err)
+        //         },()=>{
+        //           var json = JSON.parse(JSON.stringify(this.invoiceBody$));
+        //           console.log("Invoice body ::>> " + json);
+        //           var invoiceID = json.id;
+        //         })
+        //     }
+        // });
+
           this.spinner.hide();
           this.router.navigate(['SuccessMessage']);
         }
@@ -373,16 +398,16 @@ export class DataService {
                     }
                   }
                 );
-                 
-                if(planID=="undefined"){
+
+                if (planID == "undefined") {
                   // CART MANAGEMENT
                   this.cartItems = JSON.parse(sessionStorage.getItem('cartList'));
                   this.cartItems.forEach(element => {
                     var status = this.createSub(element.selectedFreId, this.custId);
                   });
-                  sessionStorage.removeItem('cartList'); 
+                  sessionStorage.removeItem('cartList');
                   // CART MANAGEMENT
-                }else{
+                } else {
                   var resp = this.createSub(planID, this.custId);
                   sessionStorage.removeItem('planDetailsID');
                 }
@@ -444,12 +469,12 @@ export class DataService {
             .subscribe(data => {
               this.cardDetails$ = data;
             },
-            err => {
-              console.log(err)
-            }, () => {
-              this.spinner.hide();
-              window.location.href="home/managecards";
-            })
+              err => {
+                console.log(err)
+              }, () => {
+                this.spinner.hide();
+                window.location.href = "home/managecards";
+              })
 
 
 
@@ -457,13 +482,13 @@ export class DataService {
 
   }
 
-getSavedCardDetails(custId){
-  return this.http.get(rootPath+'/checkcarddetails/'+custId);
-}
-deleteCard(cardID){
-  
-  return this.http.delete(rootPath+'/deletecard/'+cardID);
-}
+  getSavedCardDetails(custId) {
+    return this.http.get(rootPath + '/checkcarddetails/' + custId);
+  }
+  deleteCard(cardID) {
+
+    return this.http.delete(rootPath + '/deletecard/' + cardID);
+  }
 
 
 }

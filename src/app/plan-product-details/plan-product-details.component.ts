@@ -12,9 +12,10 @@ import { Globals } from '../globals/global';
   styleUrls: ['./plan-product-details.component.scss']
 })
 export class PlanProductDetailsComponent implements OnInit {
-
+  
   planProducts$: Object;
   planDetails$: Object;
+  productDetails$: Object;
   grandTotal: number = 0;
   finalRes: Object;
   total: number = 0;
@@ -26,16 +27,16 @@ export class PlanProductDetailsComponent implements OnInit {
   freId$: Object;
   tempPlanProducts$: Object;
 
-  amount: number=0;
+  amount: number = 0;
 
   key$: Object;
   //t: number=0;
-  private custId:String;
+  private custId: String;
   cardStatus: String;
 
-  constructor(private data: DataService, private route: ActivatedRoute,public nav: HideMenusService, private spinner: NgxSpinnerService,private global:Globals) {
-    this.custId=global.CUSTOMER_ID;
-   }
+  constructor(private data: DataService, private route: ActivatedRoute, public nav: HideMenusService, private spinner: NgxSpinnerService, private global: Globals) {
+    this.custId = global.CUSTOMER_ID;
+  }
 
   //t: number=0;
 
@@ -52,21 +53,22 @@ export class PlanProductDetailsComponent implements OnInit {
     //   }, 4000);
     // }
     this.spinner.show();
-    this.cardStatus=sessionStorage.getItem("isCardAdded");
-    sessionStorage.setItem("redirectPage",window.location.href);
+    this.cardStatus = sessionStorage.getItem("isCardAdded");
+    sessionStorage.setItem("redirectPage", window.location.href);
     this.nav.show();
     var subId;
     this.route.params.subscribe(params => {
       console.log(params.id);
       subId = params.id;
+      sessionStorage.setItem("product_id", subId);
     })
-    
+
     this.data.getPlanProducts(subId).subscribe(
       data => {
-        var json=JSON.parse(JSON.stringify(data));
-      this.planProducts$=json.data;
-     
-    },
+        var json = JSON.parse(JSON.stringify(data));
+        this.planProducts$ = json.data;
+
+      },
       err => {
         console.log(err)
       }, () => {
@@ -84,12 +86,24 @@ export class PlanProductDetailsComponent implements OnInit {
       }
 
     );
-
     this.data.getPlanDetails(subId).subscribe(
 
-      data => {  
-        var json=JSON.parse(JSON.stringify(data));
-        this.planDetails$=json;
+      data => {
+        var json = JSON.parse(JSON.stringify(data));
+        this.planDetails$ = json;
+      },
+      err => {
+        console.log(err)
+      }, () => {
+
+      }
+
+    );
+    this.data.getProductDetails(subId).subscribe(
+
+      data => {
+        var json = JSON.parse(JSON.stringify(data));
+        this.productDetails$ = json;
       },
       err => {
         console.log(err)
@@ -110,71 +124,76 @@ export class PlanProductDetailsComponent implements OnInit {
 
 
   }
-
-  getTotalAmount(plnID, from) {
-
-    let sum = 0;
-    let count = 0;
-    for (let j = 0; j < JSON.stringify(this.planProducts$).length; j++) {
-
-
-      if (from == "change") {
-        for (let i = 0; i < this.planProducts$[j].orderToCashCycles.length; i++) {
-          if (this.planProducts$[j].orderToCashCycles[i].planFrequencyId == plnID) {
-
-            sum = sum + this.planProducts$[j].orderToCashCycles[i].pricingModel.quantityRanges[0].prices[0].amount;
-            this.grandTotal = sum;
-
-            document.getElementById("test4" +j).innerHTML = "$" + this.planProducts$[j].orderToCashCycles[i].pricingModel.quantityRanges[0].prices[0].amount;
-
-          }
-
-
-
-
-        }
-      } else {
-        for (let i = 0; i < this.planProducts$[j].orderToCashCycles.length; i++) {
-
-          //alert(this.planProducts$[j].orderToCashCycles[i].pricingModel.quantityRanges[0].prices[0].amount);
-          // if(products.productType == 'RecurringService' && products.isIncludedByDefault == false){
-
-          // }else{
-          // sum+=products.orderToCashCycles[0].pricingModel.quantityRanges[0].prices[0].amount;
-          // }
-          //alert(this.planProducts$[j].orderToCashCycles[i].planFrequencyId)
-
-
-          if (this.planProducts$[j].orderToCashCycles[i].planFrequencyId == plnID) {
-
-            sum = sum + this.planProducts$[j].orderToCashCycles[i].pricingModel.quantityRanges[0].prices[0].amount;
-            this.grandTotal = sum;
-
-            document.getElementById("test4"+j).innerHTML = "$"+this.planProducts$[j].orderToCashCycles[i].pricingModel.quantityRanges[0].prices[0].amount;
-
-
-          }
-
-
-
-
-
-
-        }
-
-      }
-      count++;
-    }
-
-    return this.grandTotal;
+  totalAmo(setupCharge, amount) {
+    var setUp = parseInt(setupCharge);
+    this.grandTotal=setUp + amount
+    return setUp + amount;
   }
 
+  // getTotalAmount(plnID, from) {
+
+  //   let sum = 0;
+  //   let count = 0;
+  //   for (let j = 0; j < JSON.stringify(this.planProducts$).length; j++) {
+
+
+  //     if (from == "change") {
+  //       for (let i = 0; i < this.planProducts$[j].orderToCashCycles.length; i++) {
+  //         if (this.planProducts$[j].orderToCashCycles[i].planFrequencyId == plnID) {
+
+  //           sum = sum + this.planProducts$[j].orderToCashCycles[i].pricingModel.quantityRanges[0].prices[0].amount;
+  //           this.grandTotal = sum;
+
+  //           document.getElementById("test4" + j).innerHTML = "$" + this.planProducts$[j].orderToCashCycles[i].pricingModel.quantityRanges[0].prices[0].amount;
+
+  //         }
 
 
 
-  
 
-  
+  //       }
+  //     } else {
+  //       for (let i = 0; i < this.planProducts$[j].orderToCashCycles.length; i++) {
+
+  //         //alert(this.planProducts$[j].orderToCashCycles[i].pricingModel.quantityRanges[0].prices[0].amount);
+  //         // if(products.productType == 'RecurringService' && products.isIncludedByDefault == false){
+
+  //         // }else{
+  //         // sum+=products.orderToCashCycles[0].pricingModel.quantityRanges[0].prices[0].amount;
+  //         // }
+  //         //alert(this.planProducts$[j].orderToCashCycles[i].planFrequencyId)
+
+
+  //         if (this.planProducts$[j].orderToCashCycles[i].planFrequencyId == plnID) {
+
+  //           sum = sum + this.planProducts$[j].orderToCashCycles[i].pricingModel.quantityRanges[0].prices[0].amount;
+  //           this.grandTotal = sum;
+
+  //           document.getElementById("test4" + j).innerHTML = "$" + this.planProducts$[j].orderToCashCycles[i].pricingModel.quantityRanges[0].prices[0].amount;
+
+
+  //         }
+
+
+
+
+
+
+  //       }
+
+  //     }
+  //     count++;
+  //   }
+
+  //   return this.grandTotal;
+  // }
+
+
+
+
+
+
+
 
 
 
@@ -215,7 +234,7 @@ export class PlanProductDetailsComponent implements OnInit {
 
     // }
 
-    planDetails.amount = total;
+    planDetails.grandTotal = this.grandTotal;
 
     console.log(sessionStorage.getItem('cartList'));
     this.oldsession$ = sessionStorage.getItem('cartList');
