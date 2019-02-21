@@ -54,12 +54,17 @@
             <form>
 
               <ul class="lists">
-                <li *ngFor="let mysubscriptions of mysubscriptions$ | filter:searchText | paginate: { itemsPerPage: 5, currentPage: p }">
+
+                  <ng-container  *ngFor="let mysubscriptions of mysubscriptions$ | filter:searchText | paginate: { itemsPerPage: 5, currentPage: p }"> 
+                    
+                    <ng-container *ngFor="let product of servicesList$;let i = index">  
+            
+                <li *ngIf="product.id == mysubscriptions.plan.product">
 
 
                   <div class="subscription">
                     <div class="form-group row mrg-btm-0">
-                      <label for="inputPassword" class="col-sm-3 col-form-label mrg-btm-0 fs-9 black">{{mysubscriptions.plan.nickname}}</label>
+                      <label for="inputPassword" class="col-sm-3 col-form-label mrg-btm-0 fs-9 black">{{product.name}}</label>
 
                       <div class="col-sm-2">
                         <div class="form-check-inline eql-padding">
@@ -78,8 +83,8 @@
                       </div>
                       <div class="col-md-2">
                         <div class="eql-padding">
-                          <span class="warning bold" *ngIf="mysubscriptions.plan.active==true">{{ mysubscriptions.status }} </span>
-                          <!-- <span class="warning bold">Active</span> -->
+                          <!-- <span class="warning bold" *ngIf="mysubscriptions.plan.active==true">{{ mysubscriptions.status }} w</span> -->
+                        
                         </div>
                       </div>
 
@@ -109,6 +114,9 @@
 
 
                 </li>
+                
+                </ng-container>
+                </ng-container>
               </ul>
 
               <pagination-controls (pageChange)="p = $event"></pagination-controls>

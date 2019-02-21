@@ -72,7 +72,7 @@ const routes: Routes = [
     path: 'home/addservice',
     component: MyserviceComponent
   }, {
-    path: 'addservice/viewplanproducts/:id',
+    path: 'addservice/viewplanproducts/:id/:name',
     component: PlanProductDetailsComponent
   },
   {

@@ -198,6 +198,11 @@ export class DataService {
         err => {
           console.log(err)
 
+        },() => {
+          var json = JSON.parse(JSON.stringify(this.status$));
+         
+
+
         }, () => {
 
         //   alert("inside get plan details ::>> " + sessionStorage.getItem("product_id"));
@@ -238,6 +243,7 @@ export class DataService {
         },() => {
           var json = JSON.parse(JSON.stringify(this.status$));
          
+
 
           this.spinner.hide();
           if(json.statusCode == 200){
