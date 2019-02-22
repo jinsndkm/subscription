@@ -50,7 +50,8 @@ export class SubscriptionComponent implements OnInit {
   }
   //Method to delete an active subscription
   cancelSubscription(subId, planname) {
-    if (confirm("Are you sure to cancel " + planname + "?")) {
+    // if (confirm("Are you sure to cancel " + planname + "?")) {
+      if (confirm("Are you sure you want to cancel this subscription?")) {
       this.items$ = this.data.cancelSubscription(subId);
       this.data.getMySubscription().subscribe(
         data => this.mysubscriptions$ = data
@@ -64,12 +65,12 @@ export class SubscriptionComponent implements OnInit {
       this.data.disableAutorenewal(subscriptionId, "true").subscribe(
         data => this.autorenewal$ = data
       );
-      alert("Auto renewal is on")
+      alert("Auto renewal is turned on")
     } else if (e.target.checked == false) {
       this.data.enableAutorenewal(subscriptionId, "false").subscribe(
         data => this.autorenewal$ = data
       );
-      alert("Auto renewal is off")
+      alert("Auto renewal is turned off")
     }
 
 

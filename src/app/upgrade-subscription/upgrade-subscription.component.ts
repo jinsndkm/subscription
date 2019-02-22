@@ -42,7 +42,7 @@ export class UpgradeSubscriptionComponent implements OnInit {
 
   migratePlan(plansFamilyRltnId, subId) {
    
-    if (confirm("Are you sure want to upgrade?")) {
+    if (confirm("Are you sure you want to upgrade?")) {
       this.aa=  this.data.migrateSubsctiption(plansFamilyRltnId, this.subId);
     }
   }
