@@ -71,4 +71,8 @@ export class MyserviceComponent implements OnInit {
     userName: String;
 
   }
+
+  more(description){
+    sessionStorage.setItem("description",description);
+  }
 }

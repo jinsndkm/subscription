@@ -43,7 +43,7 @@
      </div>
      <div class="head-overview">
        <p class="short-head">PRODUCT</p>
-       <p class="head"> </p>
+       <p class="head"> {{productName}}</p>
     
   
      </div>
@@ -94,7 +94,7 @@
      <div class="form-group row">
        <div class="col-md-12">
 
-         <p class="description"></p>
+         <p class="description">{{description}}</p>
        </div>
        <label for="inputPassword" class="col-md-3 col-sm-3 col-xs col-form-label common-size">Select Frequency</label>
        <div class="col-md-3 col-sm-3">
@@ -153,7 +153,11 @@
         <div class="col-md-3 col-sm-3">
           <!--  <input type="text" class="form-control-plaintext form-control" id="staticEmail"  placeholder=""> -->
        
-         <span class="addon-price" id="testID">  <i class="fas fa-dollar-sign dollor-icon"></i>  {{totalAmo(productDetails$.metadata.setup,products.amount/100)}}</span>
+
+         <!-- <span class="addon-price" id="testID">  <i class="fas fa-dollar-sign dollor-icon"></i>  {{products.amount/100}}</span> -->
+
+         <span class="addon-price" id="testID">  <i class="fas fa-dollar-sign dollor-icon"></i>  {{totalAmo(productDetails$.metadata.setup,products.amount/100,productDetails$.name,products.nickname)}}</span>
+
         </div>
       </div> 
 
@@ -167,7 +171,11 @@
                 <div  *ngIf="cardStatus == 'true' ">
        
                     <button class="btn btn-success btm-mt float-right" (click)="addtocart(products)">Add to Cart</button>
-                    
+                    <div  *ngIf="products.trial_period_days != null ">
+                      <button class="btn btn-success btm-mt float-right" (click)="activatetrial(planfreqID.value)">{{products.trial_period_days}} Days Trial</button>
+                      <!-- <a routerLink="/addservice/activatetrial/{{planfreqID.value}}"> <button class="btn btn-success btm-mt float-right">
+                          {{products.trial_period_days}} Days Trial </button></a> -->
+                    </div>
                     <a routerLink="/addservice/carddetails/{{planfreqID.value}}"> <button class="btn btn-success  btm-mt float-right">
                      Subscribe</button></a>
                       <!-- <button class="btn btn-success  btm-mt float-right" (click)="subscribe(planfreqID.value)">Subscribe</button> -->
@@ -176,7 +184,12 @@
                   <div  *ngIf="cardStatus == 'false' ">
                   
                    <button class="btn btn-success btm-mt float-right" (click)="addtocart(planDetails$)">Add to Cart</button>
-                   
+                  
+                   <div  *ngIf="products.trial_period_days != null ">
+                    <button class="btn btn-success btm-mt float-right" (click)="activatetrial(planfreqID.value)">{{products.trial_period_days}} Days Trial</button>
+                    <!-- <a routerLink="/addservice/activatetrial/{{planfreqID.value}}"> <button class="btn btn-success btm-mt float-right">
+                        {{products.trial_period_days}} Days Trial </button></a> -->
+                  </div>
                    <a routerLink="/addcardstripe"> <button class="btn btn-success btm-mt float-right">
                       Subscribe </button></a>
                      <!-- <button class="btn btn-success  btm-mt float-right" (click)="subscribe(planfreqID.value)">Subscribe</button> -->

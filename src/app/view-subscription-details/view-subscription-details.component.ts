@@ -11,7 +11,7 @@ import { HideMenusService } from '../hide-menus.service';
 export class ViewSubscriptionDetailsComponent implements OnInit {
 
   mySubscrriptionDetails$: Object
-
+  productName:String;
   constructor(private route: ActivatedRoute, private data: DataService,public nav: HideMenusService) { }
 
 
@@ -19,11 +19,12 @@ export class ViewSubscriptionDetailsComponent implements OnInit {
   ngOnInit() {
   
     this.nav.show();
+  
     var subId;
     this.route.queryParams.subscribe(params => {
       console.log(params.subId);
       subId = params.subId;
-      
+      this.productName=params.prodNme;
     })
     this.data.viewSubscriptionDetails(subId).subscribe(
       

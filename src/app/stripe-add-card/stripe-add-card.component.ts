@@ -58,12 +58,13 @@ export class StripeAddCardComponent implements OnInit {
   }
 
   buy() {
-    this.spinner.show();
+    
     const name = this.stripeTest.get('name').value;
     this.stripeService
       .createToken(this.card, { name })
       .subscribe(result => {
         if (result.token) {
+          this.spinner.show();
           // Use the token to create a charge or a customer
           // https://stripe.com/docs/charges
           console.log(result.token.id);

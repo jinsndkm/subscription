@@ -201,6 +201,9 @@ export class DataService {
               err => {
                 console.log(err)
               },() => {
+                
+                sessionStorage.removeItem('cartList');
+                //sessionStorage.setItem("cartList",null);
                 this.router.navigate(['SuccessMessage']);
                 
               });
@@ -336,7 +339,7 @@ export class DataService {
                 console.log(err)
               }, () => {
                 const planID = sessionStorage.getItem("planDetailsID");
-                alert(planID);
+               
 
                 this.cardDetails$ = this.checkCardDetails(this.custId).subscribe(
                   data => {
@@ -363,7 +366,6 @@ export class DataService {
                     }
                   }
                 );
-                 
                 if(planID=="undefined"){
                   // CART MANAGEMENT
                   this.cartItems = JSON.parse(sessionStorage.getItem('cartList'));
@@ -459,6 +461,46 @@ getProductDetails(subId) {
 deleteCard(cardID){
   
   return this.http.delete(rootPath+'/deletecard/'+cardID);
+}
+
+activatetrial(planID,CustID){
+  this.spinner.show();
+  const subscriptionBody = { "customer": CustID, "plan": planID,"trial_from_plan": "true" };
+  const headers = new HttpHeaders()
+    .set('Authorization', 'Basic MDpRU2tCZlRkVGVVVGVYWTRyNllmZEhITlRKMEhmWHphdXZ5cEFmNFpYOEMwTnEwUm5sZHRlRXpWS2ttU3Z2dVdH')
+    .set('Content-Type', 'application/json')
+    .set('Access-Control-Allow-Origin', '*');
+
+  return this.http.post(rootPath + '/subscription/activatetrial', subscriptionBody, {
+    headers: headers
+  })
+    .subscribe(data => {
+      this.status$ = data;
+      var json = JSON.parse(JSON.stringify(this.status$));
+    },
+      err => {
+        console.log(err)
+      },() => {
+        var json = JSON.parse(JSON.stringify(this.status$));
+       
+        this.spinner.hide();
+        if(json.statusCode == 200){
+          this.router.navigate(['SuccessMessage']);
+
+          //  this.http.get(rootPath + '/writetocsv/' + this.custId).subscribe(data => {
+          //   this.status$ = data;
+          //   var json = JSON.parse(JSON.stringify(this.status$));
+          // },
+          //   err => {
+          //     console.log(err)
+          //   },() => {
+          //     this.router.navigate(['SuccessMessage']);
+              
+          //   });
+          
+        }
+        
+      });
 }
 
 

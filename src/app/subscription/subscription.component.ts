@@ -14,6 +14,7 @@ export class SubscriptionComponent implements OnInit {
 
   mysubscriptions$: Object;
   planDetails$: Object;
+  servicesList$: Object;
 
   autorenewal$: Object;
 
@@ -50,6 +51,20 @@ export class SubscriptionComponent implements OnInit {
       /** spinner ends after 5 seconds */
       this.spinner.hide();
     }, 2000);
+
+    this.data.getAllFusebillServices().subscribe(
+      //data => this.servicesList$ = data
+      data => {
+      var json=JSON.parse(JSON.stringify(data));
+      this.servicesList$=json.data;
+      },
+      err => {
+        console.log(err)
+      }, () => {
+        this.spinner.hide();
+      }
+      
+    );
   }
   //Method to delete an active subscription
   cancelSubscription(subId, planname) {

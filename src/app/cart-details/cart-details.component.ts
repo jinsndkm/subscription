@@ -15,6 +15,7 @@ export class CartDetailsComponent implements OnInit {
   cartItems: Array<any> = [];
   grandTotal: number = 0;
   key$: Object;
+  servicesList$:Object;
 private custId:String;
 cardStatus: String;
   constructor(private data: DataService, public nav: HideMenusService, private spinner: NgxSpinnerService,private global:Globals) { 
@@ -26,7 +27,9 @@ cardStatus: String;
     sessionStorage.setItem("redirectPage",window.location.href);
     this.nav.show();
     this.cartItems = JSON.parse(sessionStorage.getItem('cartList'));
+  
     this.cardStatus=sessionStorage.getItem("isCardAdded");
+    
     this.cartItems.forEach(element => {
       this.grandTotal += element.grandTotal;
     });
@@ -44,6 +47,20 @@ cardStatus: String;
     //   var json = JSON.stringify(status);
     // }
     // sessionStorage.setItem("fusebillRedirect","false");
+
+    this.data.getAllFusebillServices().subscribe(
+      //data => this.servicesList$ = data
+      data => {
+      var json=JSON.parse(JSON.stringify(data));
+      this.servicesList$=json.data;
+      },
+      err => {
+        console.log(err)
+      }, () => {
+        this.spinner.hide();
+      }
+      
+    );
     console.log(JSON.stringify(this.cartItems));
   } 
   remove(cartModel) {
@@ -52,8 +69,9 @@ cardStatus: String;
     this.cartItems.splice(index1, 1);
     sessionStorage.setItem("cartList", JSON.stringify(this.cartItems));
     this.grandTotal=0;
-   
+  
     this.cartItems.forEach(element => {
+     
       this.grandTotal += element.grandTotal;
     });
   }
@@ -68,7 +86,7 @@ cardStatus: String;
       checkOutItems.forEach(element => {
         var status = this.data.createSub(element.selectedFreId, this.custId);
       });
-      sessionStorage.removeItem('cartList');
+     
       var json = JSON.stringify(status);
     // }
     // }else{

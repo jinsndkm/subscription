@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
   validateLogin() {
 
 
-    if (this.userName == 'admin' && this.password == 'admin') {
+    if (this.userName == 'mary' && this.password == 'mary@123') {
 
 
       this.cardDetails$ = this.data.checkCardDetails(this.custId).subscribe(

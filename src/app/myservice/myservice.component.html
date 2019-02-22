@@ -57,13 +57,24 @@
                       <div *ngIf="service.metadata.addon == 'false'">
                         <div class="card card2">
                           <h4>
-                            <a routerLink="/addservice/viewplanproducts/{{service.id}}">{{service.name}} </a>
+                            <a routerLink="/addservice/viewplanproducts/{{service.id}}" >{{service.name}} </a>
                           </h4>
                           <i class="fas fa-briefcase-medical med"></i>
 
-                          <p class="p1"> {{service.metadata.description}}</p>
+                          <!-- <p class="p1"> {{service.metadata.description}}</p> -->
+
+
+
+                          <div class="p2" ng-init="limit = 150, moreShown = false">
+                            {{service.metadata.description | limitTo: 150}}
+                            <a *ngIf="service.metadata.description ?.length > 150"
+                               href  = "/addservice/viewplanproducts/{{service.id}}" ng-click="150=service.metadata.description.length; moreShown = true" (click)="more(service.metadata.description)">  More
+                            </a>
+                            
+                        </div>
+
   
-                          <a routerLink="/addservice/viewplanproducts/{{service.id}}">
+                          <a routerLink="/addservice/viewplanproducts/{{service.id}}" (click)="more(service.metadata.description)">
                             <button class="active-btn btn btn-sucess">
                               Subscribe </button>
                           </a>
@@ -104,9 +115,15 @@
                               <a routerLink="/addservice/viewplanproducts/{{service.id}}">{{service.name}} </a>
                             </h4>
                             <i class="fas fa-briefcase-medical med"></i>
-                            <p class="p1"> {{service.metadata.description}}</p>
-  
-                            <a routerLink="/addservice/viewplanproducts/{{service.id}}">
+    <!-- <p class="p1"> {{service.metadata.description}}</p> -->
+    <div class="p2" ng-init="limit = 150, moreShown = false">
+      {{service.metadata.description | limitTo: 150}}
+      <a *ngIf="service.metadata.description ?.length > 150"
+         href  = "/addservice/viewplanproducts/{{service.id}}" ng-click="150=service.metadata.description.length; moreShown = true"  (click)="more(service.metadata.description)">  More
+      </a>
+      
+  </div>
+                            <a routerLink="/addservice/viewplanproducts/{{service.id}}" (click)="more(service.metadata.description)">
                               <button class="active-btn btn btn-sucess">
                                 Subscribe </button>
                             </a>

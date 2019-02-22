@@ -16,6 +16,7 @@ export class PlanProductDetailsComponent implements OnInit {
   planProducts$: Object;
   planDetails$: Object;
   productDetails$: Object;
+  planDe$: Object;
   grandTotal: number = 0;
   finalRes: Object;
   total: number = 0;
@@ -33,6 +34,9 @@ export class PlanProductDetailsComponent implements OnInit {
   //t: number=0;
   private custId: String;
   cardStatus: String;
+   productName:String;
+   nickName:String;
+   description:String;
 
   constructor(private data: DataService, private route: ActivatedRoute, public nav: HideMenusService, private spinner: NgxSpinnerService, private global: Globals) {
     this.custId = global.CUSTOMER_ID;
@@ -52,22 +56,28 @@ export class PlanProductDetailsComponent implements OnInit {
     //     this.spinner.hide();
     //   }, 4000);
     // }
+    this.description=sessionStorage.getItem("description");
+    // alert(sessionStorage.getItem("description"));
     this.spinner.show();
     this.cardStatus = sessionStorage.getItem("isCardAdded");
     sessionStorage.setItem("redirectPage", window.location.href);
     this.nav.show();
     var subId;
+    
     this.route.params.subscribe(params => {
       console.log(params.id);
       subId = params.id;
+
+      // this.productName=params.name;
+
       sessionStorage.setItem("product_id", subId);
+
     })
 
     this.data.getPlanProducts(subId).subscribe(
       data => {
         var json = JSON.parse(JSON.stringify(data));
         this.planProducts$ = json.data;
-
       },
       err => {
         console.log(err)
@@ -91,6 +101,7 @@ export class PlanProductDetailsComponent implements OnInit {
       data => {
         var json = JSON.parse(JSON.stringify(data));
         this.planDetails$ = json;
+       
       },
       err => {
         console.log(err)
@@ -124,7 +135,9 @@ export class PlanProductDetailsComponent implements OnInit {
 
 
   }
-  totalAmo(setupCharge, amount) {
+  totalAmo(setupCharge, amount,prodname,nickName) {
+    this.productName=prodname;
+    this.nickName=nickName;
     var setUp = parseInt(setupCharge);
     this.grandTotal=setUp + amount
     return setUp + amount;
@@ -206,12 +219,16 @@ export class PlanProductDetailsComponent implements OnInit {
 
 
   addtocart(planDetails) {
-
+   
+    window.scrollTo(0, 0)
     if (typeof this.freId$ === "undefined") {
       planDetails.selectedFreId = planDetails.id;
     } else {
       planDetails.selectedFreId = this.freId$;
     }
+   
+    planDetails.prdname=this.productName;
+    planDetails.planName=this.nickName;
 
 
     // this.data.getPlanProducts(planDetails.id).subscribe(
@@ -249,6 +266,11 @@ export class PlanProductDetailsComponent implements OnInit {
 
   getPlanId(plnID) {
     this.freId$ = plnID;
+  }
+
+  activatetrial(plnID){
+    var status = this.data.activatetrial(plnID, this.custId);
+
   }
 
   producttype = true;
