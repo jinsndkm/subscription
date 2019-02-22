@@ -123,7 +123,7 @@
        <div class="col-md-3 col-sm-3">
           <!-- <span class="addon-price" > <i class="fas fa-dollar-sign dollor-icon"></i> {{amount}} </span> -->
           
-         <span class="addon-price" > <i class="fas fa-dollar-sign dollor-icon"></i> {{products.amount/100}} </span>
+         <span class="addon-price" >  {{products.amount/100 |currency}} </span>
       
         </div>
      </div>
@@ -141,7 +141,7 @@
       <div class="col-md-3 col-sm-3">
          <!-- <span class="addon-price" > <i class="fas fa-dollar-sign dollor-icon"></i> {{amount}} </span> -->
          
-        <span class="addon-price" > <i class="fas fa-dollar-sign dollor-icon"></i> {{productDetails$.metadata.setup}} </span>
+        <span class="addon-price" >  {{productDetails$.metadata.setup|currency}} </span>
      
        </div>
     </div>
@@ -156,7 +156,7 @@
 
          <!-- <span class="addon-price" id="testID">  <i class="fas fa-dollar-sign dollor-icon"></i>  {{products.amount/100}}</span> -->
 
-         <span class="addon-price" id="testID">  <i class="fas fa-dollar-sign dollor-icon"></i>  {{totalAmo(productDetails$.metadata.setup,products.amount/100,productDetails$.name,products.nickname)}}</span>
+         <span class="addon-price" id="testID">  {{totalAmo(productDetails$.metadata.setup,products.amount/100,productDetails$.name,products.nickname)|currency}}</span>
 
         </div>
       </div> 
